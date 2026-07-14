@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Iberdrola Design System — Single-file bundle  ⭐
+   --------------------------------------------------------------------------
+   Import THIS one file to get the entire system (tokens + fonts + reset +
+   base + all components):
+
+     <link rel="stylesheet" href="css/iberdrola.css">
+
+   Order matters: fonts & tokens first, then reset, base, components.
+   Source of truth for token values: tokens/tokens.json
+   ========================================================================== */
+
+@import "../fonts/fonts.css";
+@import "../tokens/iberdrola.tokens.css";
+@import "./reset.css";
+@import "./base.css";
+@import "./components.css";

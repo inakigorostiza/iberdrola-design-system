@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Iberdrola · 300×600 Half Page</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#c9ccc5; }
+  .ad {
+    width:300px; height:600px; overflow:hidden; position:relative;
+    background:#013D28; background-image:linear-gradient(165deg,#006B33 0%,#013D28 62%);
+    font-family:"Figtree","Segoe UI",system-ui,sans-serif; color:#fff;
+    border-radius:18px;
+  }
+  .ad__tricolor { position:absolute; top:0; left:0; right:0; height:5px; display:flex; }
+  .ad__tricolor i { display:block; height:100%; }
+  .ad__tricolor i:nth-child(1){ flex:42; background:#00A443; }
+  .ad__tricolor i:nth-child(2){ flex:33; background:#0DA9FF; }
+  .ad__tricolor i:nth-child(3){ flex:25; background:#FF9C1A; }
+  .ad__inner { position:absolute; inset:0; padding:34px 30px 32px; display:flex; flex-direction:column; align-items:flex-start; }
+  .ad__logo { height:40px; filter:brightness(0) invert(1); }
+  .ad__badge { display:inline-block; margin-top:30px; font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:#013D28; background:#FF9C1A; border-radius:999px; padding:5px 13px; }
+  .ad__h { margin-top:18px; font-size:34px; line-height:37px; font-weight:700; letter-spacing:-.8px; }
+  .ad__offer { margin-top:20px; font-size:70px; line-height:62px; font-weight:700; color:#FF9C1A; letter-spacing:-2px; }
+  .ad__sub { margin-top:8px; font-size:15px; line-height:21px; font-weight:600; color:#fff; }
+  .ad__p { margin-top:10px; font-size:13px; line-height:19px; color:#D9E5DE; }
+  .ad__flame { width:120px; margin:auto 0 0 -8px; }
+  .ad__cta { align-self:stretch; text-align:center; margin-top:18px; background:#fff; color:#00823A; font-size:16px; font-weight:700; padding:15px 12px; border-radius:999px; }
+</style>
+</head>
+<body>
+<div class="ad" role="img" aria-label="Iberdrola — Plan Online: 50% de descuento durante 3 meses. Contrata online.">
+  <span class="ad__tricolor"><i></i><i></i><i></i></span>
+  <div class="ad__inner">
+    <img class="ad__logo" src="../../brand/logos/iberdrola-logo-mono.svg" alt="Iberdrola">
+    <span class="ad__badge">Oferta de verano</span>
+    <h1 class="ad__h">Tu energía verde</h1>
+    <div class="ad__offer">-50%</div>
+    <div class="ad__sub">durante 3 meses</div>
+    <p class="ad__p">Plan Online: 100% renovable, sin permanencia y precio estable 12 meses.</p>
+    <img class="ad__flame" src="../../brand/logos/iberdrola-icon.svg" alt="">
+    <span class="ad__cta">Contrata online →</span>
+  </div>
+</div>
+</body>
+</html>

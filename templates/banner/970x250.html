@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Iberdrola · 970×250 Billboard</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { background:#c9ccc5; }
+  .ad {
+    width:970px; height:250px; overflow:hidden; position:relative;
+    background:#013D28; background-image:linear-gradient(150deg,#006B33 0%,#013D28 70%);
+    font-family:"Figtree","Segoe UI",system-ui,sans-serif; color:#fff;
+    border-radius:20px;
+  }
+  .ad__tricolor { position:absolute; top:0; left:0; right:0; height:6px; display:flex; }
+  .ad__tricolor i { display:block; height:100%; }
+  .ad__tricolor i:nth-child(1){ flex:42; background:#00A443; }
+  .ad__tricolor i:nth-child(2){ flex:33; background:#0DA9FF; }
+  .ad__tricolor i:nth-child(3){ flex:25; background:#FF9C1A; }
+  .ad__inner { position:absolute; inset:0; padding:40px 56px; display:flex; flex-direction:column; }
+  .ad__logo { height:46px; align-self:flex-start; filter:brightness(0) invert(1); }
+  .ad__flame { position:absolute; right:34px; top:50%; transform:translateY(-46%); width:300px; opacity:.95; }
+  .ad__badge { display:inline-block; align-self:flex-start; margin-top:22px; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#013D28; background:#FF9C1A; border-radius:999px; padding:5px 14px; }
+  .ad__row { display:flex; align-items:flex-end; justify-content:space-between; margin-top:auto; gap:24px; }
+  .ad__h { font-size:40px; line-height:43px; font-weight:700; letter-spacing:-1px; max-width:600px; }
+  .ad__h span { color:#FF9C1A; }
+  .ad__cta { white-space:nowrap; background:#fff; color:#00823A; font-size:17px; font-weight:700; padding:16px 36px; border-radius:999px; margin-bottom:4px; }
+</style>
+</head>
+<body>
+<div class="ad" role="img" aria-label="Iberdrola — La energía que cuida de tu bienestar. 100% renovable. Contrata online.">
+  <span class="ad__tricolor"><i></i><i></i><i></i></span>
+  <img class="ad__flame" src="../../brand/logos/iberdrola-icon.svg" alt="">
+  <div class="ad__inner">
+    <img class="ad__logo" src="../../brand/logos/iberdrola-logo-mono.svg" alt="Iberdrola">
+    <span class="ad__badge">Plan Online · 100% renovable</span>
+    <div class="ad__row">
+      <h1 class="ad__h">La energía que cuida de tu <span>bienestar</span></h1>
+      <span class="ad__cta">Contrata online →</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

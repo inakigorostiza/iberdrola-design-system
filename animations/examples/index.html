@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animaciones — Iberdrola · Micro-interacciones</title>
+<meta name="description" content="Iberdrola Design System — galería de micro-interacciones ejecutables con los tokens de movimiento.">
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="../../css/iberdrola.css">
+<style>
+  /* ==========================================================================
+     Page-local layout for the animation gallery.
+     All motion uses the design-system motion tokens.
+     ========================================================================== */
+  body { background: var(--ib-bg-subtle); }
+
+  .anim-intro { padding-block: var(--ib-space-8) var(--ib-space-5); text-align: center; }
+  .anim-intro .ib-container { max-width: 62ch; }
+
+  .anim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--ib-space-5);
+    padding-bottom: var(--ib-space-9);
+  }
+
+  .demo-card { display: flex; flex-direction: column; gap: var(--ib-space-4); }
+  .demo-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ib-space-3); }
+  .demo-card__title { font-size: var(--ib-text-h5); color: var(--ib-text-heading); }
+  .demo-card__desc { font-size: var(--ib-text-body-sm); color: var(--ib-text-muted); margin-top: var(--ib-space-1); }
+  .demo-card__letter { font-weight: var(--ib-weight-bold); color: var(--ib-color-primary); font-size: var(--ib-text-h5); }
+
+  /* Stage where the live interaction plays */
+  .stage {
+    display: grid; place-items: center;
+    min-height: 150px; padding: var(--ib-space-5);
+    background: var(--ib-bg-subtle);
+    border-radius: var(--ib-radius-md);
+    border: 1px dashed var(--ib-border-strong);
+  }
+  .stage--dark { background: var(--ib-gradient-forest); border-color: transparent; }
+
+  /* Code snippet block */
+  .snippet {
+    margin: 0; font-size: var(--ib-text-caption); line-height: var(--ib-leading-normal);
+    max-height: 170px; overflow: auto;
+  }
+  .snippet::-webkit-scrollbar { height: 6px; width: 6px; }
+  .snippet::-webkit-scrollbar-thumb { background: var(--ib-green-700); border-radius: 999px; }
+
+  .replay {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: var(--ib-space-2);
+    background: none; border: 1px solid var(--ib-border-strong); color: var(--ib-text-body);
+    font-family: var(--ib-font-brand); font-size: var(--ib-text-caption); font-weight: var(--ib-weight-semibold);
+    padding: 0.4em 0.9em; border-radius: var(--ib-radius-pill); cursor: pointer;
+    transition: var(--ib-transition-base);
+  }
+  .replay:hover { border-color: var(--ib-color-primary); color: var(--ib-color-primary); }
+  .replay svg { width: 14px; height: 14px; }
+
+  /* ==========================================================================
+     (c) STAGGERED CONTENT REVEAL
+     ========================================================================== */
+  .reveal-list { display: flex; flex-direction: column; gap: var(--ib-space-2); width: 100%; }
+  .reveal-item {
+    background: var(--ib-bg-surface); border: 1px solid var(--ib-border);
+    border-radius: var(--ib-radius-md); padding: var(--ib-space-3) var(--ib-space-4);
+    font-size: var(--ib-text-body-sm); font-weight: var(--ib-weight-medium);
+    display: flex; align-items: center; gap: var(--ib-space-3);
+  }
+  .reveal-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ib-color-primary); }
+  .is-playing .reveal-item {
+    opacity: 0; transform: translateY(16px);
+    animation: ib-reveal-up var(--ib-duration-slow) var(--ib-ease-decelerate) forwards;
+  }
+  .is-playing .reveal-item:nth-child(1) { animation-delay: 0ms; }
+  .is-playing .reveal-item:nth-child(2) { animation-delay: 80ms; }
+  .is-playing .reveal-item:nth-child(3) { animation-delay: 160ms; }
+  .is-playing .reveal-item:nth-child(4) { animation-delay: 240ms; }
+  @keyframes ib-reveal-up { to { opacity: 1; transform: none; } }
+
+  /* ==========================================================================
+     (d) LOADING — spinner + skeleton
+     ========================================================================== */
+  .spinner {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 4px solid var(--ib-green-100);
+    border-top-color: var(--ib-color-primary);
+    animation: ib-spin var(--ib-duration-slower) linear infinite;
+  }
+  @keyframes ib-spin { to { transform: rotate(360deg); } }
+
+  .skeleton { display: flex; flex-direction: column; gap: var(--ib-space-2); width: 100%; }
+  .skeleton__line {
+    height: 12px; border-radius: var(--ib-radius-pill);
+    background: linear-gradient(90deg, var(--ib-neutral-200) 25%, var(--ib-neutral-100) 37%, var(--ib-neutral-200) 63%);
+    background-size: 400% 100%;
+    animation: ib-shimmer 1.4s ease-in-out infinite;
+  }
+  .skeleton__line:nth-child(2) { width: 80%; }
+  .skeleton__line:nth-child(3) { width: 60%; }
+  @keyframes ib-shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+
+  /* ==========================================================================
+     (e) TRICOLOR ENERGY LINE — draw + shimmer
+     ========================================================================== */
+  .energy-demo { width: 100%; }
+  .energy-demo svg { width: 100%; height: 60px; display: block; }
+  .energy-path {
+    fill: none; stroke: url(#energyGrad); stroke-width: 4; stroke-linecap: round;
+    stroke-dasharray: 520; stroke-dashoffset: 520;
+  }
+  .is-playing .energy-path { animation: ib-draw var(--ib-duration-slower) var(--ib-ease-standard) forwards; }
+  @keyframes ib-draw { to { stroke-dashoffset: 0; } }
+
+  .energy-bar {
+    height: 6px; border-radius: var(--ib-radius-pill); margin-top: var(--ib-space-4);
+    background: var(--ib-gradient-tricolor); background-size: 200% 100%;
+    animation: ib-flow 2.4s linear infinite;
+  }
+  @keyframes ib-flow { to { background-position: 200% 0; } }
+
+  /* ==========================================================================
+     (f) STAT COUNT-UP
+     ========================================================================== */
+  .count-demo { text-align: center; color: var(--ib-neutral-0); }
+  .count-demo__value { font-size: var(--ib-text-display); font-weight: var(--ib-weight-bold); line-height: 1; letter-spacing: var(--ib-tracking-tight); }
+  .count-demo__label { font-size: var(--ib-text-body-sm); opacity: 0.85; margin-top: var(--ib-space-2); }
+
+  /* ==========================================================================
+     (g) HERO TEXT STAGGERED ENTRANCE
+     ========================================================================== */
+  .hero-demo { text-align: center; color: var(--ib-neutral-0); }
+  .hero-demo__word { display: inline-block; }
+  .hero-demo .line2 { color: var(--ib-neutral-0); }
+  .is-playing .hero-demo__word,
+  .is-playing .hero-demo__sub,
+  .is-playing .hero-demo__cta {
+    opacity: 0; transform: translateY(20px);
+    animation: ib-reveal-up var(--ib-duration-slow) var(--ib-ease-decelerate) forwards;
+  }
+  .is-playing .hero-demo__word:nth-child(1) { animation-delay: 40ms; }
+  .is-playing .hero-demo__word:nth-child(2) { animation-delay: 120ms; }
+  .is-playing .hero-demo__word:nth-child(3) { animation-delay: 200ms; }
+  .is-playing .hero-demo__word:nth-child(4) { animation-delay: 280ms; }
+  .is-playing .hero-demo__sub { animation-delay: 380ms; }
+  .is-playing .hero-demo__cta { animation-delay: 480ms; }
+  .hero-demo h3 { color: var(--ib-neutral-0); font-size: var(--ib-text-h3); }
+
+  /* Reduced-motion: disable every demo animation and show final state */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .energy-path { stroke-dashoffset: 0 !important; }
+    .reveal-item, .hero-demo__word, .hero-demo__sub, .hero-demo__cta { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= INTRO ================= -->
+<header class="anim-intro">
+  <div class="ib-container">
+    <span class="ib-overline">Iberdrola Design System</span>
+    <h1 style="margin-top:var(--ib-space-3)">Movimiento en acción</h1>
+    <p class="ib-lead ib-text-muted" style="margin-top:var(--ib-space-3)">
+      Micro-interacciones ejecutables que muestran los principios de movimiento de la marca:
+      con propósito, tranquilas y con energía. Todas usan los <b>tokens de movimiento</b> y respetan
+      <code>prefers-reduced-motion</code>. Consulta la guía en
+      <a href="../motion.md">motion.md</a>.
+    </p>
+    <hr class="ib-energy-line" style="max-width:200px;margin:var(--ib-space-5) auto 0">
+  </div>
+</header>
+
+<main class="ib-container">
+  <div class="anim-grid">
+
+    <!-- (a) BUTTON PRESS / HOVER -->
+    <article class="ib-card demo-card">
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Botón · hover &amp; press</h2>
+          <p class="demo-card__desc">Lift de 1&nbsp;px + sombra al hover, se asienta al pulsar.</p>
+        </div>
+        <span class="demo-card__letter">a</span>
+      </div>
+      <div class="stage">
+        <button class="ib-btn ib-btn--lg">Contrata online</button>
+      </div>
+      <pre class="snippet"><code>.ib-btn { transition: var(--ib-transition-base); }
+.ib-btn:hover  { transform: translateY(-1px);
+                 box-shadow: var(--ib-shadow-sm); }
+.ib-btn:active { transform: translateY(0);
+                 box-shadow: none; }</code></pre>
+    </article>
+
+    <!-- (b) CARD HOVER LIFT -->
+    <article class="ib-card demo-card">
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Tarjeta · hover lift</h2>
+          <p class="demo-card__desc">La tarjeta se eleva 4&nbsp;px con una sombra más profunda.</p>
+        </div>
+        <span class="demo-card__letter">b</span>
+      </div>
+      <div class="stage">
+        <div class="ib-card ib-card--hover" style="width:200px;text-align:center;padding:var(--ib-space-5)">
+          <div class="ib-feature__icon" style="margin-inline:auto">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>
+          </div>
+          <strong>Pasa el cursor</strong>
+        </div>
+      </div>
+      <pre class="snippet"><code>.ib-card { transition: var(--ib-transition-base); }
+.ib-card--hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ib-shadow-md);
+}</code></pre>
+    </article>
+
+    <!-- (c) STAGGERED CONTENT REVEAL -->
+    <article class="ib-card demo-card" data-anim>
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Revelado escalonado</h2>
+          <p class="demo-card__desc">Los ítems entran con fade-up, 80&nbsp;ms entre cada uno.</p>
+        </div>
+        <span class="demo-card__letter">c</span>
+      </div>
+      <div class="stage" data-stage>
+        <div class="reveal-list">
+          <div class="reveal-item"><span class="dot"></span> Sin permanencia</div>
+          <div class="reveal-item"><span class="dot"></span> 100% energía verde</div>
+          <div class="reveal-item"><span class="dot"></span> Gestión 100% online</div>
+          <div class="reveal-item"><span class="dot"></span> Precio estable 12 meses</div>
+        </div>
+      </div>
+      <button class="replay" data-replay><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 3v6h6"/></svg> Reproducir</button>
+      <pre class="snippet"><code>.item {
+  opacity: 0; transform: translateY(16px);
+  animation: reveal var(--ib-duration-slow)
+             var(--ib-ease-decelerate) forwards;
+}
+.item:nth-child(2) { animation-delay: 80ms; }
+.item:nth-child(3) { animation-delay: 160ms; }
+@keyframes reveal { to { opacity:1; transform:none; } }</code></pre>
+    </article>
+
+    <!-- (d) LOADING — SPINNER + SKELETON -->
+    <article class="ib-card demo-card">
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Cargando · spinner + skeleton</h2>
+          <p class="demo-card__desc">Spinner de marca y shimmer de esqueleto para esperas.</p>
+        </div>
+        <span class="demo-card__letter">d</span>
+      </div>
+      <div class="stage" style="gap:var(--ib-space-5);grid-auto-flow:column">
+        <div class="spinner" role="status" aria-label="Cargando"></div>
+        <div class="skeleton" style="max-width:150px">
+          <div class="skeleton__line"></div>
+          <div class="skeleton__line"></div>
+          <div class="skeleton__line"></div>
+        </div>
+      </div>
+      <pre class="snippet"><code>.spinner {
+  border: 4px solid var(--ib-green-100);
+  border-top-color: var(--ib-color-primary);
+  animation: spin var(--ib-duration-slower)
+             linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+/* skeleton: animated gradient background-position */</code></pre>
+    </article>
+
+    <!-- (e) TRICOLOR ENERGY LINE -->
+    <article class="ib-card demo-card" data-anim>
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Línea de energía tricolor</h2>
+          <p class="demo-card__desc">Trazo que se dibuja + barra con shimmer continuo.</p>
+        </div>
+        <span class="demo-card__letter">e</span>
+      </div>
+      <div class="stage stage--dark" data-stage>
+        <div class="energy-demo">
+          <svg viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%"  stop-color="#00A443"/>
+                <stop offset="55%" stop-color="#0DA9FF"/>
+                <stop offset="100%" stop-color="#FF9C1A"/>
+              </linearGradient>
+            </defs>
+            <path class="energy-path" d="M4 40 L60 40 L80 16 L110 44 L140 24 L170 40 L296 40"/>
+          </svg>
+          <div class="energy-bar"></div>
+        </div>
+      </div>
+      <button class="replay" data-replay><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 3v6h6"/></svg> Redibujar</button>
+      <pre class="snippet"><code>.energy-path {
+  stroke: url(#energyGrad); /* tricolor */
+  stroke-dasharray: 520; stroke-dashoffset: 520;
+  animation: draw var(--ib-duration-slower)
+             var(--ib-ease-standard) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.energy-bar { background: var(--ib-gradient-tricolor);
+  background-size: 200% 100%;
+  animation: flow 2.4s linear infinite; }</code></pre>
+    </article>
+
+    <!-- (f) STAT COUNT-UP -->
+    <article class="ib-card demo-card" data-anim>
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Contador · count-up</h2>
+          <p class="demo-card__desc">Cifra que sube hasta su valor (JS, con reduced-motion seguro).</p>
+        </div>
+        <span class="demo-card__letter">f</span>
+      </div>
+      <div class="stage stage--dark" data-stage>
+        <div class="count-demo">
+          <div class="count-demo__value"><span data-count="98" data-suffix="%">0%</span></div>
+          <div class="count-demo__label">Energía de origen renovable</div>
+        </div>
+      </div>
+      <button class="replay" data-replay><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 3v6h6"/></svg> Contar de nuevo</button>
+      <pre class="snippet"><code>const dur = 700; // --ib-duration-slower
+requestAnimationFrame(function tick(t){
+  const p = Math.min((t - start) / dur, 1);
+  const eased = 1 - Math.pow(1 - p, 3); // decelerate
+  el.textContent = Math.round(eased * target) + suffix;
+  if (p &lt; 1) requestAnimationFrame(tick);
+});
+// prefers-reduced-motion → jump straight to target</code></pre>
+    </article>
+
+    <!-- (g) HERO TEXT STAGGERED ENTRANCE -->
+    <article class="ib-card demo-card" data-anim style="grid-column: 1 / -1;">
+      <div class="demo-card__head">
+        <div>
+          <h2 class="demo-card__title">Entrada de hero escalonada</h2>
+          <p class="demo-card__desc">Titular palabra a palabra, luego subtítulo y CTA.</p>
+        </div>
+        <span class="demo-card__letter">g</span>
+      </div>
+      <div class="stage stage--dark" data-stage style="min-height:200px">
+        <div class="hero-demo">
+          <h3>
+            <span class="hero-demo__word">La</span>
+            <span class="hero-demo__word">energía</span>
+            <span class="hero-demo__word">que</span>
+            <span class="hero-demo__word">cuida</span>
+          </h3>
+          <p class="hero-demo__sub" style="color:#D9E5DE;margin-top:var(--ib-space-3)">Tu bienestar, con energía 100% verde.</p>
+          <div class="hero-demo__cta" style="margin-top:var(--ib-space-4)">
+            <span class="ib-btn ib-btn--on-dark">Empezar</span>
+          </div>
+        </div>
+      </div>
+      <button class="replay" data-replay><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 3v6h6"/></svg> Reproducir</button>
+      <pre class="snippet"><code>.word { opacity: 0; transform: translateY(20px);
+  animation: reveal var(--ib-duration-slow)
+             var(--ib-ease-decelerate) forwards; }
+.word:nth-child(1){animation-delay:40ms}
+.word:nth-child(2){animation-delay:120ms}
+.word:nth-child(3){animation-delay:200ms}
+.word:nth-child(4){animation-delay:280ms}
+.sub{animation-delay:380ms} .cta{animation-delay:480ms}</code></pre>
+    </article>
+
+  </div>
+</main>
+
+<footer class="ib-footer">
+  <div class="ib-container">
+    <div class="ib-footer__legal" style="border:none;margin:0;padding:0;justify-content:center">
+      <span>© 2026 Iberdrola Clientes S.A.U. · Movimiento — Design System</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Play/replay class-toggled demos ---- */
+  function play(card) {
+    var stage = card.querySelector("[data-stage]");
+    if (!stage) return;
+    stage.classList.remove("is-playing");
+    // force reflow so the animation restarts
+    void stage.offsetWidth;
+    stage.classList.add("is-playing");
+    runCounts(stage);
+  }
+
+  /* ---- Count-up ---- */
+  function runCounts(scope) {
+    scope.querySelectorAll("[data-count]").forEach(function (el) {
+      var target = parseFloat(el.getAttribute("data-count"));
+      var suffix = el.getAttribute("data-suffix") || "";
+      if (reduce) { el.textContent = target + suffix; return; }
+      var dur = 700; // --ib-duration-slower
+      var start = null;
+      function tick(t) {
+        if (start === null) start = t;
+        var p = Math.min((t - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  document.querySelectorAll("[data-replay]").forEach(function (btn) {
+    btn.addEventListener("click", function () { play(btn.closest("[data-anim]")); });
+  });
+
+  /* ---- Auto-play each demo once when it scrolls into view ---- */
+  var cards = document.querySelectorAll("[data-anim]");
+  if (reduce) {
+    // Show final state immediately, no motion.
+    cards.forEach(function (c) {
+      var s = c.querySelector("[data-stage]");
+      if (s) s.classList.add("is-playing");
+      runCounts(c);
+    });
+    return;
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { play(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    cards.forEach(function (c) { io.observe(c); });
+  } else {
+    cards.forEach(play);
+  }
+})();
+</script>
+</body>
+</html>

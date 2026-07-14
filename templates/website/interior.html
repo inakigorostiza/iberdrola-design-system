@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eficiencia Energética — Website interior template</title>
+<meta name="description" content="Iberdrola Design System — interior/content page template.">
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="../../css/iberdrola.css">
+</head>
+<body>
+
+<header class="ib-topbar" style="position:relative;">
+  <div class="ib-container">
+    <div class="ib-topbar__utility"><a href="index.html">Negocios</a><a href="#">ES ▾</a><a href="#" class="ib-text-primary">Área de Clientes</a></div>
+    <nav class="ib-nav" aria-label="Principal">
+      <a class="ib-nav__logo" href="index.html" aria-label="Iberdrola — inicio"><img src="../../brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:44px"></a>
+      <ul class="ib-nav__menu" id="site-menu">
+        <li><a class="ib-nav__link" href="#">Luz y Gas</a></li>
+        <li><a class="ib-nav__link" href="#">Movilidad</a></li>
+        <li><a class="ib-nav__link" href="#">Solar</a></li>
+        <li><a class="ib-nav__link" href="interior.html" aria-current="page">Eficiencia</a></li>
+      </ul>
+      <div class="ib-nav__actions">
+        <a class="ib-btn ib-btn--sm" href="#">Contacta</a>
+        <button class="ib-nav__toggle" data-ib-nav-toggle aria-controls="site-menu" aria-expanded="false" aria-label="Menú"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Breadcrumbs -->
+<div class="ib-container" style="padding-block:var(--ib-space-4)">
+  <ol class="ib-breadcrumb">
+    <li><a href="index.html">Negocios</a></li>
+    <li><a href="#">Servicios</a></li>
+    <li aria-current="page">Eficiencia Energética</li>
+  </ol>
+</div>
+
+<!-- Card-over-image hero -->
+<section class="ib-hero ib-hero--overlay">
+  <div class="ib-ph ib-ph--cover" style="position:absolute;inset:0" aria-hidden="true"></div>
+  <div class="ib-container" style="position:relative;z-index:2">
+    <div class="ib-hero__card ib-stack-3" data-ib-reveal>
+      <span class="ib-overline">Eficiencia Energética</span>
+      <h1>Optimiza el consumo de tu empresa</h1>
+      <p>Diagnóstico, soluciones a medida y acompañamiento para reducir tu factura y tus emisiones.</p>
+      <div><a class="ib-btn" href="#">Solicita tu estudio</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Intro + alert -->
+<section class="ib-section">
+  <div class="ib-container ib-container--narrow ib-stack-5">
+    <p class="ib-lead">La eficiencia energética es la forma más rentable de reducir costes y avanzar hacia la descarbonización. Te ayudamos a conseguirlo en cada fase.</p>
+    <div class="ib-alert ib-alert--info"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><div>¿Sabías que una auditoría energética puede reducir tu consumo hasta un <strong>30%</strong>? Consúltanos sin compromiso.</div></div>
+  </div>
+</section>
+
+<!-- Tabs -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head"><h2>Cómo trabajamos contigo</h2></div>
+    <div data-ib-tabs>
+      <ul class="ib-tabs__list" role="tablist" aria-label="Fases">
+        <li role="presentation"><button class="ib-tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Analizamos</button></li>
+        <li role="presentation"><button class="ib-tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Diseñamos</button></li>
+        <li role="presentation"><button class="ib-tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Implementamos</button></li>
+        <li role="presentation"><button class="ib-tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Monitorizamos</button></li>
+      </ul>
+      <div class="ib-tabs__panel" role="tabpanel" id="p1" aria-labelledby="t1"><p>Auditamos tus instalaciones y tu curva de consumo para detectar oportunidades de ahorro reales.</p></div>
+      <div class="ib-tabs__panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden><p>Diseñamos un plan de medidas a medida priorizado por retorno de inversión.</p></div>
+      <div class="ib-tabs__panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden><p>Ejecutamos las mejoras con nuestro equipo técnico y partners certificados.</p></div>
+      <div class="ib-tabs__panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden><p>Seguimiento continuo con datos en tiempo real para asegurar los resultados.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Content + sidebar -->
+<section class="ib-section">
+  <div class="ib-container" style="display:grid;grid-template-columns:2fr 1fr;gap:var(--ib-space-7)">
+    <div class="ib-stack-4">
+      <h2>Soluciones de eficiencia</h2>
+      <p>Combinamos tecnología, datos y experiencia para que tu empresa consuma mejor. Desde iluminación LED y climatización eficiente hasta autoconsumo solar y movilidad eléctrica.</p>
+      <ul class="ib-plan__features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Auditoría energética certificada</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Autoconsumo solar y baterías</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Puntos de recarga para flotas</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Monitorización y gestión inteligente</li>
+      </ul>
+    </div>
+    <aside class="ib-card ib-card--elevated ib-stack-4" style="align-self:start">
+      <h4>¿Hablamos?</h4>
+      <p class="ib-body-sm ib-text-muted">Un asesor estudiará tu caso sin coste.</p>
+      <div class="ib-field"><label class="ib-label" for="nombre">Nombre</label><input class="ib-input" id="nombre" placeholder="Tu nombre"></div>
+      <div class="ib-field"><label class="ib-label" for="email">Email</label><input class="ib-input" id="email" type="email" placeholder="tu@empresa.com"></div>
+      <label class="ib-check"><input type="checkbox"> Acepto la política de privacidad</label>
+      <a class="ib-btn ib-btn--block" href="#">Solicitar estudio</a>
+    </aside>
+  </div>
+</section>
+
+<!-- FAQ accordion -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head"><h2>Preguntas frecuentes</h2></div>
+    <div class="ib-accordion" data-ib-accordion="single">
+      <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="true" aria-controls="i1">¿Cuánto cuesta una auditoría energética?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="i1">El estudio inicial es gratuito y sin compromiso. El alcance detallado se presupuesta según tus instalaciones.</div></div>
+      <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="i2">¿Cuánto puedo ahorrar?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="i2" hidden>Depende de tu punto de partida, pero es habitual reducir entre un 15% y un 30% del consumo.</div></div>
+      <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="i3">¿Hay ayudas o subvenciones?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="i3" hidden>Sí. Te ayudamos a identificar y tramitar las ayudas públicas disponibles para tu proyecto.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="ib-section">
+  <div class="ib-container">
+    <div class="ib-cta-band" data-ib-reveal>
+      <div class="ib-cta-band__body"><h2>Empieza a ahorrar hoy</h2><p style="color:#D9E5DE">Solicita tu estudio gratuito y descubre tu potencial de ahorro.</p></div>
+      <div style="text-align:right"><a class="ib-btn ib-btn--on-dark ib-btn--lg" href="#">Solicitar estudio</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="ib-footer">
+  <div class="ib-container">
+    <div class="ib-footer__grid">
+      <div class="ib-footer__col"><h5>Ayuda</h5><ul><li><a href="#">Atención al cliente</a></li><li><a href="#">Contacto</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Servicios</h5><ul><li><a href="#">Eficiencia</a></li><li><a href="#">Solar</a></li><li><a href="#">Movilidad</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Empresa</h5><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Sostenibilidad</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Legal</h5><ul><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+    </div>
+    <div class="ib-footer__legal"><span>© 2026 Iberdrola Clientes S.A.U.</span><a href="#">Información legal</a><a href="#">Accesibilidad</a></div>
+  </div>
+</footer>
+
+<script src="../../js/iberdrola.js" defer></script>
+</body>
+</html>

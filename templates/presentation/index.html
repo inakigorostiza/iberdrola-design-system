@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentación — Iberdrola · Plantilla maestra</title>
+<meta name="description" content="Iberdrola Design System — plantilla de presentación (deck 16:9).">
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="../../css/iberdrola.css">
+<style>
+  /* ==========================================================================
+     Slide-local layout only. All colour / type / spacing comes from tokens.
+     ========================================================================== */
+  :root {
+    --sl-pad-x: clamp(2.25rem, 1rem + 5vw, 5rem);
+    --sl-pad-y: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+  }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--ib-neutral-900); font-family: var(--ib-font-brand); }
+
+  /* Deck = vertical scroll-snap of full-viewport slides */
+  .deck { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { .deck { scroll-behavior: auto; } }
+
+  .slide { height: 100vh; scroll-snap-align: start; display: grid; place-items: center; }
+
+  /* Each slide constrained to a true 16:9 frame, letterboxed on off-ratio screens */
+  .slide__frame {
+    width:  min(100vw, calc(100vh * 16 / 9));
+    height: min(100vh, calc(100vw * 9 / 16));
+    aspect-ratio: 16 / 9;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--ib-bg-page);
+    color: var(--ib-text-body);
+    padding: var(--sl-pad-y) var(--sl-pad-x);
+  }
+  .slide__frame--tint-mint  { background: var(--ib-tint-mint); }
+  .slide__frame--tint-peach { background: var(--ib-tint-peach); }
+  .slide__frame--tint-sky   { background: var(--ib-tint-sky); }
+  .slide__frame--tint-sand  { background: var(--ib-tint-sand); }
+  .slide__frame--subtle     { background: var(--ib-bg-subtle); }
+  .slide__frame--forest     { background: var(--ib-gradient-forest); color: var(--ib-text-inverse); }
+  .slide__frame--forest :is(h1,h2,h3,h4,h5,h6) { color: var(--ib-neutral-0); }
+  .slide__frame--forest .ib-lead { color: #D9E5DE; }
+  .slide__frame--forest .sl-footer { color: rgba(255,255,255,.72); }
+  .slide__frame--forest .sl-footer__num { color: rgba(255,255,255,.9); }
+
+  /* Body area centres content vertically; footer pinned below */
+  .sl-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+
+  /* Per-slide footer (injected by JS): icon logo + slide number */
+  .sl-footer {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+    gap: var(--ib-space-4); margin-top: var(--ib-space-4);
+    font-size: var(--ib-text-caption); color: var(--ib-text-muted);
+    letter-spacing: var(--ib-tracking-wide);
+  }
+  .sl-footer__brand { display: inline-flex; align-items: center; gap: var(--ib-space-2); }
+  .sl-footer__brand img { height: 22px; width: auto; }
+  .sl-footer__brand span { font-weight: var(--ib-weight-semibold); text-transform: uppercase; }
+  .sl-footer__num { font-weight: var(--ib-weight-semibold); }
+
+  /* Top progress bar */
+  .deck-progress {
+    position: fixed; top: 0; left: 0; height: 4px; width: 0;
+    background: var(--ib-gradient-tricolor); z-index: var(--ib-z-sticky, 100);
+    transition: width .35s var(--ib-ease-standard, ease); border-bottom-right-radius: var(--ib-radius-pill);
+  }
+  @media (prefers-reduced-motion: reduce) { .deck-progress { transition: none; } }
+
+  /* Keyboard hint chip */
+  .deck-hint {
+    position: fixed; bottom: var(--ib-space-4); left: 50%; transform: translateX(-50%);
+    z-index: var(--ib-z-sticky, 100); background: rgba(1,61,40,.82); color: var(--ib-neutral-0);
+    font-size: var(--ib-text-caption); font-weight: var(--ib-weight-medium);
+    padding: 0.4em 1em; border-radius: var(--ib-radius-pill); box-shadow: var(--ib-shadow-md);
+    transition: opacity .5s ease; pointer-events: none;
+  }
+  .deck-hint kbd {
+    font-family: var(--ib-font-mono); background: rgba(255,255,255,.16);
+    border-radius: var(--ib-radius-sm); padding: 0.05em 0.45em; margin: 0 0.1em;
+  }
+  .deck-hint.is-hidden { opacity: 0; }
+
+  /* ---- Shared slide helpers ---- */
+  .sl-eyebrow { display: flex; align-items: center; gap: var(--ib-space-3); margin-bottom: var(--ib-space-4); }
+  .sl-headline { font-size: var(--ib-text-h1); line-height: var(--ib-leading-tight); letter-spacing: var(--ib-tracking-tight); }
+  .sl-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ib-space-7); align-items: center; height: 100%; }
+  .sl-two-col--media { grid-template-columns: 1.05fr 0.95fr; }
+  .sl-fill { width: 100%; height: 100%; }
+
+  /* Bullet list with tricolor-accented markers */
+  .sl-list { list-style: none; padding: 0; margin: var(--ib-space-5) 0 0; display: flex; flex-direction: column; gap: var(--ib-space-4); }
+  .sl-list li { display: flex; gap: var(--ib-space-3); align-items: flex-start; font-size: var(--ib-text-body-lg); line-height: var(--ib-leading-snug); }
+  .sl-list li::before {
+    content: ""; flex: 0 0 auto; width: 0.85em; height: 0.85em; margin-top: 0.28em;
+    border-radius: var(--ib-radius-sm); background: var(--ib-gradient-tricolor);
+  }
+
+  /* Agenda */
+  .sl-agenda { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--ib-space-4) var(--ib-space-8); }
+  .sl-agenda li { display: flex; align-items: baseline; gap: var(--ib-space-4); padding-block: var(--ib-space-3); border-bottom: 1px solid var(--ib-border); }
+  .sl-agenda__n { font-size: var(--ib-text-h3); font-weight: var(--ib-weight-bold); line-height: 1; min-width: 1.6em; }
+  .sl-agenda__t { font-size: var(--ib-text-h5); font-weight: var(--ib-weight-semibold); color: var(--ib-text-heading); }
+  .sl-agenda__d { display: block; font-size: var(--ib-text-body-sm); font-weight: var(--ib-weight-regular); color: var(--ib-text-muted); margin-top: 2px; }
+
+  /* Section divider big number */
+  .sl-divider__n { font-size: clamp(6rem, 3rem + 16vw, 14rem); font-weight: var(--ib-weight-bold); line-height: 0.85; letter-spacing: var(--ib-tracking-tight); }
+  .sl-divider__t { font-size: var(--ib-text-h1); line-height: var(--ib-leading-tight); letter-spacing: var(--ib-tracking-tight); max-width: 18ch; }
+
+  /* Stats row */
+  .sl-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--ib-space-6); align-items: end; }
+  .sl-stats .ib-stat__value { font-size: clamp(2.25rem, 1rem + 5vw, 4rem); }
+
+  /* Two-column feature blocks */
+  .sl-cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ib-space-6); }
+  .sl-col-block { display: flex; flex-direction: column; gap: var(--ib-space-3); }
+  .sl-col-block h3 { font-size: var(--ib-text-h4); }
+  .sl-col-block .ib-badge { align-self: flex-start; }
+
+  /* Chart */
+  .sl-chart { display: grid; grid-template-columns: auto 1fr; gap: var(--ib-space-3) var(--ib-space-4); height: 100%; align-items: stretch; }
+  .sl-chart__y { display: flex; flex-direction: column; justify-content: space-between; font-size: var(--ib-text-caption); color: var(--ib-text-muted); text-align: right; padding-bottom: 1.6em; }
+  .sl-chart__plot { position: relative; display: flex; align-items: flex-end; justify-content: space-around; gap: var(--ib-space-4); border-left: 2px solid var(--ib-border-strong); border-bottom: 2px solid var(--ib-border-strong); padding: 0 var(--ib-space-2); }
+  .sl-chart__grid { position: absolute; inset: 0 0 1.6em 0; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; z-index: 0; }
+  .sl-chart__grid span { border-top: 1px dashed var(--ib-border); }
+  .sl-bar { position: relative; z-index: 1; flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: var(--ib-space-2); }
+  .sl-bar__fill { width: 100%; max-width: 62px; border-radius: var(--ib-radius-md) var(--ib-radius-md) 0 0; background: var(--ib-green-500); transition: height .6s var(--ib-ease-standard, ease); }
+  .sl-bar__val { font-weight: var(--ib-weight-bold); color: var(--ib-text-heading); font-size: var(--ib-text-body-sm); }
+  .sl-bar__lbl { font-size: var(--ib-text-caption); color: var(--ib-text-muted); font-weight: var(--ib-weight-medium); }
+
+  /* Quote */
+  .sl-quote { max-width: 24ch; }
+  .sl-quote__mark { font-size: clamp(4rem, 2rem + 8vw, 7rem); line-height: 0.6; font-weight: var(--ib-weight-bold); }
+  .sl-quote blockquote { margin: var(--ib-space-4) 0 0; font-size: var(--ib-text-h2); line-height: var(--ib-leading-snug); font-weight: var(--ib-weight-medium); letter-spacing: var(--ib-tracking-tight); max-width: 26ch; }
+  .sl-quote figcaption { margin-top: var(--ib-space-5); font-size: var(--ib-text-body); }
+  .sl-quote figcaption b { color: var(--ib-text-heading); display: block; }
+  .slide__frame--forest .sl-quote figcaption b { color: var(--ib-neutral-0); }
+
+  /* Full-bleed image slide */
+  .slide__frame--photo { padding: 0; }
+  .slide__frame--photo .sl-body { justify-content: flex-end; padding: var(--sl-pad-y) var(--sl-pad-x) 0; position: relative; z-index: 2; }
+  .slide__frame--photo .sl-footer { padding: 0 var(--sl-pad-x) var(--sl-pad-y); color: rgba(255,255,255,.82); position: relative; z-index: 2; }
+  .slide__frame--photo .sl-footer__num { color: var(--ib-neutral-0); }
+  .sl-photo-bg { position: absolute; inset: 0; z-index: 0; }
+  .sl-photo-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(1,61,40,.05) 30%, rgba(1,61,40,.82) 100%); }
+  .sl-caption { position: relative; max-width: 32ch; color: var(--ib-neutral-0); }
+  .sl-caption h2 { font-size: var(--ib-text-h2); }
+  .sl-caption h2 { color: var(--ib-neutral-0); font-size: var(--ib-text-h1); line-height: var(--ib-leading-tight); letter-spacing: var(--ib-tracking-tight); }
+
+  /* Title / closing brand logo (uses <use> so currentColor applies) */
+  .sl-logo { width: clamp(150px, 14vw, 220px); height: auto; }
+  .sl-logo--sm { width: 118px; }
+
+  .sl-contact { display: flex; flex-wrap: wrap; gap: var(--ib-space-3) var(--ib-space-7); font-size: var(--ib-text-body); }
+  .sl-contact div { display: flex; flex-direction: column; }
+  .sl-contact small { font-size: var(--ib-text-caption); text-transform: uppercase; letter-spacing: var(--ib-tracking-wide); color: rgba(255,255,255,.6); }
+  .sl-contact b { font-weight: var(--ib-weight-semibold); }
+
+  @media print {
+    body { background: var(--ib-neutral-0); }
+    .deck { height: auto; overflow: visible; }
+    .slide { height: auto; page-break-after: always; break-after: page; }
+    .slide__frame { width: 100%; height: auto; }
+    .deck-progress, .deck-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Inline logo definitions (mono lockup uses currentColor). Icon = tricolor via <img>. -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="ib-logo" viewBox="0 0 300 150" fill="currentColor">
+    <polygon points=".69 65.34 4.3 65.34 4.3 90.82 10.93 90.82 10.93 59.21 .69 59.21 .69 65.34"></polygon>
+    <path d="M55.01,79.58c0-2.29.51-4.29,1.38-6.08-1.73-2.11-4.33-3.36-7.4-3.36-2.34,0-4.49.7-5.63,1.64l.95-6.45h12.39v-6.13h-17.45l-2.65,18.02,5.06.82c1.14-1.64,3.03-2.4,5.12-2.4,2.28,0,5.31.89,5.31,4.87,0,2.84-2.15,4.87-5.18,4.87-2.78,0-4.43-1.71-4.62-3.6l-6.32.63c.25,5.18,4.36,9.29,10.94,9.29,4.46,0,8.06-1.9,10.07-5-1.46-2.44-1.97-5.04-1.97-7.12h0Z"></path>
+    <path d="M35.02,67.62c0-5.5-4.49-9.36-10.81-9.36-5.37,0-10.87,3.22-10.87,11l6.7.63c.06-2.28.95-5.31,4.17-5.31,2.21,0,3.79,1.52,3.79,3.6,0,1.2-.13,2.59-2.02,4.68l-11.95,12.52v5.44h20.61v-6.13h-11.5l8.09-8.6c2.21-2.34,3.79-4.36,3.79-8.47h0Z"></path>
+    <path d="M93.12,79.58c0,2.84.93,6.65,3.99,9.71,4.94,4.94,11.64,4.93,15.92,2.61,5.23-2.84,17-11.35,4.78-46.66,0,16.67-24.68,18.36-24.68,34.34h0Z"></path>
+    <path d="M104.36,59.84c-.81-4.37-2.11-8.84-4.06-14.59,0,16.67-24.68,18.36-24.68,34.34,0,2.84.93,6.65,3.99,9.71,4.94,4.94,11.69,4.92,15.92,2.61-9.83-10.47-6.36-22.58,8.84-32.07h0Z"></path>
+    <path d="M86.86,59.84c-.81-4.37-2.11-8.84-4.06-14.59,0,16.67-24.68,18.36-24.68,34.34,0,8.2,6.64,11.8,6.64,11.8,0,0-1.66,6.03-.63,13.37l3.17-.53c-1.55-5.39-.6-11.25-.5-11.83,4.05,1.62,8.23,1.14,11.23-.5-9.83-10.47-6.36-22.58,8.84-32.07h0Z"></path>
+    <rect x="134.79" y="59.21" width="4.65" height="31.61"></rect>
+    <path d="M161.14,68.94c-1.58-1.01-3.36-1.51-5.35-1.51-1.72,0-3.18.35-4.38,1.06-1.2.71-2.19,1.64-2.96,2.8-.15.23-.29.46-.43.7v-12.78h-4.43v31.61h4.43v-4.09c.13.23.26.46.41.68.75,1.16,1.74,2.09,2.96,2.8,1.22.71,2.69,1.06,4.4,1.06,1.51,0,2.89-.29,4.15-.88,1.26-.59,2.37-1.41,3.32-2.46s1.69-2.31,2.24-3.77.81-3.06.81-4.81c0-2.35-.47-4.42-1.4-6.21-.93-1.79-2.19-3.19-3.77-4.2h0ZM161.27,82.67c-.35.98-.83,1.81-1.45,2.51-.62.69-1.35,1.22-2.19,1.58-.84.36-1.78.54-2.8.54-2.02,0-3.67-.7-4.97-2.1-1.29-1.4-1.94-3.35-1.94-5.85,0-1.26.17-2.38.52-3.34.35-.96.83-1.79,1.45-2.48.62-.69,1.35-1.21,2.19-1.56.84-.35,1.76-.52,2.75-.52,2.05,0,3.72.69,5.01,2.08,1.29,1.39,1.94,3.33,1.94,5.82,0,1.23-.17,2.34-.52,3.32h0Z"></path>
+    <path d="M184.71,68.9c-1.6-.98-3.42-1.47-5.46-1.47-1.63,0-3.11.28-4.45.83-1.34.56-2.51,1.36-3.5,2.42-.99,1.05-1.75,2.31-2.28,3.77-.53,1.46-.79,3.09-.79,4.9,0,2.38.48,4.46,1.45,6.25.96,1.79,2.29,3.19,3.97,4.2,1.69,1.01,3.63,1.51,5.82,1.51,1.32,0,2.61-.19,3.86-.56,1.25-.38,2.39-.99,3.43-1.85,1.04-.86,1.93-1.96,2.69-3.32l-3.43-2.12c-.48.93-1.05,1.69-1.72,2.28-.66.59-1.4,1.01-2.21,1.26-.81.26-1.69.38-2.62.38-1.29,0-2.45-.3-3.48-.9-1.02-.6-1.83-1.5-2.42-2.69-.47-.95-.75-2.09-.84-3.41h17.07c.03-.21.04-.42.04-.63v-.59c0-2.35-.46-4.4-1.38-6.16-.92-1.76-2.18-3.13-3.77-4.11h0ZM174.43,73.27c.56-.71,1.24-1.23,2.05-1.58.81-.35,1.72-.52,2.71-.52,1.81,0,3.29.66,4.45,1.99.83.95,1.36,2.26,1.6,3.93h-12.37c.07-.44.16-.85.28-1.24.3-1.01.73-1.87,1.29-2.57Z"></path>
+    <path d="M204.66,67.43h-1.31c-1.35,0-2.57.35-3.63,1.04-1.07.69-1.94,1.75-2.6,3.16v-3.75h-4.43v22.94h4.43v-12.24c0-1.96.5-3.52,1.49-4.7.99-1.17,2.26-1.76,3.79-1.76h2.26v-4.7h0Z"></path>
+    <path d="M222.91,71.99c-.14-.24-.28-.47-.43-.7-.77-1.16-1.75-2.09-2.96-2.8-1.2-.71-2.65-1.06-4.33-1.06-1.51,0-2.9.29-4.18.86-1.28.57-2.39,1.39-3.34,2.46-.95,1.07-1.69,2.32-2.21,3.77-.53,1.45-.79,3.05-.79,4.83,0,2.35.46,4.42,1.38,6.21.92,1.79,2.17,3.19,3.77,4.2,1.59,1.01,3.39,1.51,5.37,1.51,1.69,0,3.14-.35,4.36-1.06,1.22-.71,2.21-1.64,2.96-2.8.14-.22.28-.45.41-.68v4.09h4.43v-31.61h-4.43v12.78h0ZM221.08,85.17c-.62.69-1.35,1.22-2.21,1.58-.86.36-1.78.54-2.78.54-2.05,0-3.72-.7-5.01-2.1-1.29-1.4-1.94-3.35-1.94-5.85,0-1.26.17-2.38.52-3.34.35-.96.83-1.79,1.45-2.48.62-.69,1.35-1.21,2.19-1.56.84-.35,1.78-.52,2.8-.52,2.02,0,3.67.69,4.97,2.08,1.29,1.39,1.94,3.33,1.94,5.82,0,1.23-.17,2.34-.5,3.32-.33.98-.81,1.81-1.42,2.51h0Z"></path>
+    <path d="M243.45,67.43h-1.31c-1.35,0-2.57.35-3.63,1.04-1.07.69-1.94,1.75-2.6,3.16v-3.75h-4.43v22.94h4.43v-12.24c0-1.96.5-3.52,1.49-4.7.99-1.17,2.26-1.76,3.79-1.76h2.26v-4.7h0Z"></path>
+    <path d="M261.06,68.92c-1.75-.99-3.75-1.49-6.01-1.49-1.66,0-3.19.29-4.61.86s-2.65,1.39-3.7,2.46c-1.05,1.07-1.87,2.33-2.44,3.79-.57,1.46-.86,3.06-.86,4.81,0,2.35.5,4.43,1.51,6.23,1.01,1.81,2.39,3.21,4.15,4.22,1.76,1.01,3.76,1.51,5.98,1.51,1.65,0,3.19-.29,4.61-.88,1.41-.59,2.65-1.41,3.7-2.46,1.05-1.05,1.87-2.31,2.44-3.77s.86-3.08.86-4.85c0-2.38-.5-4.46-1.51-6.25-1.01-1.79-2.39-3.18-4.13-4.18h0ZM261.65,82.69c-.36.99-.86,1.83-1.49,2.51-.63.68-1.39,1.2-2.26,1.56-.87.36-1.82.54-2.84.54-1.32,0-2.52-.32-3.59-.95-1.07-.63-1.91-1.54-2.53-2.73-.62-1.19-.93-2.61-.93-4.27,0-1.26.17-2.38.52-3.34.35-.96.83-1.79,1.47-2.48.63-.69,1.38-1.21,2.26-1.56s1.81-.52,2.8-.52c1.38,0,2.61.32,3.68.95,1.07.63,1.91,1.53,2.53,2.71.62,1.17.93,2.59.93,4.24,0,1.23-.18,2.35-.54,3.34h0Z"></path>
+    <path d="M274.27,86.23c-.38-.47-.56-1.14-.56-2.01v-25.02h-4.43v25.29c0,1.26.23,2.36.68,3.3.45.93,1.14,1.67,2.08,2.21s2.08.81,3.43.81h2.48v-3.88h-1.81c-.87,0-1.5-.23-1.87-.7h0Z"></path>
+    <path d="M298.46,72.39c-.57-1.14-1.33-2.08-2.28-2.82s-2.03-1.28-3.25-1.63c-1.22-.35-2.51-.52-3.86-.52-2.08,0-3.94.46-5.6,1.38-1.66.92-2.89,2.31-3.7,4.18l3.48,1.99c.45-1.11,1.17-1.99,2.14-2.62.98-.63,2.17-.95,3.59-.95,1.08,0,2.07.18,2.96.54.89.36,1.6.95,2.14,1.76.54.81.81,1.88.81,3.21v2.56c-.16-.17-.32-.33-.5-.48-1.42-1.23-3.46-1.85-6.14-1.85-1.72,0-3.28.27-4.7.81-1.42.54-2.53,1.35-3.34,2.42-.81,1.07-1.22,2.36-1.22,3.86s.4,2.78,1.2,3.84c.8,1.05,1.88,1.86,3.25,2.42,1.37.56,2.9.83,4.58.83,2.71,0,4.8-.64,6.28-1.92.3-.26.57-.55.81-.86v2.28h4.2v-14.31c0-1.59-.29-2.97-.86-4.11h0ZM293.4,86.93c-1.08.63-2.44.95-4.06.95s-3.03-.32-4.13-.95-1.65-1.55-1.65-2.75c0-1.26.55-2.21,1.65-2.82s2.48-.93,4.13-.93,2.98.32,4.06.95,1.63,1.57,1.63,2.8-.54,2.12-1.63,2.75Z"></path>
+  </symbol>
+</svg>
+
+<div class="deck-progress" id="deckProgress"></div>
+
+<main class="deck" id="deck">
+
+  <!-- ============ 1 · TITLE ============ -->
+  <section class="slide" id="s1" aria-label="Portada">
+    <div class="slide__frame slide__frame--forest">
+      <div class="sl-body" style="justify-content:space-between">
+        <svg class="sl-logo" role="img" aria-label="Iberdrola"><use href="#ib-logo"/></svg>
+        <div>
+          <span class="ib-badge ib-badge--solid" style="margin-bottom:var(--ib-space-5)">Resultados 2026</span>
+          <h1 class="ib-display" style="max-width:16ch">La energía que <span class="ib-text-gradient">mueve el mundo</span></h1>
+          <p class="ib-lead" style="max-width:44ch;margin-top:var(--ib-space-4)">Plantilla maestra de presentación del Sistema de Diseño de Iberdrola. Duplica una diapositiva para empezar.</p>
+        </div>
+        <div class="ib-cluster" style="gap:var(--ib-space-6);color:#D9E5DE">
+          <div><small style="display:block;text-transform:uppercase;letter-spacing:var(--ib-tracking-wide);opacity:.7;font-size:var(--ib-text-caption)">Ponente</small><b style="color:var(--ib-neutral-0);font-weight:var(--ib-weight-semibold)">Dirección de Marca</b></div>
+          <div><small style="display:block;text-transform:uppercase;letter-spacing:var(--ib-tracking-wide);opacity:.7;font-size:var(--ib-text-caption)">Fecha</small><b style="color:var(--ib-neutral-0);font-weight:var(--ib-weight-semibold)">14 julio 2026</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · SECTION DIVIDER ============ -->
+  <section class="slide" id="s2" aria-label="Sección">
+    <div class="slide__frame slide__frame--tint-mint">
+      <div class="sl-body">
+        <span class="ib-overline">Bloque 01</span>
+        <div class="ib-cluster" style="gap:var(--ib-space-7);align-items:center;margin-top:var(--ib-space-4)">
+          <div class="sl-divider__n ib-text-gradient">01</div>
+          <div>
+            <h2 class="sl-divider__t">Nuestro compromiso con la energía limpia</h2>
+            <hr class="ib-energy-line" style="width:120px;margin-top:var(--ib-space-5)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · AGENDA ============ -->
+  <section class="slide" id="s3" aria-label="Agenda">
+    <div class="slide__frame">
+      <div class="sl-body">
+        <div class="sl-eyebrow"><span class="ib-overline">Contenido</span><hr class="ib-energy-line" style="flex:1"></div>
+        <h2 class="sl-headline" style="margin-bottom:var(--ib-space-6)">Qué veremos hoy</h2>
+        <ol class="sl-agenda">
+          <li><span class="sl-agenda__n ib-text-gradient">01</span><span class="sl-agenda__t">Compromiso<span class="sl-agenda__d">Nuestra visión de energía limpia</span></span></li>
+          <li><span class="sl-agenda__n ib-text-gradient">02</span><span class="sl-agenda__t">Resultados<span class="sl-agenda__d">Cifras clave del ejercicio</span></span></li>
+          <li><span class="sl-agenda__n ib-text-gradient">03</span><span class="sl-agenda__t">Crecimiento<span class="sl-agenda__d">Capacidad renovable instalada</span></span></li>
+          <li><span class="sl-agenda__n ib-text-gradient">04</span><span class="sl-agenda__t">Clientes<span class="sl-agenda__d">Experiencia y digitalización</span></span></li>
+          <li><span class="sl-agenda__n ib-text-gradient">05</span><span class="sl-agenda__t">Territorio<span class="sl-agenda__d">Presencia e impacto local</span></span></li>
+          <li><span class="sl-agenda__n ib-text-gradient">06</span><span class="sl-agenda__t">Próximos pasos<span class="sl-agenda__d">Hoja de ruta 2030</span></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · CONTENT (bullets + image) ============ -->
+  <section class="slide" id="s4" aria-label="Contenido">
+    <div class="slide__frame">
+      <div class="sl-body">
+        <div class="sl-two-col sl-two-col--media">
+          <div>
+            <span class="ib-overline">Compromiso</span>
+            <h2 class="sl-headline" style="margin-top:var(--ib-space-3)">Energía 100% renovable, sin renuncias</h2>
+            <ul class="sl-list">
+              <li>Garantía de origen renovable en toda la energía suministrada.</li>
+              <li>Cero emisiones de CO₂ en generación propia para 2030.</li>
+              <li>Inversión récord en redes inteligentes y almacenamiento.</li>
+              <li>Autoconsumo solar accesible para hogares y negocios.</li>
+            </ul>
+          </div>
+          <div class="ib-ph ib-ph--photo sl-fill" style="min-height:60%">Foto · Parque eólico</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · TWO-COLUMN ============ -->
+  <section class="slide" id="s5" aria-label="Dos columnas">
+    <div class="slide__frame slide__frame--subtle">
+      <div class="sl-body">
+        <div class="sl-eyebrow"><span class="ib-overline">Modelo</span><hr class="ib-energy-line" style="flex:1"></div>
+        <h2 class="sl-headline" style="margin-bottom:var(--ib-space-6)">Dos motores, un mismo propósito</h2>
+        <div class="sl-cols2">
+          <article class="ib-card sl-col-block">
+            <span class="ib-badge">Generación</span>
+            <h3>Producimos energía limpia</h3>
+            <p class="ib-card__text">Eólica terrestre y marina, solar fotovoltaica e hidráulica gestionable componen un mix diversificado y resiliente en más de 25 países.</p>
+          </article>
+          <article class="ib-card sl-col-block">
+            <span class="ib-badge ib-badge--info">Redes</span>
+            <h3>La distribuimos con inteligencia</h3>
+            <p class="ib-card__text">Digitalizamos la red para integrar renovables, reducir pérdidas y dar un servicio más estable y transparente a cada cliente.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · STATS ============ -->
+  <section class="slide" id="s6" aria-label="Cifras">
+    <div class="slide__frame slide__frame--tint-sand">
+      <div class="sl-body">
+        <div class="sl-eyebrow"><span class="ib-overline">De un vistazo</span><hr class="ib-energy-line" style="flex:1"></div>
+        <h2 class="sl-headline" style="margin-bottom:var(--ib-space-8)">Las cifras que nos definen</h2>
+        <div class="sl-stats">
+          <div class="ib-stat"><div class="ib-stat__value">125</div><div class="ib-stat__label">años</div><div class="ib-stat__desc">de historia energética</div></div>
+          <div class="ib-stat"><div class="ib-stat__value">+11M</div><div class="ib-stat__label">contratos</div><div class="ib-stat__desc">de clientes activos</div></div>
+          <div class="ib-stat"><div class="ib-stat__value">Nº1</div><div class="ib-stat__label">en eólica</div><div class="ib-stat__desc">a nivel mundial</div></div>
+          <div class="ib-stat"><div class="ib-stat__value">40k</div><div class="ib-stat__label">MW verdes</div><div class="ib-stat__desc">de capacidad renovable</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · DATA / CHART ============ -->
+  <section class="slide" id="s7" aria-label="Datos">
+    <div class="slide__frame">
+      <div class="sl-body">
+        <div class="sl-eyebrow"><span class="ib-overline">Crecimiento</span><hr class="ib-energy-line" style="flex:1"></div>
+        <h2 class="sl-headline">Capacidad renovable instalada</h2>
+        <p class="ib-text-muted ib-body-sm" style="margin-top:var(--ib-space-2);margin-bottom:var(--ib-space-5)">Gigavatios (GW) acumulados · 2021–2026</p>
+        <div class="sl-chart" style="flex:1;min-height:0">
+          <div class="sl-chart__y" aria-hidden="true"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div>
+          <div class="sl-chart__plot">
+            <div class="sl-chart__grid"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="sl-bar"><span class="sl-bar__val">21</span><div class="sl-bar__fill" style="height:52%;background:var(--ib-green-300)"></div><span class="sl-bar__lbl">2021</span></div>
+            <div class="sl-bar"><span class="sl-bar__val">26</span><div class="sl-bar__fill" style="height:64%;background:var(--ib-green-400)"></div><span class="sl-bar__lbl">2022</span></div>
+            <div class="sl-bar"><span class="sl-bar__val">30</span><div class="sl-bar__fill" style="height:74%;background:var(--ib-green-500)"></div><span class="sl-bar__lbl">2023</span></div>
+            <div class="sl-bar"><span class="sl-bar__val">33</span><div class="sl-bar__fill" style="height:82%;background:var(--ib-green-600)"></div><span class="sl-bar__lbl">2024</span></div>
+            <div class="sl-bar"><span class="sl-bar__val">36</span><div class="sl-bar__fill" style="height:90%;background:var(--ib-blue-500)"></div><span class="sl-bar__lbl">2025</span></div>
+            <div class="sl-bar"><span class="sl-bar__val">40</span><div class="sl-bar__fill" style="height:99%;background:var(--ib-orange-500)"></div><span class="sl-bar__lbl">2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8 · QUOTE ============ -->
+  <section class="slide" id="s8" aria-label="Cita">
+    <div class="slide__frame slide__frame--forest">
+      <div class="sl-body">
+        <figure class="sl-quote" style="max-width:none">
+          <div class="sl-quote__mark ib-text-gradient">&ldquo;</div>
+          <blockquote>No heredamos la energía de nuestros padres, la tomamos prestada de nuestros hijos.</blockquote>
+          <figcaption><b>Comité de Sostenibilidad</b><span style="color:#D9E5DE">Iberdrola · Memoria anual 2026</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9 · IMAGE (full-bleed) ============ -->
+  <section class="slide" id="s9" aria-label="Imagen">
+    <div class="slide__frame slide__frame--photo">
+      <div class="ib-ph ib-ph--photo ib-ph--cover sl-photo-bg" style="min-height:100%">Imagen a pantalla completa</div>
+      <div class="sl-body">
+        <div class="sl-caption">
+          <span class="ib-badge ib-badge--solid" style="margin-bottom:var(--ib-space-4)">Sobre el terreno</span>
+          <h2>Presentes donde nace el futuro</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 · CLOSING ============ -->
+  <section class="slide" id="s10" aria-label="Cierre">
+    <div class="slide__frame slide__frame--forest">
+      <div class="sl-body" style="justify-content:space-between">
+        <svg class="sl-logo sl-logo--sm" role="img" aria-label="Iberdrola"><use href="#ib-logo"/></svg>
+        <div>
+          <h2 class="ib-display">Gracias.</h2>
+          <p class="ib-lead" style="max-width:40ch;margin-top:var(--ib-space-3)">¿Hablamos sobre cómo llevar más energía limpia a tu organización?</p>
+          <hr class="ib-energy-line" style="width:160px;margin-top:var(--ib-space-5)">
+        </div>
+        <div class="sl-contact">
+          <div><small>Web</small><b>iberdrola.com</b></div>
+          <div><small>Contacto</small><b>marca@iberdrola.es</b></div>
+          <div><small>Atención</small><b>900 225 235</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="deck-hint" id="deckHint">Usa <kbd>←</kbd> <kbd>→</kbd> para navegar</div>
+
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var total = slides.length;
+  var progress = document.getElementById('deckProgress');
+  var hint = document.getElementById('deckHint');
+  var current = 0;
+
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+  // Inject a footer (icon logo + slide number) into every slide frame.
+  slides.forEach(function (slide, i) {
+    var frame = slide.querySelector('.slide__frame');
+    var footer = document.createElement('div');
+    footer.className = 'sl-footer';
+    footer.innerHTML =
+      '<span class="sl-footer__brand">' +
+        '<img src="../../brand/logos/iberdrola-icon.svg" alt="Iberdrola" width="24" height="21">' +
+        '<span>Iberdrola</span>' +
+      '</span>' +
+      '<span class="sl-footer__num">' + pad(i + 1) + ' / ' + pad(total) + '</span>';
+    frame.appendChild(footer);
+  });
+
+  function setCurrent(i) {
+    current = Math.max(0, Math.min(total - 1, i));
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  // Uniform-height deck: scroll to index * viewport height (reliable + snap-safe).
+  function goTo(i, behavior) {
+    setCurrent(i);
+    deck.scrollTo({ top: current * deck.clientHeight, behavior: behavior || 'smooth' });
+  }
+  function next() { if (current < total - 1) goTo(current + 1); }
+  function prev() { if (current > 0) goTo(current - 1); }
+
+  // Track which slide is in view (covers wheel / trackpad scrolling too).
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > 0.55) {
+          setCurrent(slides.indexOf(e.target));
+        }
+      });
+    }, { threshold: [0.55] });
+    slides.forEach(function (s) { io.observe(s); });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ':
+        e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp':
+        e.preventDefault(); prev(); break;
+      case 'Home': e.preventDefault(); goTo(0); break;
+      case 'End': e.preventDefault(); goTo(total - 1); break;
+      case 'f': case 'F':
+        if (document.fullscreenElement) document.exitFullscreen();
+        else document.documentElement.requestFullscreen();
+        break;
+    }
+  });
+
+  // Click the right / left third of a slide to advance / go back.
+  slides.forEach(function (slide) {
+    slide.addEventListener('click', function (e) {
+      if (e.target.closest('a, button, input, label, kbd')) return;
+      if (e.clientX > window.innerWidth * 0.66) next();
+      else if (e.clientX < window.innerWidth * 0.34) prev();
+    });
+  });
+
+  // Deep-link: land exactly on #sN if present (instant, snap-safe).
+  function jumpToHash() {
+    if (!location.hash || location.hash.length < 2) return;
+    var t = document.getElementById(location.hash.slice(1));
+    if (t && t.classList.contains('slide')) { goTo(slides.indexOf(t), 'auto'); }
+  }
+  window.addEventListener('hashchange', jumpToHash);
+
+  setCurrent(0);
+  if (location.hash) { requestAnimationFrame(jumpToHash); }
+  setTimeout(function () { hint.classList.add('is-hidden'); }, 4200);
+})();
+</script>
+</body>
+</html>

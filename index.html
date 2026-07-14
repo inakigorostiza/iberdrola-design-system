@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iberdrola Design System — Showcase</title>
+<meta name="description" content="One brand system for every channel — the full Iberdrola Design System showcase.">
+<link rel="icon" href="brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="css/iberdrola.css">
+<style>
+  /* ---- Showcase-local layout ---- */
+  .sc-header {
+    position: sticky; top: 0; z-index: var(--ib-z-sticky);
+    background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--ib-border);
+  }
+  .sc-header .ib-nav { padding-block: var(--ib-space-3); }
+
+  /* Hero */
+  .sc-hero { position: relative; overflow: hidden; background: var(--ib-gradient-forest); color: #fff; }
+  .sc-hero::before, .sc-hero::after { content:""; position:absolute; border-radius:50%; filter: blur(10px); opacity:.5; }
+  .sc-hero::before { width:520px; height:520px; background: radial-gradient(circle, rgba(13,169,255,.5), transparent 65%); top:-160px; right:-120px; }
+  .sc-hero::after  { width:460px; height:460px; background: radial-gradient(circle, rgba(255,156,26,.4), transparent 65%); bottom:-200px; left:-100px; }
+  .sc-hero__inner { position: relative; z-index:1; text-align:center; padding-block: clamp(4rem, 3rem + 8vw, 8rem); }
+  .sc-hero h1 { color:#fff; font-size: clamp(2.75rem, 1.6rem + 5vw, 5rem); line-height:1.05; }
+  .sc-hero .lead { color:#D9E5DE; font-size: var(--ib-text-body-lg); max-width: 46ch; margin-inline:auto; }
+  .sc-flames { display:flex; justify-content:center; gap:var(--ib-space-2); margin-bottom: var(--ib-space-5); }
+  .sc-flames img { height: 56px; }
+
+  /* Marquee of channels */
+  .sc-channels { display:flex; flex-wrap:wrap; justify-content:center; gap: var(--ib-space-2); margin-top: var(--ib-space-6); }
+  .sc-channels span { border:1px solid rgba(255,255,255,.35); color:#fff; border-radius: var(--ib-radius-pill); padding:.4em 1em; font-size: var(--ib-text-body-sm); font-weight: var(--ib-weight-medium); }
+
+  /* Stat strip */
+  .sc-strip { display:grid; grid-template-columns: repeat(4,1fr); gap: var(--ib-space-5); }
+  @media (max-width:700px){ .sc-strip{ grid-template-columns: repeat(2,1fr);} }
+
+  /* Foundations mini-grid */
+  .sc-swatch { height:96px; border-radius: var(--ib-radius-md); box-shadow: var(--ib-shadow-xs); display:flex; align-items:flex-end; padding: var(--ib-space-2); color:#fff; font-size:var(--ib-text-caption); font-weight:600; }
+
+  /* Template gallery with live scaled iframes */
+  .sc-gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: var(--ib-space-6); }
+  .sc-frame {
+    border:1px solid var(--ib-border); border-radius: var(--ib-radius-lg); overflow:hidden;
+    background: var(--ib-bg-surface); box-shadow: var(--ib-shadow-sm); transition: var(--ib-transition-base);
+    display:flex; flex-direction:column;
+  }
+  .sc-frame:hover { transform: translateY(-4px); box-shadow: var(--ib-shadow-md); }
+  .sc-frame__viewport { position:relative; height: 240px; overflow:hidden; background: var(--ib-bg-subtle); border-bottom:1px solid var(--ib-border); }
+  .sc-frame__viewport iframe {
+    position:absolute; top:0; left:0; width: 1280px; height: 900px; border:0;
+    transform: scale(.375); transform-origin: top left; pointer-events:none;
+  }
+  .sc-frame__viewport--tall iframe { height: 1400px; transform: scale(.375); }
+  .sc-frame__viewport--phone iframe { width: 1280px; transform: scale(.375); }
+  .sc-frame__cap { padding: var(--ib-space-4) var(--ib-space-5); display:flex; align-items:center; justify-content:space-between; gap: var(--ib-space-3); }
+  .sc-frame__cap b { color: var(--ib-text-heading); }
+  .sc-frame__cap small { display:block; color: var(--ib-text-muted); font-size: var(--ib-text-caption); font-weight:400; }
+  .sc-frame__cap .ib-btn { flex-shrink:0; }
+
+  .sc-featgrid { display:grid; grid-template-columns: repeat(3,1fr); gap: var(--ib-space-6); }
+  @media (max-width:820px){ .sc-featgrid{ grid-template-columns:1fr; } .sc-strip{gap:var(--ib-space-4);} }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="sc-header">
+  <div class="ib-container">
+    <nav class="ib-nav" aria-label="Showcase">
+      <a class="ib-nav__logo" href="index.html" aria-label="Iberdrola Design System"><img src="brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:38px"></a>
+      <ul class="ib-nav__menu" id="sc-menu">
+        <li><a class="ib-nav__link" href="#foundations">Foundations</a></li>
+        <li><a class="ib-nav__link" href="#components">Components</a></li>
+        <li><a class="ib-nav__link" href="#templates">Templates</a></li>
+      </ul>
+      <div class="ib-nav__actions">
+        <a class="ib-btn ib-btn--sm" href="docs/index.html">Open style guide →</a>
+        <button class="ib-nav__toggle" data-ib-nav-toggle aria-controls="sc-menu" aria-expanded="false" aria-label="Menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="sc-hero">
+  <div class="ib-container sc-hero__inner">
+    <div class="sc-flames" data-ib-reveal>
+      <img src="brand/logos/iberdrola-icon.svg" alt="">
+    </div>
+    <span class="ib-badge ib-badge--solid" data-ib-reveal>125 · Design System</span>
+    <h1 data-ib-reveal data-ib-delay="1" style="margin-block:var(--ib-space-4)">One brand.<br>Every channel.</h1>
+    <p class="lead" data-ib-reveal data-ib-delay="2">The complete Iberdrola Design System — design tokens, a framework-agnostic component library, and ready-to-use templates for websites, apps, presentations, emails, banners and animations.</p>
+    <div class="ib-cluster" style="justify-content:center;margin-top:var(--ib-space-6)" data-ib-reveal data-ib-delay="3">
+      <a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html">Explore the style guide</a>
+      <a class="ib-btn ib-btn--on-dark-outline ib-btn--lg" href="#templates">See the templates ↓</a>
+    </div>
+    <div class="sc-channels" data-ib-reveal data-ib-delay="3">
+      <span>Websites</span><span>Landing pages</span><span>Apps</span><span>Presentations</span><span>Emails</span><span>Banners</span><span>Animations</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAT STRIP ============ -->
+<section class="ib-section" style="padding-block:var(--ib-space-7)">
+  <div class="ib-container">
+    <div class="sc-strip">
+      <div class="ib-stat" data-ib-reveal><div class="ib-stat__value">8</div><div class="ib-stat__label">channel templates</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="1"><div class="ib-stat__value">25+</div><div class="ib-stat__label">components</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="2"><div class="ib-stat__value">1</div><div class="ib-stat__label">import to use it all</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="3"><div class="ib-stat__value">A11y</div><div class="ib-stat__label">WCAG-AA, themeable</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDATIONS ============ -->
+<section class="ib-section ib-section--subtle" id="foundations">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Foundations</span><h2>Built on design tokens</h2><p class="ib-text-muted">Colour, type, spacing, radius, shadow and motion — one source of truth in <code>tokens/tokens.json</code>, mirrored to CSS variables.</p></div>
+    <div class="sc-featgrid">
+      <!-- Colour -->
+      <div class="ib-card" data-ib-reveal>
+        <h4 class="ib-card__title">Colour</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Green leads; forest anchors; orange & blue energise.</p>
+        <div class="ib-grid" style="grid-template-columns:repeat(4,1fr);gap:var(--ib-space-2)">
+          <div class="sc-swatch" style="background:var(--ib-green-500)">500</div>
+          <div class="sc-swatch" style="background:var(--ib-green-900)">900</div>
+          <div class="sc-swatch" style="background:var(--ib-orange-500)"></div>
+          <div class="sc-swatch" style="background:var(--ib-blue-500)"></div>
+          <div class="sc-swatch" style="background:var(--ib-tint-mint);color:var(--ib-green-800)">mint</div>
+          <div class="sc-swatch" style="background:var(--ib-tint-peach);color:var(--ib-orange-600)">peach</div>
+          <div class="sc-swatch" style="background:var(--ib-tint-sky);color:var(--ib-blue-600)">sky</div>
+          <div class="sc-swatch" style="background:var(--ib-tint-sand);color:var(--ib-neutral-600)">sand</div>
+        </div>
+      </div>
+      <!-- Type -->
+      <div class="ib-card" data-ib-reveal data-ib-delay="1">
+        <h4 class="ib-card__title">Typography</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Humanist sans, fluid scale, swappable to the licensed font.</p>
+        <div class="ib-display" style="font-size:2.5rem;line-height:1">Aa</div>
+        <p class="ib-lead" style="margin-top:var(--ib-space-3)">Energía para todos</p>
+        <p class="ib-body-sm ib-text-muted">The quick brown fox 0123456789</p>
+      </div>
+      <!-- Shape/motion -->
+      <div class="ib-card" data-ib-reveal data-ib-delay="2">
+        <h4 class="ib-card__title">Shape &amp; motion</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Pill buttons, rounded cards, soft shadows, calm motion.</p>
+        <div class="ib-cluster">
+          <button class="ib-btn ib-btn--sm">Primary</button>
+          <button class="ib-btn ib-btn--accent ib-btn--sm">Accent</button>
+          <button class="ib-btn ib-btn--outline ib-btn--sm">Outline</button>
+        </div>
+        <hr class="ib-energy-line" style="margin-top:var(--ib-space-5)">
+      </div>
+    </div>
+    <div class="ib-center-text" style="margin-top:var(--ib-space-6)"><a class="ib-btn ib-btn--ghost" href="docs/index.html#color">See all tokens in the style guide →</a></div>
+  </div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<section class="ib-section" id="components">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Components</span><h2>A library that speaks Iberdrola</h2><p class="ib-text-muted">Every element from the live site — buttons, cards, stats, forms, tabs, reviews, tables and more.</p></div>
+    <div class="ib-grid ib-grid-3">
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal><div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4 class="ib-card__title">Feature cards</h4><p class="ib-card__text">Icon + heading + copy, with hover lift.</p></article>
+      <article class="ib-card ib-plan ib-plan--featured" data-ib-reveal data-ib-delay="1"><span class="ib-plan__flag ib-badge ib-badge--solid">Popular</span><h4 class="ib-plan__name">Plan card</h4><div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh</span></div><ul class="ib-plan__features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde</li></ul></article>
+      <article class="ib-card ib-review" data-ib-reveal data-ib-delay="2"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María G.</div><div class="ib-review__date">1 jul 2026</div></div></article>
+    </div>
+    <div class="ib-grid ib-grid-2" style="margin-top:var(--ib-space-6)">
+      <div class="ib-card" data-ib-reveal>
+        <div class="ib-field" style="margin-bottom:var(--ib-space-4)"><label class="ib-label" for="sc-in">Email</label><input class="ib-input" id="sc-in" placeholder="tu@email.com"></div>
+        <label class="ib-toggle"><input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos</label>
+      </div>
+      <div class="ib-card" data-ib-reveal data-ib-delay="1">
+        <div class="ib-alert" style="margin-bottom:var(--ib-space-3)">Energía 100% renovable con garantía de origen.</div>
+        <div class="ib-cluster"><span class="ib-badge">Default</span><span class="ib-badge ib-badge--accent">Accent</span><span class="ib-badge ib-badge--info">Info</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEMPLATES GALLERY ============ -->
+<section class="ib-section ib-section--subtle" id="templates">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Templates</span><h2>Ready for every channel</h2><p class="ib-text-muted">Live previews below — click any to open the real, responsive template.</p></div>
+    <div class="sc-gallery">
+
+      <a class="sc-frame" href="templates/landing-page/index.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/landing-page/index.html" title="Landing page" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Landing page</b><small>Hero · plans · reviews · FAQ</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/website/index.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/index.html" title="Website home" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Website home</b><small>Corporate homepage</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/website/interior.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/interior.html" title="Interior page" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Interior page</b><small>Breadcrumbs · tabs · form</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/presentation/index.html">
+        <div class="sc-frame__viewport"><iframe src="templates/presentation/index.html" title="Presentation" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Presentation</b><small>16:9 slide-deck master</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/app/index.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/app/index.html" title="App screens" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>App screens</b><small>Mobile UI set</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="animations/examples/index.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="animations/examples/index.html" title="Animations" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Animations</b><small>Runnable micro-interactions</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/email/newsletter.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/email/newsletter.html" title="Email" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Emails</b><small>Newsletter · promo · txn</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+      <a class="sc-frame" href="templates/banner/index.html">
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/banner/index.html" title="Banners" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b>Banners</b><small>IAB display + social</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="ib-section">
+  <div class="ib-container">
+    <div class="ib-cta-band" data-ib-reveal>
+      <div class="ib-cta-band__body">
+        <h2>Start building on-brand</h2>
+        <p style="color:#D9E5DE">Import one stylesheet and use the component classes. Everything re-themes from the tokens.</p>
+        <pre class="snip" style="background:rgba(0,0,0,.25);border-radius:var(--ib-radius-md);padding:var(--ib-space-4);margin-top:var(--ib-space-4);color:#eaf3ee;overflow-x:auto;font-size:.85rem"><code>&lt;link rel="stylesheet" href="css/iberdrola.css"&gt;
+&lt;script src="js/iberdrola.js" defer&gt;&lt;/script&gt;</code></pre>
+      </div>
+      <div style="text-align:right"><a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html">Open the style guide</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ib-footer">
+  <div class="ib-container">
+    <div class="ib-footer__grid">
+      <div class="ib-footer__col"><h5>System</h5><ul><li><a href="docs/index.html">Style guide</a></li><li><a href="README.md">README</a></li><li><a href="tokens/tokens.json">Tokens</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Templates</h5><ul><li><a href="templates/landing-page/index.html">Landing</a></li><li><a href="templates/website/index.html">Website</a></li><li><a href="templates/app/index.html">App</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Channels</h5><ul><li><a href="templates/presentation/index.html">Presentation</a></li><li><a href="templates/email/newsletter.html">Email</a></li><li><a href="templates/banner/index.html">Banners</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Brand</h5><ul><li><a href="brand/logo-usage.md">Logo usage</a></li><li><a href="brand/voice-and-imagery.md">Voice & imagery</a></li><li><a href="animations/motion.md">Motion</a></li></ul></div>
+    </div>
+    <div class="ib-footer__legal"><span>© 2026 Iberdrola Clientes S.A.U. · Design System</span><span>Ships with Figtree as a substitute for the licensed brand typeface.</span></div>
+  </div>
+</footer>
+
+<script src="js/iberdrola.js" defer></script>
+</body>
+</html>

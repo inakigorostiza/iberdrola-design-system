@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Online — Iberdrola · Landing template</title>
+<meta name="description" content="Iberdrola Design System — landing page template.">
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="../../css/iberdrola.css">
+<style>
+  /* Page-local layout only — everything visual comes from the design system. */
+  .lp-hero { position: relative; }
+  body { padding-bottom: 4rem; }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="ib-topbar" style="position:relative;">
+  <div class="ib-container">
+    <div class="ib-topbar__utility">
+      <a href="#">Hogares</a><a href="#">Negocios</a><a href="#">Comunidades</a>
+      <a href="#">ES ▾</a><a href="#" class="ib-text-primary">Área de Clientes</a>
+    </div>
+    <nav class="ib-nav" aria-label="Principal">
+      <a class="ib-nav__logo" href="#" aria-label="Iberdrola — inicio">
+        <img src="../../brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:44px">
+      </a>
+      <ul class="ib-nav__menu" id="lp-menu">
+        <li><a class="ib-nav__link" href="#" aria-current="page">Luz</a></li>
+        <li><a class="ib-nav__link" href="#">Gas</a></li>
+        <li><a class="ib-nav__link" href="#">Movilidad</a></li>
+        <li><a class="ib-nav__link" href="#">Solar</a></li>
+        <li><a class="ib-nav__link" href="#">Eficiencia</a></li>
+      </ul>
+      <div class="ib-nav__actions">
+        <a class="ib-btn ib-btn--sm" href="#">Contrata online</a>
+        <button class="ib-nav__toggle" data-ib-nav-toggle aria-controls="lp-menu" aria-expanded="false" aria-label="Menú">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="ib-hero ib-hero--forest lp-hero">
+  <div class="ib-container">
+    <div class="ib-hero__inner">
+      <div class="ib-hero__content" data-ib-reveal>
+        <span class="ib-badge ib-badge--solid">Plan Online</span>
+        <h1>La energía que cuida de tu bienestar</h1>
+        <p class="ib-lead" style="color:#D9E5DE">Contrata tu plan de luz online y ahorra. Sin permanencia, 100% online y con gestión total desde la App.</p>
+        <div class="ib-cluster">
+          <a class="ib-btn ib-btn--on-dark ib-btn--lg" href="#planes">Contrata online</a>
+          <a class="ib-btn ib-btn--on-dark-outline" href="#como">Descubre el plan →</a>
+        </div>
+      </div>
+      <div class="ib-hero__media" data-ib-reveal data-ib-delay="1">
+        <div class="ib-ph ib-ph--photo" style="aspect-ratio:4/3">Foto lifestyle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORY QUICK-NAV ================= -->
+<section class="ib-section" style="padding-block:var(--ib-space-6)">
+  <div class="ib-container">
+    <div class="ib-grid ib-grid-auto" style="--ib-space-5:1rem">
+      <div class="ib-category"><div class="ib-ph ib-category__thumb"></div><span class="ib-category__label">Luz</span></div>
+      <div class="ib-category"><div class="ib-ph ib-category__thumb"></div><span class="ib-category__label">Movilidad</span></div>
+      <div class="ib-category"><div class="ib-ph ib-category__thumb"></div><span class="ib-category__label">Solar</span></div>
+      <div class="ib-category"><div class="ib-ph ib-category__thumb"></div><span class="ib-category__label">Gas</span></div>
+      <div class="ib-category"><div class="ib-ph ib-category__thumb"></div><span class="ib-category__label">Eficiencia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICE / SIMULATOR ================= -->
+<section class="ib-section ib-section--subtle" id="planes">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head">
+      <span class="ib-overline">Tu tarifa</span>
+      <h2>¿Cuánto pagarás con este plan?</h2>
+      <p class="ib-text-muted">Oferta válida hasta el 31 de julio de 2026.</p>
+    </div>
+    <div class="ib-card ib-card--elevated" data-ib-reveal>
+      <div class="ib-cluster" style="justify-content:space-between">
+        <div>
+          <h3 class="ib-card__title">Plan Online</h3>
+          <p class="ib-text-muted ib-body-sm">Precio de energía consumida</p>
+        </div>
+        <label class="ib-toggle"><input type="checkbox" checked><span class="ib-toggle__track"></span><span class="ib-body-sm">Incluir impuestos</span></label>
+      </div>
+      <hr class="ib-divider" style="margin-block:var(--ib-space-5)">
+      <div class="ib-grid ib-grid-2">
+        <div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh · Punta</span></div>
+        <div class="ib-plan__price"><span>0,</span><b>091</b><span class="ib-plan__period">€/kWh · Valle</span></div>
+      </div>
+      <div style="margin-top:var(--ib-space-5)"><a class="ib-btn ib-btn--lg ib-btn--block" href="#">Contrata online</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE GRID ================= -->
+<section class="ib-section" id="como">
+  <div class="ib-container">
+    <div class="ib-section-head">
+      <span class="ib-overline">Ventajas reales</span>
+      <h2>Un plan pensado para mejorar tu vida</h2>
+    </div>
+    <div class="ib-grid ib-grid-4">
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal>
+        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h4 class="ib-card__title">Sin permanencia</h4>
+        <p class="ib-card__text">Cambia de tarifa cuando quieras, sin penalizaciones.</p>
+      </article>
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal data-ib-delay="1">
+        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+        <h4 class="ib-card__title">100% verde</h4>
+        <p class="ib-card__text">Energía con garantía de origen 100% renovable.</p>
+      </article>
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal data-ib-delay="2">
+        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h4 class="ib-card__title">Gestión online</h4>
+        <p class="ib-card__text">Contrata y gestiona todo desde la App, sin complicaciones.</p>
+      </article>
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal data-ib-delay="3">
+        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></div>
+        <h4 class="ib-card__title">Precio estable</h4>
+        <p class="ib-card__text">Precios estables durante 12 meses. Sin sorpresas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCE SEGMENTS ================= -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container">
+    <div class="ib-section-head"><h2>Este plan es perfecto para ti</h2></div>
+    <div class="ib-grid ib-grid-2">
+      <article class="ib-segment ib-segment--mint" data-ib-reveal>
+        <div class="ib-ph" style="width:120px;flex:0 0 120px;min-height:110px"></div>
+        <div class="ib-segment__body"><h4>Joven con muchos planes</h4><p class="ib-body-sm">Teletrabajo, pases fuera de casa y gestiones desde el móvil.</p><p class="ib-segment__meta">30–45 años · Siempre en movimiento</p></div>
+      </article>
+      <article class="ib-segment ib-segment--peach" data-ib-reveal data-ib-delay="1">
+        <div class="ib-ph" style="width:120px;flex:0 0 120px;min-height:110px"></div>
+        <div class="ib-segment__body"><h4>Autónomo</h4><p class="ib-body-sm">Prefiere sencillez y seguimiento del consumo online.</p><p class="ib-segment__meta">30–45 años · Trabaja y vive en casa</p></div>
+      </article>
+      <article class="ib-segment ib-segment--sky" data-ib-reveal>
+        <div class="ib-ph" style="width:120px;flex:0 0 120px;min-height:110px"></div>
+        <div class="ib-segment__body"><h4>Estudiante fuera de casa</h4><p class="ib-body-sm">Comparte piso y quiere lo más fácil y económico.</p><p class="ib-segment__meta">18–25 años · Alquiler compartido</p></div>
+      </article>
+      <article class="ib-segment ib-segment--sand" data-ib-reveal data-ib-delay="1">
+        <div class="ib-ph" style="width:120px;flex:0 0 120px;min-height:110px"></div>
+        <div class="ib-segment__body"><h4>Busca control y estabilidad</h4><p class="ib-body-sm">Quiere la seguridad de un precio sin sobresaltos.</p><p class="ib-segment__meta">35–65 años · Tranquilidad ante todo</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARISON TABLE ================= -->
+<section class="ib-section">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head"><h2>Lo que el Plan Online hace por ti</h2></div>
+    <div class="ib-table-wrap" data-ib-reveal>
+      <table class="ib-table">
+        <thead><tr><th>Ventaja</th><th>Qué te ofrece</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Precio estable 12 meses</th><td>Disfruta de luz con precios estables y sin compromisos.</td></tr>
+          <tr><th scope="row">Sin permanencia</th><td>Cámbiate de tarifa cuando quieras, sin penalizaciones.</td></tr>
+          <tr><th scope="row">Energía 100% verde</th><td>Con garantía de origen renovable y 0 emisiones de CO₂.</td></tr>
+          <tr><th scope="row">Gestión online</th><td>Contrata y gestiona de forma rápida y sencilla, desde cualquier dispositivo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container">
+    <div class="ib-section-head"><h2>Disfruta de una calidad 5 estrellas</h2></div>
+    <div class="ib-store-badges" style="margin-bottom:var(--ib-space-7)" data-ib-reveal>
+      <div class="ib-store-badge"><span class="ib-store-badge__name">App Store</span><span class="ib-rating" aria-label="4.5 de 5">★★★★★</span><span class="ib-store-badge__score">4,5 / 5</span></div>
+      <div class="ib-store-badge"><span class="ib-store-badge__name">Google Play</span><span class="ib-rating">★★★★★</span><span class="ib-store-badge__score">4,4 / 5</span></div>
+      <div class="ib-store-badge"><span class="ib-store-badge__name">Trustpilot</span><span class="ib-rating">★★★★★</span><span class="ib-store-badge__score">4,6 / 5</span></div>
+    </div>
+    <div class="ib-carousel" data-ib-carousel>
+      <div class="ib-carousel__track">
+        <article class="ib-carousel__slide ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Perfecto, buen trato y buen precio. Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María Magdalena</div><div class="ib-review__date">1 de julio de 2026</div></div></article>
+        <article class="ib-carousel__slide ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Valoro muy positivamente la flexibilidad del plan y la relación calidad/precio."</p><div class="ib-review__meta"><div class="ib-review__author">Loli Hernández</div><div class="ib-review__date">30 de junio de 2026</div></div></article>
+        <article class="ib-carousel__slide ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Siempre que he requerido información para resolver mis dudas ha sido rápido y claro."</p><div class="ib-review__meta"><div class="ib-review__author">Ricardo</div><div class="ib-review__date">29 de junio de 2026</div></div></article>
+      </div>
+      <div class="ib-dots"><button class="ib-dot" aria-current="true"></button><button class="ib-dot"></button><button class="ib-dot"></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 STEPS ================= -->
+<section class="ib-section">
+  <div class="ib-container">
+    <div class="ib-section-head"><h2>Contrata en 3 sencillos pasos</h2></div>
+    <div class="ib-grid ib-grid-3">
+      <div class="ib-step" data-ib-reveal><span class="ib-step__num">1</span><h4>Tus datos personales</h4><p class="ib-body-sm">Ten a mano tu documento de identidad y una factura reciente.</p></div>
+      <div class="ib-step" data-ib-reveal data-ib-delay="1"><span class="ib-step__num">2</span><h4>Tu cuenta bancaria</h4><p class="ib-body-sm">Así podremos domiciliar tus facturas.</p></div>
+      <div class="ib-step" data-ib-reveal data-ib-delay="2"><span class="ib-step__num">3</span><h4>Firma y ¡listo!</h4><p class="ib-body-sm">Firma el contrato y ya está: activamos tu suministro.</p></div>
+    </div>
+    <div class="ib-center-text" style="margin-top:var(--ib-space-6)"><a class="ib-btn ib-btn--lg" href="#">Contrata online</a></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head"><h2>¿Tienes alguna pregunta?</h2></div>
+    <div class="ib-accordion" data-ib-accordion="single">
+      <div class="ib-accordion__item">
+        <h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="true" aria-controls="faq1">¿Puedo gestionar todo el contrato de forma digital?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3>
+        <div class="ib-accordion__panel" id="faq1">Sí. Puedes contratar, firmar y gestionar tu Plan Online 100% online, desde la web o la App.</div>
+      </div>
+      <div class="ib-accordion__item">
+        <h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="faq2">¿Qué diferencia hay entre Plan Online y otras tarifas?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3>
+        <div class="ib-accordion__panel" id="faq2" hidden>Precios estables 12 meses, sin permanencia y con energía 100% de origen renovable.</div>
+      </div>
+      <div class="ib-accordion__item">
+        <h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="faq3">¿Para qué tipo de hogar está pensado?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3>
+        <div class="ib-accordion__panel" id="faq3" hidden>Para cualquier hogar que busque sencillez, control del gasto y precio estable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="ib-section">
+  <div class="ib-container">
+    <div class="ib-cta-band" data-ib-reveal>
+      <div class="ib-cta-band__body">
+        <h2>Gestiona tu energía desde la App</h2>
+        <p style="color:#D9E5DE">Consulta tus facturas, modifica tus planes y mucho más. Todas tus gestiones, sin complicaciones.</p>
+        <div class="ib-store-buttons">
+          <a class="ib-store-btn" href="#"><small>Disponible en</small><b>Google Play</b></a>
+          <a class="ib-store-btn" href="#"><small>Consíguelo en el</small><b>App Store</b></a>
+        </div>
+      </div>
+      <div class="ib-ph ib-ph--photo" style="min-height:180px">Mockup App</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="ib-footer">
+  <div class="ib-container">
+    <div class="ib-footer__social">
+      <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v7h3v-7h2.5l.5-3H14V9z"/></svg></a>
+      <a href="#" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9L2 2h6l4 6z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C16.3 5 12 5 12 5s-4.3 0-7.1.2c-.4 0-1.3 0-2.1.9C2.2 6.6 2 8 2 8s-.2 1.7-.2 3.4v1.2C1.8 14.3 2 16 2 16s.2 1.4.8 2c.8.8 1.9.8 2.4.9C6.8 19 12 19 12 19s4.3 0 7.1-.2c.4 0 1.3 0 2.1-.9.6-.6.8-2 .8-2s.2-1.7.2-3.4v-1.2C22.2 9.7 22 8 22 8zM10 14.5v-5l4.5 2.5-4.5 2.5z"/></svg></a>
+    </div>
+    <div class="ib-footer__grid">
+      <div class="ib-footer__col"><h5>Ayuda</h5><ul><li><a href="#">Atención al cliente</a></li><li><a href="#">900 225 235</a></li><li><a href="#">clientes@tuiberdrola.es</a></li><li><a href="#">Whatsapp</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Tarifa Luz</h5><ul><li><a href="#">Plan Online</a></li><li><a href="#">Comparador de Planes</a></li><li><a href="#">Precio de la luz hoy</a></li><li><a href="#">Plan Gas Hogar</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Movilidad y Solar</h5><ul><li><a href="#">Puntos de Recarga</a></li><li><a href="#">Plan Solar</a></li><li><a href="#">Comunidades Solares</a></li><li><a href="#">Solar Cloud</a></li></ul></div>
+      <div class="ib-footer__col"><h5>Te interesa</h5><ul><li><a href="#">Consejos Luz</a></li><li><a href="#">Autoconsumo</a></li><li><a href="#">Sostenibilidad</a></li><li><a href="#">FAQS</a></li></ul></div>
+    </div>
+    <div class="ib-footer__legal">
+      <span>© 2026 Iberdrola Clientes S.A.U.</span>
+      <a href="#">Información legal</a><a href="#">Política de privacidad</a><a href="#">Cookies</a><a href="#">Accesibilidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= STICKY HELP FAB ================= -->
+<button class="ib-fab" aria-label="Ayuda"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></button>
+
+<script src="../../js/iberdrola.js" defer></script>
+</body>
+</html>

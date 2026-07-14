@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Iberdrola Design System — Fonts
+   --------------------------------------------------------------------------
+   Iberdrola's brand typeface is PROPRIETARY and not distributable here.
+   This system ships with FIGTREE, a friendly open humanist sans that closely
+   matches the brand's tone, so everything renders on-brand immediately.
+
+   ┌──────────────────────────────────────────────────────────────────────┐
+   │  TO SWAP IN THE LICENSED IBERDROLA FONT (one step):                    │
+   │  1. Drop the licensed webfont files into this /fonts folder.           │
+   │  2. Add @font-face rules for family name "Iberdrola" (see stub below). │
+   │  --ib-font-brand already lists "Iberdrola" first, so it takes over     │
+   │     automatically with Figtree as the graceful fallback.              │
+   └──────────────────────────────────────────────────────────────────────┘
+   ========================================================================== */
+
+/* --- Substitute typeface: Figtree (Google Fonts) ---
+   For production, self-host instead of the CDN import below (privacy + speed).
+   Self-host: download from https://fonts.google.com/specimen/Figtree and
+   replace this @import with local @font-face rules. */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
+
+/* --- Licensed brand font stub (uncomment + point to your files) ---
+@font-face {
+  font-family: "Iberdrola";
+  src: url("./Iberdrola-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Iberdrola";
+  src: url("./Iberdrola-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Iberdrola";
+  src: url("./Iberdrola-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Iberdrola";
+  src: url("./Iberdrola-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/

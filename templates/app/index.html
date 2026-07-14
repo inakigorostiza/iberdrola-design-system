@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App móvil — Iberdrola · Plantilla de pantallas</title>
+<meta name="description" content="Iberdrola Design System — pantallas de la app móvil renderizadas en marcos de teléfono.">
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="../../css/iberdrola.css">
+<style>
+  /* ==========================================================================
+     Page-local layout — gallery + phone frame + bottom tab bar.
+     Every visual value references a design-system token.
+     ========================================================================== */
+
+  body { background: var(--ib-bg-subtle); }
+
+  .app-intro { padding-block: var(--ib-space-8) var(--ib-space-6); text-align: center; }
+  .app-intro .ib-container { max-width: 60ch; }
+
+  /* ---- Gallery grid ---- */
+  .phone-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--ib-space-8) var(--ib-space-6);
+    justify-items: center;
+    padding-bottom: var(--ib-space-9);
+  }
+  .phone-figure { display: flex; flex-direction: column; align-items: center; gap: var(--ib-space-4); max-width: 340px; }
+  .phone-figure figcaption { text-align: center; }
+  .phone-figure__step { font-weight: var(--ib-weight-bold); color: var(--ib-color-primary); }
+  .phone-figure__title { font-weight: var(--ib-weight-semibold); color: var(--ib-text-heading); }
+  .phone-figure__desc { font-size: var(--ib-text-body-sm); color: var(--ib-text-muted); margin-top: var(--ib-space-1); }
+
+  /* ==========================================================================
+     PHONE FRAME  (device viewport ≈ 320×693 = 390×844 scaled)
+     ========================================================================== */
+  .phone {
+    --_screen-w: 320px;
+    --_screen-h: 693px;
+    position: relative;
+    width: calc(var(--_screen-w) + 20px);
+    padding: 10px;
+    background: #0c1512;
+    border-radius: 46px;
+    box-shadow:
+      var(--ib-shadow-lg),
+      inset 0 0 0 2px rgba(255,255,255,0.06);
+  }
+  .phone::before { /* side button */
+    content: ""; position: absolute; right: -3px; top: 150px;
+    width: 3px; height: 64px; border-radius: var(--ib-radius-pill);
+    background: #0c1512;
+  }
+  .phone__screen {
+    position: relative;
+    width: var(--_screen-w);
+    height: var(--_screen-h);
+    border-radius: 38px;
+    overflow: hidden;
+    background: var(--ib-bg-page);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--ib-text-body-sm);
+  }
+
+  /* ---- Status bar + notch ---- */
+  .phone__status {
+    position: relative; z-index: 5; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 40px; padding: 0 var(--ib-space-5) 0 var(--ib-space-5);
+    font-size: var(--ib-text-caption); font-weight: var(--ib-weight-semibold);
+  }
+  .phone__status .time { letter-spacing: 0.02em; }
+  .phone__status .icons { display: inline-flex; align-items: center; gap: 5px; }
+  .phone__status svg { display: block; }
+  .phone__notch {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 108px; height: 26px; background: #0c1512; border-radius: var(--ib-radius-pill);
+    z-index: 6;
+  }
+  /* on dark screens, status text turns light */
+  .phone__screen--dark .phone__status { color: var(--ib-neutral-0); }
+
+  /* ---- Scrollable app body ---- */
+  .screen-body { flex: 1 1 auto; overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+  .screen-scroll { flex: 1 1 auto; overflow-y: auto; scrollbar-width: none; }
+  .screen-scroll::-webkit-scrollbar { display: none; }
+  .screen-pad { padding: var(--ib-space-4) var(--ib-space-5); }
+
+  /* Touch targets: everything tappable is ≥ 44px */
+  .phone__screen button,
+  .phone__screen a.tap { min-height: 44px; }
+
+  /* ==========================================================================
+     REUSABLE BOTTOM TAB BAR
+     ========================================================================== */
+  .tabbar {
+    flex: 0 0 auto;
+    display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+    align-items: center;
+    padding: var(--ib-space-2) var(--ib-space-2) var(--ib-space-4);
+    background: var(--ib-bg-surface);
+    border-top: 1px solid var(--ib-border);
+  }
+  .tabbar__item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    min-height: 44px; justify-content: center;
+    background: none; border: none; cursor: pointer;
+    color: var(--ib-text-muted); font-family: var(--ib-font-brand);
+    font-size: 0.625rem; font-weight: var(--ib-weight-medium);
+    transition: var(--ib-transition-color);
+  }
+  .tabbar__item svg { width: 24px; height: 24px; }
+  .tabbar__item[aria-current="page"] { color: var(--ib-color-primary); font-weight: var(--ib-weight-semibold); }
+
+  /* ==========================================================================
+     APP-SCALED HELPERS  (mobile feel — smaller than desktop defaults)
+     ========================================================================== */
+  .app-topbar {
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--ib-space-3);
+    padding: var(--ib-space-2) var(--ib-space-5) var(--ib-space-3);
+    background: var(--ib-bg-surface);
+  }
+  .app-topbar__logo { height: 30px; width: auto; }
+  .app-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center; flex: 0 0 auto;
+    background: var(--ib-green-100); color: var(--ib-green-800);
+    font-weight: var(--ib-weight-bold); font-size: var(--ib-text-body-sm);
+  }
+  .icon-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center; border: none; cursor: pointer;
+    background: transparent; color: var(--ib-text-heading);
+    transition: var(--ib-transition-base);
+  }
+  .icon-btn:hover { background: var(--ib-neutral-100); }
+  .icon-btn svg { width: 22px; height: 22px; }
+
+  .app-h { font-size: var(--ib-text-h4); line-height: var(--ib-leading-snug); }
+  .app-greeting { font-size: var(--ib-text-h3); }
+
+  /* Consumption summary card (forest) */
+  .energy-card {
+    background: var(--ib-gradient-forest); color: var(--ib-text-inverse);
+    border-radius: var(--ib-radius-xl); padding: var(--ib-space-5);
+    box-shadow: var(--ib-shadow-md); position: relative; overflow: hidden;
+  }
+  .energy-card__flame {
+    position: absolute; right: -14px; top: -14px; width: 96px; height: 96px;
+    opacity: 0.35; pointer-events: none;
+  }
+  .energy-card__head { display: flex; align-items: center; justify-content: space-between; gap: var(--ib-space-3); }
+  .energy-card__row { display: flex; align-items: center; gap: var(--ib-space-5); margin-top: var(--ib-space-4); }
+
+  /* Ring chart */
+  .ring { --_val: 68; position: relative; width: 108px; height: 108px; flex: 0 0 auto; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring__track { stroke: rgba(255,255,255,0.18); }
+  .ring__fill  { stroke: url(#ringGrad); stroke-linecap: round;
+                 stroke-dasharray: 289.03; stroke-dashoffset: calc(289.03 - (289.03 * var(--_val) / 100)); }
+  .ring__center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+  .ring__pct { font-size: var(--ib-text-h4); font-weight: var(--ib-weight-bold); line-height: 1; }
+  .ring__cap { font-size: 0.625rem; opacity: 0.85; }
+
+  /* Mini bar chart */
+  .bars { display: flex; align-items: flex-end; gap: 6px; height: 72px; }
+  .bars__col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--ib-space-2); }
+  .bars__bar { width: 100%; border-radius: var(--ib-radius-sm) var(--ib-radius-sm) 0 0; background: var(--ib-green-200); }
+  .bars__bar--now { background: var(--ib-color-primary); }
+  .bars__lbl { font-size: 0.6rem; color: var(--ib-text-muted); }
+
+  /* Quick-action tiles */
+  .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--ib-space-3); }
+  .tile {
+    display: flex; flex-direction: column; gap: var(--ib-space-2);
+    padding: var(--ib-space-4); border-radius: var(--ib-radius-lg);
+    background: var(--ib-bg-surface); border: 1px solid var(--ib-border);
+    text-align: left; cursor: pointer; min-height: 44px;
+    transition: var(--ib-transition-base); color: var(--ib-text-heading);
+  }
+  .tile:hover { transform: translateY(-2px); box-shadow: var(--ib-shadow-sm); border-color: transparent; }
+  .tile__icon { width: 40px; height: 40px; border-radius: var(--ib-radius-md); display: grid; place-items: center; }
+  .tile__icon svg { width: 22px; height: 22px; }
+  .tile__lbl { font-weight: var(--ib-weight-semibold); font-size: var(--ib-text-body-sm); }
+  .tile--mint  .tile__icon { background: var(--ib-tint-mint);  color: var(--ib-green-700); }
+  .tile--peach .tile__icon { background: var(--ib-tint-peach); color: var(--ib-orange-600); }
+  .tile--sky   .tile__icon { background: var(--ib-tint-sky);   color: var(--ib-blue-600); }
+  .tile--sand  .tile__icon { background: var(--ib-tint-sand);  color: var(--ib-green-800); }
+
+  /* List rows */
+  .row-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .row {
+    display: flex; align-items: center; gap: var(--ib-space-3);
+    padding: var(--ib-space-4) 0; border-bottom: 1px solid var(--ib-border);
+    min-height: 44px; cursor: pointer; text-decoration: none; color: inherit;
+  }
+  .row__icon { width: 40px; height: 40px; border-radius: var(--ib-radius-md); flex: 0 0 auto;
+               display: grid; place-items: center; background: var(--ib-green-50); color: var(--ib-green-700); }
+  .row__icon svg { width: 20px; height: 20px; }
+  .row__main { flex: 1 1 auto; min-width: 0; }
+  .row__title { font-weight: var(--ib-weight-semibold); color: var(--ib-text-heading); }
+  .row__sub { font-size: var(--ib-text-caption); color: var(--ib-text-muted); }
+  .row__end { display: flex; flex-direction: column; align-items: flex-end; gap: var(--ib-space-1); flex: 0 0 auto; }
+  .row__amount { font-weight: var(--ib-weight-bold); color: var(--ib-text-heading); }
+
+  .chip-row { display: flex; gap: var(--ib-space-2); overflow-x: auto; padding-bottom: var(--ib-space-1);
+              scrollbar-width: none; }
+  .chip-row::-webkit-scrollbar { display: none; }
+  .chip-row .ib-chip { flex: 0 0 auto; white-space: nowrap; }
+
+  /* Detail breakdown */
+  .breakdown { list-style: none; margin: 0; padding: 0; }
+  .breakdown li { display: flex; align-items: center; justify-content: space-between; gap: var(--ib-space-3);
+                  padding: var(--ib-space-3) 0; border-bottom: 1px solid var(--ib-border); font-size: var(--ib-text-body-sm); }
+  .breakdown li:last-child { border-bottom: none; }
+  .breakdown .lbl { color: var(--ib-text-body); display: flex; align-items: center; gap: var(--ib-space-2); }
+  .breakdown .val { font-weight: var(--ib-weight-semibold); color: var(--ib-text-heading); }
+  .breakdown .dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+
+  /* Sticky bottom action */
+  .sticky-action {
+    flex: 0 0 auto; padding: var(--ib-space-3) var(--ib-space-5) var(--ib-space-5);
+    background: var(--ib-bg-surface); border-top: 1px solid var(--ib-border);
+    box-shadow: 0 -8px 24px rgba(1,61,40,0.06);
+  }
+  .sticky-action__row { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--ib-space-3); }
+
+  /* Detail header (forest) */
+  .detail-head {
+    background: var(--ib-gradient-forest); color: var(--ib-text-inverse);
+    padding: 0 var(--ib-space-5) var(--ib-space-5);
+  }
+  .detail-head__nav { display: flex; align-items: center; justify-content: space-between; padding-top: var(--ib-space-1); }
+  .detail-head .icon-btn { color: var(--ib-neutral-0); }
+  .detail-head .icon-btn:hover { background: rgba(255,255,255,0.12); }
+
+  /* App stat (scaled down .ib-stat feel) */
+  .app-stat { text-align: left; }
+  .app-stat__value { font-size: var(--ib-text-h3); font-weight: var(--ib-weight-bold); line-height: 1;
+                     color: var(--ib-color-primary); letter-spacing: var(--ib-tracking-tight); }
+  .app-stat__label { font-size: var(--ib-text-caption); color: var(--ib-text-muted); margin-top: var(--ib-space-1); }
+  .detail-head .app-stat__value { color: var(--ib-neutral-0); }
+  .detail-head .app-stat__label { color: rgba(255,255,255,0.8); }
+
+  /* Onboarding */
+  .onb {
+    flex: 1 1 auto; background: var(--ib-gradient-forest); color: var(--ib-text-inverse);
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+  .onb__flame { position: absolute; opacity: 0.14; pointer-events: none; }
+  .onb__art { flex: 1 1 auto; display: grid; place-items: center; position: relative; z-index: 1; }
+  .onb__logo { width: 128px; height: auto; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25)); }
+  .onb__foot { position: relative; z-index: 1; padding: var(--ib-space-5) var(--ib-space-5) var(--ib-space-6); }
+  .onb h2 { color: var(--ib-neutral-0); font-size: var(--ib-text-h3); }
+
+  /* Login */
+  .login { flex: 1 1 auto; display: flex; flex-direction: column; padding: var(--ib-space-5); }
+  .login__logo { height: 34px; width: auto; margin-bottom: var(--ib-space-6); }
+
+  .field-lg .ib-input { min-height: 48px; }
+
+  code.snippet { display: block; white-space: pre; }
+</style>
+</head>
+<body>
+
+<!-- ================= INTRO ================= -->
+<header class="app-intro">
+  <div class="ib-container">
+    <span class="ib-overline">Iberdrola Design System</span>
+    <h1 style="margin-top:var(--ib-space-3)">App móvil</h1>
+    <p class="ib-lead ib-text-muted" style="margin-top:var(--ib-space-3)">
+      Cinco pantallas clave del producto, renderizadas en marcos de dispositivo con los mismos
+      tokens y componentes del sistema. Objetivos táctiles de 44&nbsp;px, escala móvil y acento tricolor de marca.
+    </p>
+    <hr class="ib-energy-line" style="max-width:200px;margin:var(--ib-space-5) auto 0">
+  </div>
+</header>
+
+<main class="ib-container ib-container--wide">
+  <div class="phone-gallery">
+
+    <!-- ============================================================= -->
+    <!-- 1 · ONBOARDING / WELCOME                                       -->
+    <!-- ============================================================= -->
+    <figure class="phone-figure">
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen phone__screen--dark">
+          <div class="phone__status">
+            <span class="time">9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="1" y="1" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="2.5" width="12" height="7" rx="1.2" fill="currentColor"/><rect x="19" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="onb">
+            <svg class="onb__flame" style="top:-30px;left:-40px;width:220px" viewBox="0 0 24 24" fill="var(--ib-orange-500)"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>
+            <svg class="onb__flame" style="bottom:120px;right:-30px;width:160px" viewBox="0 0 24 24" fill="var(--ib-blue-500)"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+            <div class="onb__art">
+              <img class="onb__logo" src="../../brand/logos/iberdrola-icon.svg" alt="Iberdrola">
+            </div>
+            <div class="onb__foot">
+              <span class="ib-badge ib-badge--solid" style="margin-bottom:var(--ib-space-4)">Bienvenido</span>
+              <h2>Tu energía, siempre a mano</h2>
+              <p style="color:#D9E5DE;margin-top:var(--ib-space-3)">Controla tu consumo, tus facturas y tus servicios desde una sola app.</p>
+              <div style="display:flex;gap:8px;justify-content:center;margin:var(--ib-space-5) 0">
+                <span style="width:26px;height:9px;border-radius:999px;background:var(--ib-neutral-0)"></span>
+                <span style="width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,0.4)"></span>
+                <span style="width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,0.4)"></span>
+              </div>
+              <a class="ib-btn ib-btn--on-dark ib-btn--lg ib-btn--block tap" href="#login">Empezar</a>
+              <div class="ib-center-text" style="margin-top:var(--ib-space-3)">
+                <a class="ib-btn ib-btn--link tap" href="#" style="color:#fff">Ya tengo cuenta</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div><span class="phone-figure__step">01</span> · <span class="phone-figure__title">Onboarding</span></div>
+        <p class="phone-figure__desc">Pantalla de bienvenida con degradado forest, logo, titular y CTA “Empezar”.</p>
+      </figcaption>
+    </figure>
+
+    <!-- ============================================================= -->
+    <!-- 2 · LOGIN / FORM                                               -->
+    <!-- ============================================================= -->
+    <figure class="phone-figure" id="login">
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen">
+          <div class="phone__status">
+            <span class="time">9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="1" y="1" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="2.5" width="12" height="7" rx="1.2" fill="currentColor"/><rect x="19" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="login">
+            <img class="login__logo" src="../../brand/logos/iberdrola-logo-full.svg" alt="Iberdrola">
+            <h2 class="app-h">Hola de nuevo</h2>
+            <p class="ib-text-muted ib-body-sm" style="margin-top:var(--ib-space-2)">Accede a tu área de clientes.</p>
+
+            <div class="ib-stack-4 field-lg" style="margin-top:var(--ib-space-6)">
+              <div class="ib-field">
+                <label class="ib-label" for="lg-user">Usuario o email</label>
+                <input class="ib-input" id="lg-user" type="email" inputmode="email" placeholder="tu@email.com" value="ana.garcia@email.com">
+              </div>
+              <div class="ib-field">
+                <label class="ib-label" for="lg-pass">Contraseña</label>
+                <input class="ib-input" id="lg-pass" type="password" placeholder="••••••••" value="123456789">
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <label class="ib-check"><input type="checkbox" checked> Recuérdame</label>
+                <a class="ib-btn ib-btn--link tap" href="#">¿Olvidaste la clave?</a>
+              </div>
+            </div>
+
+            <div style="margin-top:var(--ib-space-5)">
+              <a class="ib-btn ib-btn--lg ib-btn--block tap" href="#home">Iniciar sesión</a>
+            </div>
+
+            <div class="ib-center-text ib-body-sm ib-text-muted" style="margin-top:auto;padding-top:var(--ib-space-5)">
+              ¿No tienes cuenta? <a href="#" class="ib-text-primary" style="font-weight:var(--ib-weight-semibold)">Regístrate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div><span class="phone-figure__step">02</span> · <span class="phone-figure__title">Login</span></div>
+        <p class="phone-figure__desc">Formulario con <code>.ib-input</code>, CTA principal y enlaces secundarios.</p>
+      </figcaption>
+    </figure>
+
+    <!-- ============================================================= -->
+    <!-- 3 · HOME / DASHBOARD                                           -->
+    <!-- ============================================================= -->
+    <figure class="phone-figure" id="home">
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen">
+          <div class="phone__status">
+            <span class="time">9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="1" y="1" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="2.5" width="12" height="7" rx="1.2" fill="currentColor"/><rect x="19" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <div class="app-topbar">
+            <img class="app-topbar__logo" src="../../brand/logos/iberdrola-icon.svg" alt="Iberdrola">
+            <div style="display:flex;align-items:center;gap:var(--ib-space-1)">
+              <button class="icon-btn" aria-label="Notificaciones">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+              </button>
+              <span class="app-avatar" aria-hidden="true">AG</span>
+            </div>
+          </div>
+
+          <div class="screen-body">
+            <div class="screen-scroll">
+              <div class="screen-pad ib-stack-5">
+                <div>
+                  <p class="ib-text-muted ib-body-sm">Buenos días,</p>
+                  <h2 class="app-greeting">Ana García</h2>
+                </div>
+
+                <!-- Consumption summary -->
+                <div class="energy-card">
+                  <svg class="energy-card__flame" viewBox="0 0 24 24" fill="var(--ib-orange-500)"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>
+                  <div class="energy-card__head">
+                    <div>
+                      <p style="opacity:.85;font-size:var(--ib-text-caption)">Consumo del mes</p>
+                      <p style="font-size:var(--ib-text-h4);font-weight:var(--ib-weight-bold)">247 kWh</p>
+                    </div>
+                    <span class="ib-badge ib-badge--solid" style="background:rgba(255,255,255,0.16);color:#fff">−12% ↓</span>
+                  </div>
+                  <div class="energy-card__row">
+                    <div class="ring" style="--_val:68">
+                      <svg width="108" height="108" viewBox="0 0 108 108">
+                        <defs>
+                          <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#33B568"/>
+                            <stop offset="60%" stop-color="#0DA9FF"/>
+                            <stop offset="100%" stop-color="#FF9C1A"/>
+                          </linearGradient>
+                        </defs>
+                        <circle class="ring__track" cx="54" cy="54" r="46" fill="none" stroke-width="12"/>
+                        <circle class="ring__fill"  cx="54" cy="54" r="46" fill="none" stroke-width="12"/>
+                      </svg>
+                      <div class="ring__center">
+                        <div>
+                          <div class="ring__pct">68%</div>
+                          <div class="ring__cap">del objetivo</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="flex:1">
+                      <div class="bars" aria-hidden="true">
+                        <div class="bars__col"><div class="bars__bar" style="height:40%"></div><span class="bars__lbl">L</span></div>
+                        <div class="bars__col"><div class="bars__bar" style="height:62%"></div><span class="bars__lbl">M</span></div>
+                        <div class="bars__col"><div class="bars__bar" style="height:48%"></div><span class="bars__lbl">X</span></div>
+                        <div class="bars__col"><div class="bars__bar" style="height:78%"></div><span class="bars__lbl">J</span></div>
+                        <div class="bars__col"><div class="bars__bar" style="height:55%"></div><span class="bars__lbl">V</span></div>
+                        <div class="bars__col"><div class="bars__bar bars__bar--now" style="height:90%"></div><span class="bars__lbl">S</span></div>
+                      </div>
+                      <p style="opacity:.85;font-size:0.625rem;margin-top:var(--ib-space-2)">Estimado factura · <b>58,40 €</b></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick actions -->
+                <div>
+                  <h3 class="app-h" style="margin-bottom:var(--ib-space-3)">Accesos rápidos</h3>
+                  <div class="tiles">
+                    <button class="tile tile--mint">
+                      <span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                      <span class="tile__lbl">Mis facturas</span>
+                    </button>
+                    <button class="tile tile--peach">
+                      <span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+                      <span class="tile__lbl">Consumo</span>
+                    </button>
+                    <button class="tile tile--sky">
+                      <span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10h3l2 3v4h-5"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+                      <span class="tile__lbl">Movilidad</span>
+                    </button>
+                    <button class="tile tile--sand">
+                      <span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>
+                      <span class="tile__lbl">Plan Solar</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Promo -->
+                <div class="ib-segment ib-segment--mint" style="align-items:center">
+                  <div class="tile__icon" style="background:var(--ib-neutral-0);color:var(--ib-color-primary)">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>
+                  </div>
+                  <div class="ib-segment__body">
+                    <h4 style="font-size:var(--ib-text-body)">Precio de la luz hoy</h4>
+                    <p class="ib-body-sm ib-text-muted">Valle hasta las 08:00 · 0,091 €/kWh</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom tab bar -->
+            <nav class="tabbar" aria-label="Navegación principal">
+              <button class="tabbar__item" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                Inicio
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg>
+                Facturas
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-6 4 4 5-8 4 6"/></svg>
+                Consumo
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Ayuda
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                Perfil
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div><span class="phone-figure__step">03</span> · <span class="phone-figure__title">Home / Dashboard</span></div>
+        <p class="phone-figure__desc">Saludo, resumen de energía con anillo y barras, accesos rápidos y tab bar.</p>
+      </figcaption>
+    </figure>
+
+    <!-- ============================================================= -->
+    <!-- 4 · LIST — FACTURAS                                            -->
+    <!-- ============================================================= -->
+    <figure class="phone-figure">
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen">
+          <div class="phone__status">
+            <span class="time">9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="1" y="1" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="2.5" width="12" height="7" rx="1.2" fill="currentColor"/><rect x="19" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <div class="app-topbar">
+            <div style="display:flex;align-items:center;gap:var(--ib-space-1)">
+              <button class="icon-btn" aria-label="Volver">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <h2 class="app-h">Mis facturas</h2>
+            </div>
+            <button class="icon-btn" aria-label="Buscar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+            </button>
+          </div>
+
+          <div class="screen-body">
+            <div class="screen-scroll">
+              <div class="screen-pad">
+                <div class="chip-row" style="margin-bottom:var(--ib-space-2)">
+                  <button class="ib-chip" aria-pressed="true">Todas</button>
+                  <button class="ib-chip">Pendientes</button>
+                  <button class="ib-chip">Pagadas</button>
+                  <button class="ib-chip">2026</button>
+                  <button class="ib-chip">2025</button>
+                </div>
+
+                <ul class="row-list">
+                  <li><a class="row" href="#detail">
+                    <span class="row__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                    <span class="row__main">
+                      <span class="row__title">Factura de junio</span>
+                      <span class="row__sub">Emitida 01 jul 2026</span>
+                    </span>
+                    <span class="row__end">
+                      <span class="row__amount">58,40 €</span>
+                      <span class="ib-badge ib-badge--accent">Pendiente</span>
+                    </span>
+                  </a></li>
+                  <li><a class="row" href="#detail">
+                    <span class="row__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                    <span class="row__main">
+                      <span class="row__title">Factura de mayo</span>
+                      <span class="row__sub">Emitida 01 jun 2026</span>
+                    </span>
+                    <span class="row__end">
+                      <span class="row__amount">62,15 €</span>
+                      <span class="ib-badge">Pagada</span>
+                    </span>
+                  </a></li>
+                  <li><a class="row" href="#detail">
+                    <span class="row__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                    <span class="row__main">
+                      <span class="row__title">Factura de abril</span>
+                      <span class="row__sub">Emitida 02 may 2026</span>
+                    </span>
+                    <span class="row__end">
+                      <span class="row__amount">71,90 €</span>
+                      <span class="ib-badge">Pagada</span>
+                    </span>
+                  </a></li>
+                  <li><a class="row" href="#detail">
+                    <span class="row__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                    <span class="row__main">
+                      <span class="row__title">Factura de marzo</span>
+                      <span class="row__sub">Emitida 01 abr 2026</span>
+                    </span>
+                    <span class="row__end">
+                      <span class="row__amount">80,25 €</span>
+                      <span class="ib-badge ib-badge--neutral">Domiciliada</span>
+                    </span>
+                  </a></li>
+                  <li><a class="row" href="#detail">
+                    <span class="row__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg></span>
+                    <span class="row__main">
+                      <span class="row__title">Factura de febrero</span>
+                      <span class="row__sub">Emitida 01 mar 2026</span>
+                    </span>
+                    <span class="row__end">
+                      <span class="row__amount">88,60 €</span>
+                      <span class="ib-badge">Pagada</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+
+            <nav class="tabbar" aria-label="Navegación principal">
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+                Inicio
+              </button>
+              <button class="tabbar__item" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v14H4z"/><path d="M4 9h16"/></svg>
+                Facturas
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-6 4 4 5-8 4 6"/></svg>
+                Consumo
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Ayuda
+              </button>
+              <button class="tabbar__item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                Perfil
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div><span class="phone-figure__step">04</span> · <span class="phone-figure__title">Listado de facturas</span></div>
+        <p class="phone-figure__desc">Filtros en fila de chips y filas con estado mediante <code>.ib-badge</code>.</p>
+      </figcaption>
+    </figure>
+
+    <!-- ============================================================= -->
+    <!-- 5 · DETAIL — FACTURA                                           -->
+    <!-- ============================================================= -->
+    <figure class="phone-figure" id="detail">
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen phone__screen--dark">
+          <div class="phone__status">
+            <span class="time">9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="4.5" width="3" height="7.5" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="1" y="1" width="17" height="10" rx="2.5" stroke="currentColor" stroke-width="1.2"/><rect x="2.5" y="2.5" width="12" height="7" rx="1.2" fill="currentColor"/><rect x="19" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+            </span>
+          </div>
+
+          <div class="detail-head">
+            <div class="detail-head__nav">
+              <button class="icon-btn" aria-label="Volver">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="icon-btn" aria-label="Descargar PDF">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+              </button>
+            </div>
+            <div style="padding-top:var(--ib-space-2)">
+              <span class="ib-badge ib-badge--accent">Pendiente de pago</span>
+              <h2 style="color:#fff;margin-top:var(--ib-space-3);font-size:var(--ib-text-h3)">Factura de junio</h2>
+              <p style="color:rgba(255,255,255,.82);font-size:var(--ib-text-body-sm);margin-top:var(--ib-space-1)">Nº FE-2026-0006 · Vence el 20 jul 2026</p>
+              <div style="display:flex;gap:var(--ib-space-6);margin-top:var(--ib-space-5)">
+                <div class="app-stat">
+                  <div class="app-stat__value">58,40&nbsp;€</div>
+                  <div class="app-stat__label">Importe total</div>
+                </div>
+                <div class="app-stat">
+                  <div class="app-stat__value">247</div>
+                  <div class="app-stat__label">kWh consumidos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-body" style="background:var(--ib-bg-page)">
+            <div class="screen-scroll">
+              <div class="screen-pad">
+                <h3 class="app-h" style="margin-bottom:var(--ib-space-2)">Desglose</h3>
+                <ul class="breakdown">
+                  <li><span class="lbl"><span class="dot" style="background:var(--ib-green-500)"></span>Energía consumida</span><span class="val">38,10 €</span></li>
+                  <li><span class="lbl"><span class="dot" style="background:var(--ib-blue-500)"></span>Potencia contratada</span><span class="val">9,80 €</span></li>
+                  <li><span class="lbl"><span class="dot" style="background:var(--ib-orange-500)"></span>Impuesto eléctrico</span><span class="val">2,40 €</span></li>
+                  <li><span class="lbl"><span class="dot" style="background:var(--ib-neutral-400)"></span>Alquiler de equipos</span><span class="val">0,96 €</span></li>
+                  <li><span class="lbl"><span class="dot" style="background:var(--ib-green-800)"></span>IVA (21%)</span><span class="val">7,14 €</span></li>
+                </ul>
+
+                <div class="ib-alert" style="margin-top:var(--ib-space-4)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  <span>Tu consumo bajó un <b>12%</b> respecto a mayo. ¡Buen trabajo!</span>
+                </div>
+
+                <h3 class="app-h" style="margin:var(--ib-space-5) 0 var(--ib-space-2)">Periodo</h3>
+                <ul class="breakdown">
+                  <li><span class="lbl">Desde</span><span class="val">01 jun 2026</span></li>
+                  <li><span class="lbl">Hasta</span><span class="val">30 jun 2026</span></li>
+                  <li><span class="lbl">Tarifa</span><span class="val">Plan Online</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Sticky bottom action -->
+            <div class="sticky-action">
+              <div class="sticky-action__row">
+                <div>
+                  <div class="ib-caption">Total a pagar</div>
+                  <div style="font-size:var(--ib-text-h4);font-weight:var(--ib-weight-bold);color:var(--ib-text-heading)">58,40 €</div>
+                </div>
+                <a class="ib-btn ib-btn--link tap" href="#">Ver PDF</a>
+              </div>
+              <a class="ib-btn ib-btn--lg ib-btn--block tap" href="#">Pagar factura</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        <div><span class="phone-figure__step">05</span> · <span class="phone-figure__title">Detalle de factura</span></div>
+        <p class="phone-figure__desc">Cabecera forest con cifras (<code>.ib-stat</code>), desglose y acción fija inferior.</p>
+      </figcaption>
+    </figure>
+
+  </div>
+</main>
+
+<footer class="ib-footer" style="margin-top:var(--ib-space-6)">
+  <div class="ib-container">
+    <div class="ib-footer__legal" style="border:none;margin:0;padding:0;justify-content:center">
+      <span>© 2026 Iberdrola Clientes S.A.U. · App móvil — plantilla del Design System</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

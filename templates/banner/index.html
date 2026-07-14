@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iberdrola — Display banner gallery</title>
+<link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap");
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Figtree","Segoe UI",system-ui,sans-serif; background:#F6F7F5; color:#1A1A1A; }
+
+  .hd { background:#013D28; background-image:linear-gradient(150deg,#006B33 0%,#013D28 70%); color:#fff; padding:40px 40px 44px; position:relative; overflow:hidden; }
+  .hd__bar { position:absolute; top:0; left:0; right:0; height:6px; display:flex; }
+  .hd__bar i:nth-child(1){ flex:42; background:#00A443; }
+  .hd__bar i:nth-child(2){ flex:33; background:#0DA9FF; }
+  .hd__bar i:nth-child(3){ flex:25; background:#FF9C1A; }
+  .hd__logo { height:52px; filter:brightness(0) invert(1); }
+  .hd h1 { font-size:30px; font-weight:700; letter-spacing:-.6px; margin-top:18px; }
+  .hd p { color:#D9E5DE; margin-top:8px; max-width:640px; font-size:15px; line-height:22px; }
+
+  .wrap { padding:40px; }
+  .grid { display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start; }
+  .card { background:#fff; border:1px solid #E1E3DE; border-radius:16px; padding:20px; box-shadow:0 2px 6px rgba(1,61,40,.05); }
+  .card__label { font-size:12px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:#00823A; }
+  .card__name { font-size:15px; font-weight:700; margin:2px 0 2px; }
+  .card__size { font-size:12px; color:#6B7280; margin-bottom:14px; }
+  .frame { border:0; display:block; background:#c9ccc5; border-radius:8px; }
+  .scaled { position:relative; overflow:hidden; border-radius:8px; }
+  .scaled iframe { position:absolute; top:0; left:0; border:0; transform-origin:top left; }
+  .note { font-size:11px; color:#9DA29A; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <span class="hd__bar"><i></i><i></i><i></i></span>
+  <img class="hd__logo" src="../../brand/logos/iberdrola-logo-mono.svg" alt="Iberdrola">
+  <h1>Display banner gallery</h1>
+  <p>Seven self-contained HTML/CSS display ads at exact IAB pixel sizes. Each renders on-brand and pixel-accurate. Previews below are shown at 100% unless a scale note says otherwise.</p>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <div class="card">
+      <div class="card__label">Medium Rectangle</div>
+      <div class="card__name">300 × 250</div>
+      <div class="card__size">MPU · sidebar / in-content</div>
+      <iframe class="frame" src="300x250.html" width="300" height="250" title="300x250" scrolling="no"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Mobile Banner</div>
+      <div class="card__name">320 × 50</div>
+      <div class="card__size">Mobile sticky</div>
+      <iframe class="frame" src="320x50.html" width="320" height="50" title="320x50" scrolling="no"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Wide Skyscraper</div>
+      <div class="card__name">160 × 600</div>
+      <div class="card__size">Sidebar rail</div>
+      <iframe class="frame" src="160x600.html" width="160" height="600" title="160x600" scrolling="no"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Half Page</div>
+      <div class="card__name">300 × 600</div>
+      <div class="card__size">High-impact sidebar</div>
+      <iframe class="frame" src="300x600.html" width="300" height="600" title="300x600" scrolling="no"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Leaderboard</div>
+      <div class="card__name">728 × 90</div>
+      <div class="card__size">Top / header</div>
+      <iframe class="frame" src="728x90.html" width="728" height="90" title="728x90" scrolling="no"></iframe>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Billboard</div>
+      <div class="card__name">970 × 250</div>
+      <div class="card__size">Premium top slot · shown at 70%</div>
+      <div class="scaled" style="width:679px; height:175px;">
+        <iframe src="970x250.html" width="970" height="250" title="970x250" scrolling="no" style="transform:scale(0.7);"></iframe>
+      </div>
+      <div class="note">Actual size 970 × 250 px.</div>
+    </div>
+
+    <div class="card">
+      <div class="card__label">Square · Social / Paid</div>
+      <div class="card__name">1080 × 1080</div>
+      <div class="card__size">Instagram / display · shown at 35%</div>
+      <div class="scaled" style="width:378px; height:378px;">
+        <iframe src="1080x1080.html" width="1080" height="1080" title="1080x1080" scrolling="no" style="transform:scale(0.35);"></iframe>
+      </div>
+      <div class="note">Actual size 1080 × 1080 px.</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
