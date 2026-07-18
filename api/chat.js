@@ -5,7 +5,7 @@
 
 const { KB, SYSTEM_BASE } = require("./_kb.js");
 
-const MODEL = "claude-opus-4-8"; // swap to "claude-haiku-4-5" for faster/cheaper replies
+const MODEL = "claude-haiku-4-5"; // fast/low-cost; swap to "claude-opus-4-8" for max quality
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
