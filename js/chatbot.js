@@ -13,8 +13,9 @@
   function ctx() {
     var key = null; try { key = sessionStorage.getItem("ib_user"); } catch (e) {}
     var p = key && window.IB_PROFILES ? window.IB_PROFILES[key] : null;
-    return p ? { key: p.key, name: p.name, segment: p.segment } : { key: null, name: null, segment: null };
+    return p ? { key: p.key, name: p.name, segment: p.segment, segmentLabel: p.segmentLabel } : { key: null, name: null, segment: null, segmentLabel: null };
   }
+  var convo = []; // running conversation history for the LLM
 
   /* ---------- retrieval engine ---------- */
   function norm(s) { return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim(); }
@@ -104,23 +105,44 @@
   }
   function typing() { var t = el("div", "aura-typing", "<i></i><i></i><i></i>"); body.appendChild(t); scrollDown(); return t; }
 
+  // Offline fallback: the local retrieval engine, used when the LLM endpoint is unavailable.
+  function localAnswer(query, c) {
+    var r = answer(query, c);
+    if (r.fallback) {
+      addBot(fmt("No estoy segura de eso 🤔, pero puedo ayudarte con planes de luz y gas, solar, movilidad o servicios. También puedes llamar al **900 225 235**."));
+      addChips(KB.welcome.chips);
+      return;
+    }
+    var e = r.entry, html = fmt(e.a);
+    if (e.cta) html += '<a class="ib-btn ib-btn--sm" href="' + e.cta.href + '" data-aura-cta>' + e.cta.label + "</a>";
+    addBot(html);
+    if (e.chips && e.chips.length) addChips(e.chips);
+  }
+
   function respond(query) {
     var c = ctx();
+    convo.push({ role: "user", content: query });
     var t = typing();
-    var delay = reduce ? 0 : 420 + Math.random() * 320;
-    setTimeout(function () {
-      t.remove();
-      var r = answer(query, c);
-      if (r.fallback) {
-        addBot(fmt("No estoy segura de eso 🤔, pero puedo ayudarte con planes de luz y gas, solar, movilidad o servicios. También puedes llamar al **900 225 235**."));
-        addChips(KB.welcome.chips);
-        return;
-      }
-      var e = r.entry, html = fmt(e.a);
-      if (e.cta) html += '<a class="ib-btn ib-btn--sm" href="' + e.cta.href + '" data-aura-cta>' + e.cta.label + "</a>";
-      addBot(html);
-      if (e.chips && e.chips.length) addChips(e.chips);
-    }, delay);
+    var persona = c.name ? { name: c.name, segment: c.segment, segmentLabel: c.segmentLabel } : null;
+
+    fetch("/api/chat", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ messages: convo.slice(-12), persona: persona }),
+    })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+      .then(function (data) {
+        t.remove();
+        var text = (data && data.text) || "";
+        if (!text) throw new Error("empty");
+        convo.push({ role: "assistant", content: text });
+        addBot(fmt(text));
+      })
+      .catch(function () {
+        // API unavailable (no key yet, offline, or error) → deterministic KB retrieval.
+        t.remove();
+        localAnswer(query, c);
+      });
   }
 
   function handle(text) { text = (text || "").trim(); if (!text) return; addUser(text); respond(text); }
@@ -161,7 +183,7 @@
       '<div class="aura-head"><span class="av">' + ICON_BOT + "</span><div><b>Aura</b><small>Asistente de Iberdrola · en línea</small></div>" +
       '<button class="aura-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
       '<div class="aura-body" role="log" aria-live="polite"></div>' +
-      '<p class="aura-disc">Aura es un asistente de demostración. Precios orientativos 2026.</p>' +
+      '<p class="aura-disc">Aura usa IA y puede cometer errores. Precios orientativos 2026.</p>' +
       '<form class="aura-foot"><input type="text" placeholder="Escribe tu pregunta…" aria-label="Escribe tu pregunta" autocomplete="off"><button class="aura-send" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></form>';
     document.body.appendChild(launcher);
     document.body.appendChild(panel);

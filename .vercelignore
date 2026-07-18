@@ -1,3 +1,5 @@
 resources/
 .git/
 .DS_Store
+.env
+.env.*
