@@ -40,11 +40,33 @@
   .home-plan__img{ border-radius:var(--ib-radius-xl); box-shadow:var(--ib-shadow-md); width:100%; aspect-ratio:4/3; object-fit:cover; }
   @media (max-width:820px){ .home-plan{ grid-template-columns:1fr; } }
 
-  /* category rail */
+  /* category cards */
+  .cats-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:var(--ib-space-4); margin-bottom:var(--ib-space-5); flex-wrap:wrap; }
+  .cats-head h3{ margin-top:var(--ib-space-1); }
   .home-cats{ display:grid; grid-template-columns:repeat(5,1fr); gap:var(--ib-space-4); }
-  .home-cats img{ width:100%; height:120px; object-fit:cover; border-radius:var(--ib-radius-lg); }
-  @media (max-width:760px){ .home-cats{ grid-template-columns:repeat(3,1fr);} }
-  @media (max-width:460px){ .home-cats{ grid-template-columns:repeat(2,1fr);} }
+  .cat{ position:relative; display:block; border-radius:var(--ib-radius-xl); overflow:hidden; aspect-ratio:3/4; box-shadow:var(--ib-shadow-sm); isolation:isolate; color:#fff;
+        transition: transform var(--ib-duration-base) var(--ib-ease-standard), box-shadow var(--ib-duration-base) var(--ib-ease-standard); }
+  .cat:hover{ transform:translateY(-6px); box-shadow:var(--ib-shadow-lg); }
+  .cat img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2;
+            transition: transform var(--ib-duration-slow) var(--ib-ease-standard); }
+  .cat:hover img{ transform:scale(1.07); }
+  .cat::after{ content:""; position:absolute; inset:0; z-index:-1;
+               background:linear-gradient(180deg, rgba(1,61,40,0) 32%, rgba(1,61,40,.86) 100%); transition:background var(--ib-duration-base); }
+  .cat:hover::after{ background:linear-gradient(180deg, rgba(1,61,40,.08) 18%, rgba(1,61,40,.92) 100%); }
+  .cat__icon{ position:absolute; top:var(--ib-space-3); left:var(--ib-space-3); width:42px; height:42px; border-radius:50%;
+              display:grid; place-items:center; background:rgba(255,255,255,.92); color:var(--ib-green-700); box-shadow:var(--ib-shadow-xs); backdrop-filter:blur(4px); }
+  .cat__icon svg{ width:21px; height:21px; }
+  .cat__body{ position:absolute; left:0; right:0; bottom:0; padding:var(--ib-space-4); display:flex; flex-direction:column; gap:2px; }
+  .cat__label{ font-size:var(--ib-text-h5); font-weight:var(--ib-weight-bold); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:var(--ib-space-2); }
+  .cat__desc{ font-size:var(--ib-text-body-sm); line-height:var(--ib-leading-snug); color:rgba(255,255,255,.9); }
+  .cat__arrow{ width:30px; height:30px; border-radius:50%; background:var(--ib-color-primary); display:grid; place-items:center; flex-shrink:0;
+               transform:translateX(8px); opacity:0; transition: transform var(--ib-duration-base) var(--ib-ease-spring), opacity var(--ib-duration-base) var(--ib-ease-standard); }
+  .cat__arrow svg{ width:16px; height:16px; color:#fff; }
+  .cat:hover .cat__arrow, .cat:focus-visible .cat__arrow{ opacity:1; transform:translateX(0); }
+  .cat:focus-visible{ outline:3px solid var(--ib-focus-ring); outline-offset:3px; }
+  @media (max-width:980px){ .home-cats{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:620px){ .home-cats{ grid-template-columns:repeat(2,1fr); } .cat__arrow{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .cat, .cat img, .cat__arrow{ transition:none; } .cat:hover img{ transform:none; } }
 
   /* mi iberdrola feature */
   .home-mi{ position:relative; border-radius:var(--ib-radius-xl); overflow:hidden; min-height:360px; display:flex; align-items:flex-end; color:#fff; }
@@ -194,13 +216,57 @@
       </div>
     </div>
 
-    <!-- category rail -->
-    <div class="home-cats" style="margin-top:var(--ib-space-8)">
-      <a class="ib-category" href="#" style="padding:0"><img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=400&q=75&auto=format&fit=crop" alt="" loading="lazy"><span class="ib-category__label" style="margin-top:var(--ib-space-2)">Luz</span></a>
-      <a class="ib-category" href="#" style="padding:0"><img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&q=75&auto=format&fit=crop" alt="" loading="lazy"><span class="ib-category__label" style="margin-top:var(--ib-space-2)">Movilidad</span></a>
-      <a class="ib-category" href="#" style="padding:0"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=75&auto=format&fit=crop" alt="" loading="lazy"><span class="ib-category__label" style="margin-top:var(--ib-space-2)">Solar</span></a>
-      <a class="ib-category" href="#" style="padding:0"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=75&auto=format&fit=crop" alt="" loading="lazy"><span class="ib-category__label" style="margin-top:var(--ib-space-2)">Gas</span></a>
-      <a class="ib-category" href="#" style="padding:0"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&q=75&auto=format&fit=crop" alt="" loading="lazy"><span class="ib-category__label" style="margin-top:var(--ib-space-2)">Eficiencia</span></a>
+    <!-- category cards -->
+    <div style="margin-top:var(--ib-space-8)">
+      <div class="cats-head">
+        <div>
+          <span class="ib-overline">Nuestras soluciones</span>
+          <h3>Todo para tu hogar, en un solo lugar</h3>
+        </div>
+        <a class="ib-btn ib-btn--link" href="#">Ver todas las soluciones →</a>
+      </div>
+      <div class="home-cats">
+        <a class="cat" href="#" aria-label="Luz — tarifas 100% renovables">
+          <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=600&q=80&auto=format&fit=crop" alt="Salón luminoso de un hogar" loading="lazy">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+          <span class="cat__body">
+            <span class="cat__label">Luz <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="cat__desc">Tarifas claras y 100% renovables.</span>
+          </span>
+        </a>
+        <a class="cat" href="#" aria-label="Movilidad eléctrica — recarga tu vehículo">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80&auto=format&fit=crop" alt="Recarga de un vehículo eléctrico" loading="lazy">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17V9l2-4h8l2 4v8"/><path d="M4 17h16"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/><path d="M12 8v3l1.5-1.5"/></svg></span>
+          <span class="cat__body">
+            <span class="cat__label">Movilidad <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="cat__desc">Recarga tu coche eléctrico con facilidad.</span>
+          </span>
+        </a>
+        <a class="cat" href="#" aria-label="Solar — autoconsumo para tu hogar">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80&auto=format&fit=crop" alt="Panel solares en un campo" loading="lazy">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"/></svg></span>
+          <span class="cat__body">
+            <span class="cat__label">Solar <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="cat__desc">Autoconsumo solar para ahorrar más.</span>
+          </span>
+        </a>
+        <a class="cat" href="#" aria-label="Gas — plan de gas para tu hogar">
+          <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=80&auto=format&fit=crop" alt="Cocina moderna de un hogar" loading="lazy">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5 3.5 5 9a5 5 0 01-10 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 0-3 1-5 1-7z"/></svg></span>
+          <span class="cat__body">
+            <span class="cat__label">Gas <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="cat__desc">Plan de gas cómodo y sin sorpresas.</span>
+          </span>
+        </a>
+        <a class="cat" href="#" aria-label="Eficiencia energética — soluciones inteligentes">
+          <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?w=600&q=80&auto=format&fit=crop" alt="Termostato inteligente en la pared" loading="lazy">
+          <span class="cat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 00-9 9h3M21 12h-3M12 12l4-3"/><circle cx="12" cy="12" r="1.6"/><path d="M6 18a8 8 0 0012 0"/></svg></span>
+          <span class="cat__body">
+            <span class="cat__label">Eficiencia <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+            <span class="cat__desc">Ahorra energía con soluciones inteligentes.</span>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
