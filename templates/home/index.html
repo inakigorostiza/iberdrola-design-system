@@ -243,6 +243,26 @@
   .mini__tab{ margin-top:auto; display:flex; justify-content:space-around; align-items:center; padding:9px 8px 13px; background:rgba(0,0,0,.22); }
   .mini__tab svg{ width:16px; height:16px; color:rgba(255,255,255,.5); }
   .mini__tab svg.on{ color:#fff; }
+  .mini__chart{ margin:8px 12px 4px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:13px; padding:10px 12px; }
+  .mini__chart-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }
+  .mini__chart-head span{ font-size:9.5px; opacity:.8; }
+  .mini__chart-head b{ font-size:11px; }
+  .mini__bars{ display:flex; align-items:flex-end; gap:5px; height:44px; }
+  .mini__bars i{ flex:1; border-radius:3px 3px 0 0; height:var(--h); background:linear-gradient(180deg,#5fd08a,#0DA9FF); animation:barGrow .7s var(--ib-ease-standard) backwards; }
+  .mini__bars i.now{ background:linear-gradient(180deg,#FFC170,#FF9C1A); }
+  .mini__bars i:nth-child(1){animation-delay:.55s} .mini__bars i:nth-child(2){animation-delay:.62s}
+  .mini__bars i:nth-child(3){animation-delay:.69s} .mini__bars i:nth-child(4){animation-delay:.76s}
+  .mini__bars i:nth-child(5){animation-delay:.83s} .mini__bars i:nth-child(6){animation-delay:.90s}
+  .mini__bars i:nth-child(7){animation-delay:.97s}
+  @keyframes barGrow{ from{ height:0 } }
+  .mini__days{ display:flex; gap:5px; margin-top:5px; }
+  .mini__days span{ flex:1; text-align:center; font-size:7.5px; opacity:.55; }
+  .mini__bill{ display:flex; align-items:center; gap:9px; margin:8px 12px; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.12); border-radius:13px; padding:9px 11px; }
+  .mini__bill .bic{ width:30px; height:30px; border-radius:9px; background:rgba(255,255,255,.14); display:grid; place-items:center; flex-shrink:0; }
+  .mini__bill .bic svg{ width:16px; height:16px; color:#8fe3b0; }
+  .mini__bill small{ font-size:8.5px; opacity:.72; display:block; }
+  .mini__bill b{ font-size:13px; }
+  .mini__bill .pill{ margin-left:auto; font-size:9.5px; font-weight:var(--ib-weight-bold); background:#fff; color:#00823A; padding:5px 12px; border-radius:var(--ib-radius-pill); }
   .mini__ring circle.val{ stroke-dasharray:170; stroke-dashoffset:170; animation:ringFill 1.7s var(--ib-ease-standard) .5s forwards; }
   @keyframes ringFill{ to{ stroke-dashoffset:55; } }
 
@@ -251,6 +271,7 @@
     .appx__copy > *{ opacity:1; transform:none; }
     .phone{ transform:rotateY(-10deg) rotateX(4deg); }
     .mini__ring circle.val{ animation:none; stroke-dashoffset:55; }
+    .mini__bars i{ animation:none; }
   }
 </style>
 </head>
@@ -674,6 +695,18 @@
             <div class="mini__tiles">
               <div class="mini__tile"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/></svg></span>Mis facturas</div>
               <div class="mini__tile"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>Consumo</div>
+            </div>
+            <div class="mini__chart">
+              <div class="mini__chart-head"><span>Consumo semanal</span><b>kWh</b></div>
+              <div class="mini__bars">
+                <i style="--h:45%"></i><i style="--h:62%"></i><i style="--h:38%"></i><i style="--h:72%"></i><i style="--h:55%"></i><i class="now" style="--h:88%"></i><i style="--h:60%"></i>
+              </div>
+              <div class="mini__days"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+            </div>
+            <div class="mini__bill">
+              <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M8 9h8M8 12h5"/></svg></span>
+              <div><small>Próxima factura · 5 ago</small><b>58,40 €</b></div>
+              <span class="pill">Pagar</span>
             </div>
             <div class="mini__tab">
               <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
