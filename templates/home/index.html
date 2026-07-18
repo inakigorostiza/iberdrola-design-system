@@ -36,9 +36,49 @@
   @media (max-width:820px){ .home-promo{ grid-template-columns:1fr; } }
 
   /* plan selector */
-  .home-plan { display:grid; grid-template-columns:1fr 1fr; gap:var(--ib-space-7); align-items:center; }
-  .home-plan__img{ border-radius:var(--ib-radius-xl); box-shadow:var(--ib-shadow-md); width:100%; aspect-ratio:4/3; object-fit:cover; }
-  @media (max-width:820px){ .home-plan{ grid-template-columns:1fr; } }
+  /* interactive tariff explorer */
+  .planx__select{ position:relative; display:inline-flex; gap:4px; padding:5px; margin:0 auto var(--ib-space-6);
+    background:var(--ib-neutral-0); border:1px solid var(--ib-border); border-radius:var(--ib-radius-pill); box-shadow:var(--ib-shadow-xs); max-width:100%; overflow-x:auto; scrollbar-width:none; }
+  .planx__select::-webkit-scrollbar{ display:none; }
+  .planx__wrap{ display:flex; justify-content:center; }
+  .planx__ind{ position:absolute; top:5px; bottom:5px; left:0; width:0; background:var(--ib-color-primary); border-radius:var(--ib-radius-pill); z-index:0;
+    transition:transform .38s var(--ib-ease-spring), width .38s var(--ib-ease-spring); }
+  .planx__tab{ position:relative; z-index:1; border:none; background:none; cursor:pointer; font-family:var(--ib-font-brand);
+    font-weight:var(--ib-weight-semibold); font-size:var(--ib-text-body-sm); color:var(--ib-text-body); padding:.72em 1.35em; border-radius:var(--ib-radius-pill); white-space:nowrap; transition:color .25s; }
+  .planx__tab[aria-selected="true"]{ color:#fff; }
+  .planx__tab:focus-visible{ outline:3px solid var(--ib-green-200); outline-offset:2px; }
+
+  .planx__panel{ display:grid; grid-template-columns:1.1fr .9fr; border-radius:var(--ib-radius-xl); overflow:hidden;
+    box-shadow:var(--ib-shadow-md); background:var(--ib-bg-surface); border:1px solid var(--ib-border); min-height:400px; }
+  .planx__info{ padding:clamp(1.5rem, 1rem + 2vw, 2.75rem); display:flex; flex-direction:column; gap:var(--ib-space-3);
+    transition:opacity .3s var(--ib-ease-standard), transform .3s var(--ib-ease-standard); }
+  .planx__badge:empty{ display:none; }
+  .planx__name{ font-size:var(--ib-text-h3); color:var(--ib-text-heading); }
+  .planx__tag{ color:var(--ib-text-body); max-width:42ch; }
+  .planx__features{ list-style:none; padding:0; margin:var(--ib-space-2) 0 0; display:flex; flex-direction:column; gap:var(--ib-space-3); }
+  .planx__features li{ display:flex; gap:var(--ib-space-2); align-items:flex-start; font-weight:var(--ib-weight-medium); }
+  .planx__features svg{ width:20px; height:20px; color:var(--ib-color-primary); flex-shrink:0; margin-top:2px; }
+  .planx__cta{ display:flex; gap:var(--ib-space-3); flex-wrap:wrap; margin-top:auto; padding-top:var(--ib-space-5); }
+
+  .planx__viz{ position:relative; background:var(--ib-gradient-forest); color:#fff; overflow:hidden;
+    padding:clamp(1.5rem, 1rem + 2vw, 2.5rem); display:flex; flex-direction:column; gap:var(--ib-space-2); }
+  .planx__viz::after{ content:""; position:absolute; width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle, rgba(13,169,255,.4), transparent 70%); top:-70px; right:-50px; }
+  .planx__viz-label{ position:relative; z-index:1; font-size:var(--ib-text-caption); text-transform:uppercase;
+    letter-spacing:var(--ib-tracking-overline); color:var(--ib-blue-300); font-weight:var(--ib-weight-semibold); }
+  .planx__price{ position:relative; z-index:1; display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;
+    transition:opacity .3s var(--ib-ease-standard), transform .3s var(--ib-ease-standard); }
+  .planx__price b{ font-size:clamp(2.25rem, 1.6rem + 2vw, 3rem); font-weight:var(--ib-weight-bold); letter-spacing:var(--ib-tracking-tight); line-height:1; }
+  .planx__price span{ font-size:var(--ib-text-body-sm); color:#d9e5de; }
+  .planx__bars{ position:relative; z-index:1; display:flex; align-items:flex-end; gap:var(--ib-space-3); height:150px; margin-top:auto;
+    transition:opacity .3s var(--ib-ease-standard); }
+  .planx__bar{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:6px; height:100%; }
+  .planx__bar .bv{ font-size:var(--ib-text-body-sm); font-weight:var(--ib-weight-bold); }
+  .planx__bar i{ width:100%; max-width:54px; border-radius:7px 7px 0 0; background:linear-gradient(180deg,#5fd08a,#0DA9FF); transition:height .6s var(--ib-ease-standard); }
+  .planx__bar .bl{ font-size:var(--ib-text-caption); color:#c9ded3; }
+  .planx.is-switching .planx__info, .planx.is-switching .planx__price, .planx.is-switching .planx__bars{ opacity:0; transform:translateY(10px); }
+  @media (max-width:820px){ .planx__panel{ grid-template-columns:1fr; } .planx__viz{ order:-1; } }
+  @media (prefers-reduced-motion:reduce){ .planx__ind, .planx__bar i, .planx__info, .planx__price, .planx__bars{ transition:none; } }
 
   /* category cards */
   .cats-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:var(--ib-space-4); margin-bottom:var(--ib-space-5); flex-wrap:wrap; }
@@ -363,47 +403,39 @@
 <section class="ib-section ib-section--subtle" id="planes">
   <div class="ib-container">
     <div class="ib-section-head"><span class="ib-overline">Planes de luz</span><h2>Planes pensados para mejorar tu vida</h2><p class="ib-text-muted">Elige la tarifa de luz que mejor se adapta a tu rutina. Sin permanencia, sin complicaciones.</p></div>
-    <div class="home-plan" data-ib-tabs>
-      <img class="home-plan__img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&q=80&auto=format&fit=crop" alt="Cliente satisfecho" loading="lazy">
-      <div>
-        <ul class="ib-tabs__list" role="tablist" aria-label="Planes de luz">
-          <li role="presentation"><button class="ib-tab" role="tab" id="pl1" aria-controls="plp1" aria-selected="true">Plan Online 3 Periodos</button></li>
-          <li role="presentation"><button class="ib-tab" role="tab" id="pl2" aria-controls="plp2" aria-selected="false" tabindex="-1">Plan Online</button></li>
-          <li role="presentation"><button class="ib-tab" role="tab" id="pl3" aria-controls="plp3" aria-selected="false" tabindex="-1">Plan Ahorro Inteligente</button></li>
-        </ul>
-        <div class="ib-tabs__panel" role="tabpanel" id="plp1" aria-labelledby="pl1">
-          <div class="ib-stack-4">
-            <p>Aprovecha los tres periodos horarios para pagar menos en las horas valle. Ideal si puedes mover tu consumo.</p>
-            <ul class="ib-plan__features">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Discriminación horaria en 3 periodos</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% energía renovable</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li>
-            </ul>
-            <div><a class="ib-btn" href="#">Contrata online</a></div>
+    <div class="planx" data-planx>
+      <div class="planx__wrap">
+        <div class="planx__select" role="tablist" aria-label="Planes de luz">
+          <span class="planx__ind" aria-hidden="true"></span>
+          <button class="planx__tab" role="tab" aria-selected="true">Plan Online 3 Periodos</button>
+          <button class="planx__tab" role="tab" aria-selected="false">Plan Online</button>
+          <button class="planx__tab" role="tab" aria-selected="false">Plan Ahorro Inteligente</button>
+        </div>
+      </div>
+      <div class="planx__panel">
+        <div class="planx__info">
+          <span class="planx__badge"></span>
+          <h3 class="planx__name">Plan Online 3 Periodos</h3>
+          <p class="planx__tag">Aprovecha las horas valle y paga menos moviendo tu consumo.</p>
+          <ul class="planx__features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Discriminación horaria en 3 periodos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 100% energía renovable</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li>
+          </ul>
+          <div class="planx__cta">
+            <a class="ib-btn ib-btn--lg" href="#">Contrata online</a>
+            <a class="ib-btn ib-btn--ghost" href="#">Ver condiciones</a>
           </div>
         </div>
-        <div class="ib-tabs__panel" role="tabpanel" id="plp2" aria-labelledby="pl2" hidden>
-          <div class="ib-stack-4">
-            <p>Un precio estable durante 12 meses, sencillo y sin sorpresas. Perfecto si buscas tranquilidad.</p>
-            <ul class="ib-plan__features">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Precio estable 12 meses</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Gestión 100% online</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li>
-            </ul>
-            <div><a class="ib-btn" href="#">Contrata online</a></div>
+        <aside class="planx__viz">
+          <span class="planx__viz-label">Precio por periodo</span>
+          <div class="planx__price"><b>0,091</b> <span>€/kWh · valle</span></div>
+          <div class="planx__bars">
+            <div class="planx__bar"><span class="bv">0,190</span><i style="height:100%"></i><span class="bl">Punta</span></div>
+            <div class="planx__bar"><span class="bv">0,130</span><i style="height:68%"></i><span class="bl">Llano</span></div>
+            <div class="planx__bar"><span class="bv">0,091</span><i style="height:48%"></i><span class="bl">Valle</span></div>
           </div>
-        </div>
-        <div class="ib-tabs__panel" role="tabpanel" id="plp3" aria-labelledby="pl3" hidden>
-          <div class="ib-stack-4">
-            <p>La tarifa que se adapta a tu consumo y te ayuda a ahorrar de forma inteligente con recomendaciones personalizadas.</p>
-            <ul class="ib-plan__features">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Recomendaciones de ahorro con IA</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Seguimiento de consumo en la App</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li>
-            </ul>
-            <div><a class="ib-btn" href="#">Contrata online</a></div>
-          </div>
-        </div>
+        </aside>
       </div>
     </div>
 
@@ -461,6 +493,63 @@
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var root=document.querySelector('[data-planx]'); if(!root) return;
+  var CHK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> ';
+  var PLANS=[
+    { name:'Plan Online 3 Periodos', badge:'', tag:'Aprovecha las horas valle y paga menos moviendo tu consumo.',
+      features:['Discriminación horaria en 3 periodos','100% energía renovable','Sin permanencia'],
+      vizLabel:'Precio por periodo', price:'0,091', unit:'€/kWh · valle',
+      bars:[{l:'Punta',v:'0,190',h:100},{l:'Llano',v:'0,130',h:68},{l:'Valle',v:'0,091',h:48}] },
+    { name:'Plan Online', badge:'Recomendado', tag:'Un precio estable durante 12 meses, sencillo y sin sorpresas. Perfecto si buscas tranquilidad.',
+      features:['Precio estable durante 12 meses','Gestión 100% online','Sin permanencia'],
+      vizLabel:'Precio estable', price:'0,134', unit:'€/kWh · fijo 12 meses',
+      bars:[{l:'Ene',v:'0,134',h:70},{l:'Jun',v:'0,134',h:70},{l:'Dic',v:'0,134',h:70}] },
+    { name:'Plan Ahorro Inteligente', badge:'Con IA', tag:'Recomendaciones inteligentes que optimizan tu gasto energético cada día.',
+      features:['Recomendaciones de ahorro con IA','Seguimiento de consumo en la App','Sin permanencia'],
+      vizLabel:'Ahorro medio estimado', price:'-30%', unit:'en tu factura',
+      bars:[{l:'Sin IA',v:'100%',h:100},{l:'Con IA',v:'70%',h:70}] }
+  ];
+  var tabs=[].slice.call(root.querySelectorAll('.planx__tab'));
+  var ind=root.querySelector('.planx__ind');
+  var infoWrap=root.querySelector('.planx__info');
+  var elBadge=root.querySelector('.planx__badge');
+  var elName=root.querySelector('.planx__name');
+  var elTag=root.querySelector('.planx__tag');
+  var elFeat=root.querySelector('.planx__features');
+  var elLabel=root.querySelector('.planx__viz-label');
+  var elPrice=root.querySelector('.planx__price');
+  var elBars=root.querySelector('.planx__bars');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function moveInd(tab){ ind.style.width=tab.offsetWidth+'px'; ind.style.transform='translateX('+tab.offsetLeft+'px)'; }
+  function paint(p){
+    elBadge.innerHTML=p.badge?'<span class="ib-badge ib-badge--solid">'+p.badge+'</span>':'';
+    elName.textContent=p.name; elTag.textContent=p.tag;
+    elFeat.innerHTML=p.features.map(function(f){return '<li>'+CHK+f+'</li>';}).join('');
+    elLabel.textContent=p.vizLabel;
+    elPrice.innerHTML='<b>'+p.price+'</b> <span>'+p.unit+'</span>';
+    elBars.innerHTML=p.bars.map(function(b){return '<div class="planx__bar"><span class="bv">'+b.v+'</span><i style="height:0"></i><span class="bl">'+b.l+'</span></div>';}).join('');
+    var is=elBars.querySelectorAll('i');
+    if(reduce){ p.bars.forEach(function(b,k){ is[k].style.height=b.h+'%'; }); }
+    else requestAnimationFrame(function(){ requestAnimationFrame(function(){ p.bars.forEach(function(b,k){ is[k].style.height=b.h+'%'; }); }); });
+  }
+  function select(i,animate){
+    tabs.forEach(function(t,j){ t.setAttribute('aria-selected', j===i?'true':'false'); });
+    moveInd(tabs[i]);
+    if(animate && !reduce){ root.classList.add('is-switching');
+      setTimeout(function(){ paint(PLANS[i]); root.classList.remove('is-switching'); },220);
+    } else paint(PLANS[i]);
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){ select(i,true); });
+    t.addEventListener('keydown',function(e){ var n; if(e.key==='ArrowRight')n=(i+1)%tabs.length; if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      if(n!=null){ tabs[n].focus(); select(n,true); e.preventDefault(); } });
+  });
+  window.addEventListener('resize',function(){ var a=tabs.findIndex?tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true';}):0; moveInd(tabs[a<0?0:a]); });
+  select(0,false);
+})();
+</script>
 
 <!-- ================= TARJETA IBERDROLA ================= -->
 <section class="ib-section">
