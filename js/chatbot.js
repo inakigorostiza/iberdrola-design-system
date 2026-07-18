@@ -94,14 +94,19 @@
   function fmt(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>"); }
   var ICON_BOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M8 3h8"/><circle cx="9" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/></svg>';
 
-  function scrollDown() { body.scrollTop = body.scrollHeight; }
-  function addUser(text) { var m = el("div", "aura-msg user", fmt(text)); body.appendChild(m); scrollDown(); }
-  function addBot(html) { var m = el("div", "aura-msg bot"); m.innerHTML = html; body.appendChild(m); scrollDown(); return m; }
+  function scrollDown() { body.scrollTo({ top: body.scrollHeight, behavior: reduce ? "auto" : "smooth" }); }
+  // Bring the top of a message to the top of the chat area so long answers are read from the start.
+  function scrollToTop(m) {
+    var delta = m.getBoundingClientRect().top - body.getBoundingClientRect().top;
+    body.scrollTo({ top: body.scrollTop + delta - 12, behavior: reduce ? "auto" : "smooth" });
+  }
+  function addUser(text) { var m = el("div", "aura-msg user", fmt(text)); body.appendChild(m); scrollDown(); return m; }
+  function addBot(html) { var m = el("div", "aura-msg bot"); m.innerHTML = html; body.appendChild(m); scrollToTop(m); return m; }
   function addChips(list, labelText) {
     if (labelText) body.appendChild(el("div", "aura-ideas-label", labelText));
     var wrap = el("div", "aura-chips");
     list.forEach(function (c) { var b = el("button", "aura-chip", fmt(c)); b.addEventListener("click", function () { handle(c); }); wrap.appendChild(b); });
-    body.appendChild(wrap); scrollDown();
+    body.appendChild(wrap);
   }
   function typing() { var t = el("div", "aura-typing", "<i></i><i></i><i></i>"); body.appendChild(t); scrollDown(); return t; }
 
