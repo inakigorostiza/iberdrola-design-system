@@ -101,6 +101,27 @@
   @media (max-width:860px){ .adv-grid{ grid-template-columns:1fr; } }
   @media (prefers-reduced-motion: reduce){ .adv, .adv__icon, .adv__link svg, .adv::before{ transition:none; } }
 
+  /* immersive video banner (Tarjeta) */
+  .tarjeta{ position:relative; border-radius:var(--ib-radius-2xl); overflow:hidden; min-height:440px;
+            display:flex; align-items:center; isolation:isolate; box-shadow:var(--ib-shadow-md); }
+  .tarjeta__media, .tarjeta__media video, .tarjeta__media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+  .tarjeta__scrim{ position:absolute; inset:0; z-index:-1;
+    background:linear-gradient(90deg, var(--ib-green-950) 0%, rgba(1,61,40,.94) 36%, rgba(1,61,40,.60) 68%, rgba(1,61,40,.22) 100%); }
+  .tarjeta__content{ position:relative; max-width:min(560px, 92%); padding:clamp(2rem, 1.5rem + 3vw, 4rem); color:#fff;
+                     display:flex; flex-direction:column; gap:var(--ib-space-4); }
+  .tarjeta__content h2{ color:#fff; }
+  .tarjeta__content p{ color:#e7f1ec; max-width:44ch; }
+  .tarjeta__chips{ display:flex; flex-wrap:wrap; gap:var(--ib-space-2); list-style:none; padding:0; margin:0; }
+  .tarjeta__chips li{ display:inline-flex; align-items:center; gap:6px; font-size:var(--ib-text-body-sm); font-weight:var(--ib-weight-medium);
+                      color:#fff; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22);
+                      padding:.42em .95em; border-radius:var(--ib-radius-pill); backdrop-filter:blur(4px); }
+  .tarjeta__chips svg{ width:16px; height:16px; color:var(--ib-green-300); flex-shrink:0; }
+  @media (max-width:720px){
+    .tarjeta{ min-height:520px; align-items:flex-end; }
+    .tarjeta__scrim{ background:linear-gradient(0deg, var(--ib-green-950) 12%, rgba(1,61,40,.55) 100%); }
+    .tarjeta__content{ max-width:100%; }
+  }
+
   /* mi iberdrola feature */
   .home-mi{ position:relative; border-radius:var(--ib-radius-xl); overflow:hidden; min-height:360px; display:flex; align-items:flex-end; color:#fff; }
   .home-mi img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
@@ -307,14 +328,28 @@
 <!-- ================= TARJETA IBERDROLA ================= -->
 <section class="ib-section">
   <div class="ib-container">
-    <div class="ib-cta-band" data-ib-reveal>
-      <div class="ib-cta-band__body">
+    <div class="tarjeta" data-ib-reveal>
+      <div class="tarjeta__media">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop" aria-label="Estilo de vida en el hogar">
+          <source src="https://videos.pexels.com/video-files/3769966/3769966-hd_1920_1080_25fps.mp4" type="video/mp4">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop" alt="Tarjeta Iberdrola">
+        </video>
+      </div>
+      <div class="tarjeta__scrim"></div>
+      <div class="tarjeta__content">
         <span class="ib-overline" style="color:var(--ib-orange-300)">Tarjeta Iberdrola</span>
         <h2>Ahorra en cada compra con la Tarjeta Iberdrola</h2>
-        <p style="color:#d9e5de">Acumula saldo en Mi Iberdrola, ahorra en tu factura de Luz y descubre todas sus ventajas. ¡Pídela ya!</p>
-        <div><a class="ib-btn ib-btn--on-dark" href="#">Quiero más información</a></div>
+        <p>Acumula saldo en Mi Iberdrola, ahorra en tu factura de Luz y descubre todas sus ventajas.</p>
+        <ul class="tarjeta__chips">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Sin comisiones</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Saldo al instante</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Ventajas exclusivas</li>
+        </ul>
+        <div class="ib-cluster">
+          <a class="ib-btn ib-btn--on-dark ib-btn--lg" href="#">Quiero más información</a>
+          <a class="ib-btn ib-btn--on-dark-outline" href="#">Ver todas las ventajas</a>
+        </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&auto=format&fit=crop" alt="Tarjeta Iberdrola" style="width:100%;border-radius:var(--ib-radius-lg);aspect-ratio:16/10;object-fit:cover" loading="lazy">
     </div>
   </div>
 </section>
