@@ -68,6 +68,39 @@
   @media (max-width:620px){ .home-cats{ grid-template-columns:repeat(2,1fr); } .cat__arrow{ opacity:1; transform:none; } }
   @media (prefers-reduced-motion: reduce){ .cat, .cat img, .cat__arrow{ transition:none; } .cat:hover img{ transform:none; } }
 
+  /* advantage cards */
+  .adv-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--ib-space-5); }
+  .adv{ position:relative; display:flex; flex-direction:column; gap:var(--ib-space-3); padding:var(--ib-space-6);
+        background:var(--ib-bg-surface); border:1px solid var(--ib-border); border-radius:var(--ib-radius-xl); overflow:hidden;
+        transition: transform var(--ib-duration-base) var(--ib-ease-standard), box-shadow var(--ib-duration-base) var(--ib-ease-standard); }
+  .adv:hover{ transform:translateY(-6px); box-shadow:var(--ib-shadow-md); }
+  .adv::before{ content:""; position:absolute; top:0; left:0; right:0; height:4px; background:var(--ib-gradient-tricolor);
+                transform:scaleX(0); transform-origin:left; transition:transform var(--ib-duration-slow) var(--ib-ease-standard); }
+  .adv:hover::before{ transform:scaleX(1); }
+  .adv__top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--ib-space-1); }
+  .adv__icon{ width:56px; height:56px; border-radius:var(--ib-radius-lg); display:grid; place-items:center;
+              background:var(--ib-green-50); color:var(--ib-color-primary); transition:transform var(--ib-duration-base) var(--ib-ease-spring); }
+  .adv:hover .adv__icon{ transform:scale(1.08) rotate(-3deg); }
+  .adv__icon svg{ width:28px; height:28px; }
+  .adv__stat{ font-size:clamp(2rem, 1.4rem + 1.4vw, 2.75rem); font-weight:var(--ib-weight-bold); color:var(--ib-color-primary);
+              line-height:1; letter-spacing:var(--ib-tracking-tight); }
+  .adv__title{ font-size:var(--ib-text-h4); color:var(--ib-text-heading); }
+  .adv__desc{ font-size:var(--ib-text-body-sm); color:var(--ib-text-body); flex:1; }
+  .adv__link{ display:inline-flex; align-items:center; gap:var(--ib-space-2); font-weight:var(--ib-weight-semibold);
+              font-size:var(--ib-text-body-sm); color:var(--ib-text-link); margin-top:var(--ib-space-2); }
+  .adv__link svg{ width:16px; height:16px; transition:transform var(--ib-duration-base) var(--ib-ease-standard); }
+  .adv:hover .adv__link svg{ transform:translateX(4px); }
+  /* featured (dark forest) */
+  .adv--featured{ background:var(--ib-gradient-forest); border-color:transparent; box-shadow:var(--ib-shadow-md); }
+  .adv--featured .adv__icon{ background:rgba(255,255,255,.14); color:#fff; }
+  .adv--featured .adv__stat{ color:#fff; }
+  .adv--featured .adv__title{ color:#fff; }
+  .adv--featured .adv__desc{ color:#e7f1ec; }
+  .adv--featured .ib-overline{ color:var(--ib-blue-300); }
+  .adv--featured .adv__link{ color:#fff; }
+  @media (max-width:860px){ .adv-grid{ grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion: reduce){ .adv, .adv__icon, .adv__link svg, .adv::before{ transition:none; } }
+
   /* mi iberdrola feature */
   .home-mi{ position:relative; border-radius:var(--ib-radius-xl); overflow:hidden; min-height:360px; display:flex; align-items:flex-end; color:#fff; }
   .home-mi img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
@@ -289,25 +322,39 @@
 <!-- ================= VENTAJAS ================= -->
 <section class="ib-section ib-section--subtle" id="ventajas">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Por qué Iberdrola</span><h2>Ventajas reales, desde el primer día</h2></div>
-    <div class="ib-grid ib-grid-3">
-      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal>
-        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1v-4h3zM3 19a2 2 0 002 2h1v-4H3z"/></svg></div>
+    <div class="ib-section-head"><span class="ib-overline">Por qué Iberdrola</span><h2>Ventajas reales, desde el primer día</h2><p class="ib-text-muted">Todo lo que ganas al elegirnos, respaldado con hechos.</p></div>
+    <div class="adv-grid">
+      <article class="adv" data-ib-reveal>
+        <div class="adv__top">
+          <span class="adv__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1v-4h3zM3 19a2 2 0 002 2h1v-4H3z"/></svg></span>
+          <span class="adv__stat">4,5★</span>
+        </div>
         <span class="ib-overline">Calidad</span>
-        <h4 class="ib-card__title">Servicio adaptado a ti</h4>
-        <p class="ib-card__text">Atención personalizada y un servicio siempre disponible que resuelve todo lo que necesitas.</p>
+        <h3 class="adv__title">Servicio adaptado a ti</h3>
+        <p class="adv__desc">Atención personalizada y siempre disponible que resuelve todo lo que necesitas, cuando lo necesitas.</p>
+        <a class="adv__link" href="#">Descubre nuestro servicio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal data-ib-delay="1">
-        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 4 6 9a6 6 0 01-12 0c0-5 6-9 6-9z"/></svg></div>
+
+      <article class="adv adv--featured" data-ib-reveal data-ib-delay="1">
+        <div class="adv__top">
+          <span class="adv__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 4 6 9a6 6 0 01-12 0c0-5 6-9 6-9z"/></svg></span>
+          <span class="adv__stat">100%</span>
+        </div>
         <span class="ib-overline">Sostenibilidad</span>
-        <h4 class="ib-card__title">100% renovable</h4>
-        <p class="ib-card__text">Energía renovable certificada con garantía de origen. Reduce tus emisiones de CO₂.</p>
+        <h3 class="adv__title">Energía renovable certificada</h3>
+        <p class="adv__desc">Con garantía de origen. Reduce tus emisiones de CO₂ desde el primer día, sin coste adicional.</p>
+        <a class="adv__link" href="#">Ver nuestra sostenibilidad <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
-      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal data-ib-delay="2">
-        <div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+
+      <article class="adv" data-ib-reveal data-ib-delay="2">
+        <div class="adv__top">
+          <span class="adv__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+          <span class="adv__stat">0€</span>
+        </div>
         <span class="ib-overline">Ahorro</span>
-        <h4 class="ib-card__title">Más por menos</h4>
-        <p class="ib-card__text">Precios claros y planes pensados para adaptarse a ti. Máximo ahorro sin sorpresas ni letra pequeña.</p>
+        <h3 class="adv__title">Más por menos, sin permanencia</h3>
+        <p class="adv__desc">Precios claros y planes que se adaptan a ti. Máximo ahorro, sin sorpresas ni letra pequeña.</p>
+        <a class="adv__link" href="#">Calcula tu ahorro <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </article>
     </div>
   </div>
