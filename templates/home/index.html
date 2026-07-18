@@ -7,6 +7,8 @@
 <meta name="description" content="Contrata tu plan de luz online. Energía 100% renovable, sin permanencia. La energía que cuida de tu bienestar.">
 <link rel="icon" href="../../brand/logos/iberdrola-icon.svg">
 <link rel="stylesheet" href="../../css/iberdrola.css">
+<script>try{if(sessionStorage.getItem('ib_user'))document.documentElement.classList.add('px-active');}catch(e){}</script>
+<style>html.px-active .home-hero__inner .ib-stack-4{visibility:hidden}</style>
 <style>
   /* Page-local layout — visuals come from the design system */
   .home-skip { position:absolute; left:-999px; top:0; background:var(--ib-color-primary); color:#fff; padding:.6em 1em; border-radius:0 0 var(--ib-radius-md) 0; z-index:var(--ib-z-toast); }
@@ -324,7 +326,7 @@
     <div class="ib-topbar__utility" style="border-bottom:1px solid var(--ib-border)">
       <a href="#" aria-current="page">Hogares</a><a href="../website/index.html">Negocios</a><a href="#">Comunidades</a>
       <a href="#">Grandes Clientes</a><a href="#">Smart Cities</a><a href="#">Compromiso</a><a href="#">Blog</a>
-      <a href="#">ES ▾</a><a href="#" class="ib-text-primary">Área de Clientes</a>
+      <a href="#">ES ▾</a><a href="login.html" class="ib-text-primary" id="ib-account">Área de Clientes</a>
     </div>
     <nav class="ib-nav" aria-label="Principal" style="position:relative">
       <a class="ib-nav__logo" href="#" aria-label="Iberdrola — inicio"><img src="../../brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:60px"></a>
@@ -375,6 +377,9 @@
     <div class="ib-stat"><div class="ib-stat__value">4,5★</div><div class="ib-stat__label ib-body-sm">valoración media</div></div>
   </div>
 </div>
+
+<!-- Personalized modules mount here when logged in -->
+<div id="px-slot"></div>
 
 <!-- ================= PROMO: energía de siempre ================= -->
 <section class="ib-section" id="promo">
@@ -552,7 +557,7 @@
 </script>
 
 <!-- ================= TARJETA IBERDROLA ================= -->
-<section class="ib-section">
+<section class="ib-section" id="tarjeta">
   <div class="ib-container">
     <div class="tarjeta" data-ib-reveal>
       <div class="tarjeta__media">
@@ -646,7 +651,7 @@
 </section>
 
 <!-- ================= MI IBERDROLA ================= -->
-<section class="ib-section ib-section--subtle">
+<section class="ib-section ib-section--subtle" id="mi-iberdrola">
   <div class="ib-container">
     <div class="ib-section-head"><span class="ib-overline">Mi Iberdrola</span><h2>¡Y además, ventajas extra con Mi Iberdrola!</h2></div>
     <div class="home-mi" data-ib-reveal>
@@ -676,7 +681,7 @@
 </section>
 
 <!-- ================= BLOG ================= -->
-<section class="ib-section">
+<section class="ib-section" id="blog">
   <div class="ib-container">
     <div class="ib-section-head"><span class="ib-overline">Blog</span><h2>Lecturas recomendadas para ti</h2></div>
     <div class="ib-grid ib-grid-3">
@@ -713,7 +718,7 @@
 </section>
 
 <!-- ================= APP SHOWCASE ================= -->
-<section class="appx">
+<section class="appx" id="app">
   <div class="appx__bg" aria-hidden="true">
     <span class="appx__orb appx__orb--1"></span>
     <span class="appx__orb appx__orb--2"></span>
@@ -873,5 +878,7 @@
 </footer>
 
 <script src="../../js/iberdrola.js" defer></script>
+<script src="../../js/profiles.js" defer></script>
+<script src="../../js/personalize.js" defer></script>
 </body>
 </html>
