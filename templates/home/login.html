@@ -92,6 +92,7 @@
         if (cred && cred.pass === p) {
           sessionStorage.setItem("ib_user", cred.key);
           sessionStorage.removeItem("ib_suppress");
+          if (window.IB_identify) window.IB_identify(window.IB_PROFILES[cred.key]);
           window.location.href = "index.html";
         } else {
           document.getElementById("lg-error").classList.add("show");

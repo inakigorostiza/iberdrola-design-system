@@ -11,7 +11,7 @@
     /* ---------------- HOGARES ---------------- */
     marta: {
       key: "marta", segment: "hogares", segmentLabel: "Hogares",
-      name: "Marta", fullName: "Marta Ruiz", initials: "MR",
+      name: "Marta", fullName: "Marta Ruiz", initials: "MR", email: "marta@example.com",
       hero: {
         eyebrow: "Tu plan de luz",
         headline: "Tu precio cambia pronto. Te lo explicamos, sin sorpresas.",
@@ -32,7 +32,7 @@
     },
     javier: {
       key: "javier", segment: "hogares", segmentLabel: "Hogares",
-      name: "Javier", fullName: "Javier Soler", initials: "JS",
+      name: "Javier", fullName: "Javier Soler", initials: "JS", email: "javier@example.com",
       hero: {
         eyebrow: "Autoconsumo solar",
         headline: "Tu tejado podría generar ~6.200 kWh al año.",
@@ -52,7 +52,7 @@
     },
     diego: {
       key: "diego", segment: "hogares", segmentLabel: "Hogares",
-      name: "Diego", fullName: "Diego Márquez", initials: "DM",
+      name: "Diego", fullName: "Diego Márquez", initials: "DM", email: "diego@example.com",
       hero: {
         eyebrow: "Tu Nube Solar",
         headline: "Llevas 22 € acumulados en tu Nube Solar este mes.",
@@ -74,7 +74,7 @@
     /* ---------------- NEGOCIOS ---------------- */
     carmen: {
       key: "carmen", segment: "negocios", segmentLabel: "Negocios",
-      name: "Carmen", fullName: "Carmen Vidal", initials: "CV", business: "Restaurante Carmen",
+      name: "Carmen", fullName: "Carmen Vidal", initials: "CV", email: "carmen@example.com", business: "Restaurante Carmen",
       hero: {
         eyebrow: "Iberdrola Negocios",
         headline: "Tu negocio consume de noche. Tu tarifa, no.",
@@ -94,7 +94,7 @@
     /* ---------------- COMUNIDADES ---------------- */
     ana: {
       key: "ana", segment: "comunidades", segmentLabel: "Comunidades",
-      name: "Ana", fullName: "Ana Torres", initials: "AT", role: "Presidenta · C/ Mayor 12",
+      name: "Ana", fullName: "Ana Torres", initials: "AT", email: "ana@example.com", role: "Presidenta · C/ Mayor 12",
       hero: {
         eyebrow: "Comunidades",
         headline: "Tu comunidad puede optar a subvención solar.",
@@ -113,7 +113,7 @@
     /* ---------------- EMPRESAS ---------------- */
     cso: {
       key: "cso", segment: "empresas", segmentLabel: "Grandes Clientes",
-      name: "Elena", fullName: "Elena Navarro", initials: "EN", role: "Chief Sustainability Officer · RetailCo",
+      name: "Elena", fullName: "Elena Navarro", initials: "EN", email: "cso@example.com", role: "Chief Sustainability Officer · RetailCo",
       hero: {
         eyebrow: "Grandes Clientes · PPA",
         headline: "100% renovable, precio estable a 10 años.",
@@ -150,6 +150,29 @@
     { user: "ana",    pass: "comunidad26", who: "Comunidades · subvención solar" },
     { user: "cso",    pass: "empresa26",   who: "Grandes Clientes · PPA / RE100" }
   ];
+
+  // Build PostHog person properties (identity + curated key attributes) from a profile.
+  function personProps(p) {
+    var pr = p.profile || {}, c = pr.contract || {}, cons = pr.consumption || {}, as = pr.assets || {},
+        fm = pr.firmographic || {}, comm = pr.community || {}, su = pr.sustainability || {};
+    var props = {
+      email: p.email, name: p.fullName, segment: p.segment, segmentLabel: p.segmentLabel,
+      plan: c.plan || c.plan_shape, tariff_type: c.tariff_type || c.tariff_tier,
+      contracted_power_kw: c.contracted_power_kw, annual_kwh: cons.annual_kwh,
+      self_consumption: as.self_consumption_flag, ev_owner: as.ev_owner_flag,
+      solar_cloud_balance_eur: as.solar_cloud_balance_eur,
+      business_type: fm.business_type, industry: fm.industry, annual_gwh: fm.annual_gwh,
+      esg_commitment: su.esg_commitment, num_dwellings: comm.num_dwellings,
+      subsidy_eligible: comm.subsidy_eligible
+    };
+    Object.keys(props).forEach(function (k) { if (props[k] === undefined) delete props[k]; });
+    return props;
+  }
+  // Identify the logged-in demo user in PostHog (distinct_id = profile key). No-op if PostHog absent.
+  global.IB_identify = function (p) {
+    if (!window.posthog || !p || !p.key) return;
+    window.posthog.identify(p.key, personProps(p));
+  };
 
   global.IB_PROFILES = PROFILES;
   global.IB_CREDENTIALS = CREDENTIALS;

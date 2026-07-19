@@ -10,6 +10,7 @@
   var root = document.documentElement;
   if (!KEY || !P[KEY]) { root.classList.remove("px-active"); return; }
   var profile = P[KEY];
+  if (window.IB_identify) window.IB_identify(profile); // send identity + attributes to PostHog
   var SUPPRESS = sessionStorage.getItem("ib_suppress") === "1";
 
   /* ---------- helpers ---------- */
@@ -383,7 +384,7 @@
 
   /* ---------- logout (delegated) ---------- */
   document.addEventListener("click", function (e) {
-    if (e.target.closest("[data-px-logout]")) { e.preventDefault(); sessionStorage.removeItem("ib_user"); sessionStorage.removeItem("ib_suppress"); location.reload(); }
+    if (e.target.closest("[data-px-logout]")) { e.preventDefault(); sessionStorage.removeItem("ib_user"); sessionStorage.removeItem("ib_suppress"); if (window.posthog) window.posthog.reset(); location.reload(); }
   });
 
   /* ---------- run ---------- */
