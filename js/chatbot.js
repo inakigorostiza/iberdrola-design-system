@@ -66,8 +66,20 @@
   @keyframes msgIn{from{opacity:0;transform:translateY(8px)}}\
   .aura-msg.bot{align-self:flex-start;background:var(--ib-bg-surface);border:1px solid var(--ib-border);border-bottom-left-radius:5px;color:var(--ib-text-body)}\
   .aura-msg.user{align-self:flex-end;background:var(--ib-color-primary);color:#fff;border-bottom-right-radius:5px}\
-  .aura-msg strong{font-weight:var(--ib-weight-semibold);color:inherit}\
+  .aura-msg strong,.aura-msg b{font-weight:var(--ib-weight-semibold);color:inherit}\
   .aura-msg .ib-btn{margin-top:10px}\
+  .aura-msg p{margin:0 0 .6em}.aura-msg p:last-child{margin-bottom:0}\
+  .aura-msg ul,.aura-msg ol{margin:.45em 0;padding-left:1.25em}.aura-msg li{margin:.18em 0}\
+  .aura-msg h4{margin:.6em 0 .3em;font-size:var(--ib-text-body-sm);font-weight:var(--ib-weight-semibold);color:inherit}\
+  .aura-msg a{color:var(--ib-color-primary);font-weight:var(--ib-weight-medium);text-decoration:underline;word-break:break-word}\
+  .aura-msg.user a{color:#fff}\
+  .aura-msg code{background:var(--ib-green-50);padding:.05em .35em;border-radius:5px;font-size:.85em}\
+  .aura-msg .aura-tw{overflow-x:auto;margin:.55em 0;-webkit-overflow-scrolling:touch}\
+  .aura-msg table{border-collapse:collapse;width:100%;font-size:var(--ib-text-caption);line-height:1.4}\
+  .aura-msg th,.aura-msg td{border:1px solid var(--ib-border);padding:.4em .55em;text-align:left;vertical-align:top}\
+  .aura-msg thead th{background:var(--ib-green-50);color:var(--ib-green-800);font-weight:var(--ib-weight-semibold);white-space:nowrap}\
+  .aura-msg tbody tr:nth-child(even) td{background:var(--ib-bg-subtle)}\
+  .aura-msg img{display:block;max-width:100%;height:auto;border-radius:10px;margin:.55em 0}\
   .aura-chips{display:flex;flex-wrap:wrap;gap:8px}\
   .aura-chip{border:1px solid var(--ib-border-strong);background:var(--ib-bg-surface);color:var(--ib-green-800);border-radius:var(--ib-radius-pill);\
     padding:.5em .9em;font:inherit;font-size:var(--ib-text-caption);font-weight:var(--ib-weight-medium);cursor:pointer;transition:var(--ib-transition-base);text-align:left}\
@@ -92,6 +104,42 @@
   var panel, body, input;
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function fmt(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>"); }
+
+  // Render LLM-authored HTML safely: whitelist tags/attrs, drop scripts, force safe links.
+  var OK_TAGS = { P: 1, BR: 1, STRONG: 1, B: 1, EM: 1, I: 1, U: 1, UL: 1, OL: 1, LI: 1, A: 1, IMG: 1, TABLE: 1, THEAD: 1, TBODY: 1, TFOOT: 1, TR: 1, TH: 1, TD: 1, H4: 1, H5: 1, SPAN: 1, SMALL: 1, DIV: 1, CODE: 1, HR: 1 };
+  var OK_ATTR = { href: 1, target: 1, rel: 1, src: 1, alt: 1, title: 1, colspan: 1, rowspan: 1 };
+  function sanitize(html) {
+    var tpl = document.createElement("template");
+    // Strip fenced-code wrappers if the model ever emits them.
+    tpl.innerHTML = String(html || "").replace(/^```[a-z]*\s*/i, "").replace(/```\s*$/i, "").trim();
+    var kill = tpl.content.querySelectorAll("script,style,iframe,object,embed,link,meta,form,input,button");
+    Array.prototype.forEach.call(kill, function (n) { n.remove(); });
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 8) { ch.remove(); return; }          // comments
+        if (ch.nodeType !== 1) return;                            // keep text
+        if (!OK_TAGS[ch.tagName]) {                               // unwrap unknown tags
+          var p = ch.parentNode;
+          while (ch.firstChild) p.insertBefore(ch.firstChild, ch);
+          p.removeChild(ch);
+          return;
+        }
+        Array.prototype.slice.call(ch.attributes).forEach(function (a) {
+          var n = a.name.toLowerCase();
+          if (!OK_ATTR[n] || /^on/.test(n)) { ch.removeAttribute(a.name); return; }
+          if ((n === "href" || n === "src") && /^\s*(javascript|data):/i.test(a.value)) ch.removeAttribute(a.name);
+        });
+        if (ch.tagName === "A") { ch.setAttribute("target", "_blank"); ch.setAttribute("rel", "noopener noreferrer"); }
+        walk(ch);
+      });
+    })(tpl.content);
+    // Make wide tables scrollable inside the narrow bubble.
+    Array.prototype.forEach.call(tpl.content.querySelectorAll("table"), function (tb) {
+      var w = document.createElement("div"); w.className = "aura-tw";
+      tb.parentNode.insertBefore(w, tb); w.appendChild(tb);
+    });
+    return tpl.innerHTML;
+  }
   var ICON_BOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M8 3h8"/><circle cx="9" cy="13" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/></svg>';
 
   function scrollDown() { body.scrollTo({ top: body.scrollHeight, behavior: reduce ? "auto" : "smooth" }); }
@@ -141,7 +189,7 @@
         var text = (data && data.text) || "";
         if (!text) throw new Error("empty");
         convo.push({ role: "assistant", content: text });
-        addBot(fmt(text));
+        addBot(sanitize(text));
       })
       .catch(function () {
         // API unavailable (no key yet, offline, or error) → deterministic KB retrieval.
