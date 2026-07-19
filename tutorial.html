@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de la demo — Iberdrola Design System</title>
+<meta name="description" content="Cómo explorar la demo del sistema de diseño de Iberdrola: design system, home personalizada, Área Cliente y el asistente Aura.">
+<link rel="icon" href="brand/logos/iberdrola-icon.svg">
+<link rel="stylesheet" href="css/iberdrola.css">
+<style>
+  /* Page-specific layout on top of the design system */
+  .tut-hero{background:var(--ib-gradient-forest);color:#fff;text-align:center;padding:clamp(3.5rem, 2rem + 8vw, 6.5rem) 0}
+  .tut-hero h1{color:#fff;font-size:clamp(2.4rem, 1.5rem + 4vw, 4rem);line-height:1.05;margin:.4em auto .3em;max-width:20ch}
+  .tut-hero .ib-overline{color:#7fe3ab}
+  .tut-hero .lead{color:#D9E5DE;font-size:var(--ib-text-body-lg);max-width:52ch;margin:0 auto var(--ib-space-6)}
+  .tut-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:var(--ib-space-6)}
+  .tut-chips span{border:1px solid rgba(255,255,255,.32);color:#fff;border-radius:var(--ib-radius-pill);padding:.4em 1em;font-size:var(--ib-text-body-sm);font-weight:var(--ib-weight-medium);display:inline-flex;align-items:center;gap:.5em}
+  .tut-cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+  .tut-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;height:100%;position:relative}
+  .tut-ico{width:52px;height:52px;border-radius:var(--ib-radius-md);display:grid;place-items:center;background:var(--ib-green-50);color:var(--ib-color-primary);margin-bottom:var(--ib-space-3)}
+  .tut-ico svg{width:26px;height:26px}
+  .tut-card h3{margin:0 0 .35em;font-size:var(--ib-text-body-lg)}
+  .tut-card p{margin:0;color:var(--ib-text-muted);font-size:var(--ib-text-body-sm);line-height:1.5}
+  .tut-go{margin-top:auto;padding-top:var(--ib-space-4);color:var(--ib-color-primary);font-weight:var(--ib-weight-semibold);font-size:var(--ib-text-body-sm);display:inline-flex;align-items:center;gap:.45em}
+  .tut-go svg{width:16px;height:16px;transition:var(--ib-transition-base)}
+  .tut-card:hover .tut-go svg{transform:translateX(4px)}
+  .tut-flag{position:absolute;top:var(--ib-space-4);right:var(--ib-space-4)}
+
+  .cred code{cursor:pointer;user-select:all;position:relative;transition:var(--ib-transition-base)}
+  .cred code:hover{color:var(--ib-color-primary)}
+  .cred code::after{content:'⧉';margin-left:.4em;opacity:.4;font-size:.85em}
+  #tut-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--ib-green-900,#013D28);color:#fff;padding:.7em 1.2em;border-radius:var(--ib-radius-pill);box-shadow:var(--ib-shadow-lg);font-size:var(--ib-text-body-sm);font-weight:var(--ib-weight-medium);opacity:0;pointer-events:none;transition:.28s var(--ib-ease-decelerate);z-index:var(--ib-z-modal,999)}
+  #tut-toast.show{opacity:1;transform:translate(-50%,0)}
+  .sample-q{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--ib-space-4)}
+  .sample-q span{border:1px solid var(--ib-border-strong);background:var(--ib-bg-surface);color:var(--ib-green-800);border-radius:var(--ib-radius-pill);padding:.5em .95em;font-size:var(--ib-text-body-sm);font-weight:var(--ib-weight-medium)}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<header>
+  <div class="ib-container">
+    <nav class="ib-nav" aria-label="Principal">
+      <a class="ib-nav__logo" href="index.html" aria-label="Iberdrola — inicio"><img src="brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:52px"></a>
+      <div class="ib-nav__actions">
+        <a class="ib-btn ib-btn--outline ib-btn--sm" href="index.html">Ver el design system</a>
+        <a class="ib-btn ib-btn--sm" href="templates/home/index.html">Abrir la home</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="tut-hero">
+  <div class="ib-container">
+    <span class="ib-overline">Guía interactiva de la demo</span>
+    <h1>Bienvenido a la demo del Design System de Iberdrola</h1>
+    <p class="lead">Un recorrido en 4 pasos por todo lo que puedes explorar: el sistema de diseño, una home hiper-personalizada, el Área Cliente con usuarios de prueba y <strong style="color:#fff">Aura</strong>, el asistente con IA.</p>
+    <div class="tut-cta-row">
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="#pasos">Empezar el recorrido</a>
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark-outline" href="#accesos">Ver usuarios de prueba</a>
+    </div>
+    <div class="tut-chips">
+      <span>🎨 Design System</span>
+      <span>🏠 Home personalizada</span>
+      <span>🔐 Área Cliente</span>
+      <span>🤖 Asistente IA</span>
+      <span>🧩 Plantillas</span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 steps -->
+<section class="ib-section" id="pasos">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Cómo usarla</span><h2>El recorrido en 4 pasos</h2></div>
+    <div class="ib-grid ib-grid-4">
+      <div class="ib-step" data-ib-reveal>
+        <span class="ib-step__num">1</span>
+        <h4>Explora el sistema</h4>
+        <p class="ib-body-sm">Abre el <strong>Design System</strong> para ver colores, tipografía, componentes y plantillas: la base de todo lo demás.</p>
+      </div>
+      <div class="ib-step" data-ib-reveal data-ib-delay="1">
+        <span class="ib-step__num">2</span>
+        <h4>Abre la home</h4>
+        <p class="ib-body-sm">Visita la <strong>home</strong>. Sin iniciar sesión verás la versión genérica, lista para personalizarse.</p>
+      </div>
+      <div class="ib-step" data-ib-reveal data-ib-delay="2">
+        <span class="ib-step__num">3</span>
+        <h4>Inicia sesión</h4>
+        <p class="ib-body-sm">Entra en el <strong>Área Cliente</strong> con cualquiera de los usuarios de prueba: la home se adapta a ese perfil.</p>
+      </div>
+      <div class="ib-step" data-ib-reveal data-ib-delay="3">
+        <span class="ib-step__num">4</span>
+        <h4>Chatea con Aura</h4>
+        <p class="ib-body-sm">Pulsa el botón <strong>“Pregúntale a Aura”</strong> (abajo a la derecha) y pregunta lo que quieras: responde con IA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main links -->
+<section class="ib-section ib-section--subtle" id="accesos">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Accesos directos</span><h2>Los cuatro destinos principales</h2></div>
+    <div class="ib-grid ib-grid-2">
+
+      <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="index.html" data-ib-reveal>
+        <span class="ib-badge ib-badge--accent tut-flag">Empieza aquí</span>
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>Design System · Showcase</h3>
+        <p>La vitrina del sistema: marca, color, tipografía, componentes, animaciones y todas las plantillas en un solo lugar.</p>
+        <span class="tut-go">Abrir showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="docs/index.html" data-ib-reveal data-ib-delay="1">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v5h5M8 13h8M8 17h5"/></svg></div>
+        <h3>Documentación · Style guide</h3>
+        <p>La guía viva con los tokens, reglas de uso y el detalle de cada componente para diseñar y desarrollar sobre la marca.</p>
+        <span class="tut-go">Abrir documentación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="templates/home/index.html" data-ib-reveal>
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+        <h3>Home personalizada</h3>
+        <p>La página principal montada con el sistema. Cambia por completo según el usuario que haya iniciado sesión.</p>
+        <span class="tut-go">Abrir la home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="templates/home/login.html" data-ib-reveal data-ib-delay="1">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4"/></svg></div>
+        <h3>Área Cliente · Login</h3>
+        <p>Inicia sesión con un usuario de prueba (más abajo) para ver la home hiper-personalizada por perfil.</p>
+        <span class="tut-go">Ir al login <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Demo users -->
+<section class="ib-section">
+  <div class="ib-container ib-container--narrow">
+    <div class="ib-section-head"><span class="ib-overline">Área Cliente</span><h2>Usuarios de prueba</h2><p class="ib-lead">Entra en el <a class="ib-text-primary" href="templates/home/login.html">login</a> con cualquiera de estas parejas. Cada perfil transforma la home y personaliza a Aura. <strong>Haz clic en un usuario o contraseña para copiarlo.</strong></p></div>
+    <div class="ib-table-wrap cred" data-ib-reveal>
+      <table class="ib-table">
+        <thead><tr><th>Usuario</th><th>Contraseña</th><th>Perfil que verás</th></tr></thead>
+        <tbody>
+          <tr><td><code>marta</code></td><td><code>hogar26</code></td><td>Hogares · promoción a punto de vencer</td></tr>
+          <tr><td><code>javier</code></td><td><code>solar26</code></td><td>Hogares · candidato a solar + coche eléctrico</td></tr>
+          <tr><td><code>diego</code></td><td><code>nube26</code></td><td>Hogares · autoconsumo con Nube Solar activo</td></tr>
+          <tr><td><code>carmen</code></td><td><code>negocio26</code></td><td>Negocios · restaurante</td></tr>
+          <tr><td><code>ana</code></td><td><code>comunidad26</code></td><td>Comunidades · subvención solar</td></tr>
+          <tr><td><code>cso</code></td><td><code>empresa26</code></td><td>Grandes Clientes · PPA / RE100</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ib-alert ib-alert--info" style="margin-top:var(--ib-space-5)" data-ib-reveal>
+      <strong>Consejo:</strong> abre la home <em>antes</em> y <em>después</em> de iniciar sesión para ver el contraste. Para volver a la versión genérica, cierra sesión desde el Área Cliente o abre la home en una pestaña de incógnito.
+    </div>
+  </div>
+</section>
+
+<!-- Aura -->
+<section class="ib-section ib-section--forest">
+  <div class="ib-container ib-container--narrow ib-center-text">
+    <span class="ib-overline" style="color:#7fe3ab">Asistente con IA</span>
+    <h2 class="ib-text-inverse">Conoce a Aura</h2>
+    <p class="ib-lead ib-text-inverse" style="opacity:.9;max-width:56ch;margin-inline:auto">Aura es el asistente del chat. Responde con un modelo de lenguaje (LLM) apoyado en una base de conocimiento real de productos, tarifas y servicios de Iberdrola, y se adapta al usuario que haya iniciado sesión. La encuentras en el botón <strong>“Pregúntale a Aura”</strong>, abajo a la derecha en la home.</p>
+    <div class="sample-q" style="justify-content:center">
+      <span>¿Cuánto cuesta el Plan Online?</span>
+      <span>Compárame Estable, Online y 3 periodos</span>
+      <span>¿Qué es la Nube Solar?</span>
+      <span>Tengo un restaurante nocturno, ¿qué tarifa me conviene?</span>
+    </div>
+    <div style="margin-top:var(--ib-space-6)">
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="templates/home/index.html">Abrir la home y probar a Aura</a>
+    </div>
+  </div>
+</section>
+
+<!-- All templates -->
+<section class="ib-section ib-section--subtle">
+  <div class="ib-container">
+    <div class="ib-section-head"><span class="ib-overline">Explora más</span><h2>Todas las plantillas del sistema</h2><p class="ib-lead">Cada canal que cubre el design system, listo para adaptar.</p></div>
+    <div class="ib-grid ib-grid-3">
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/landing-page/index.html" data-ib-reveal>
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></div>
+        <h3>Landing page</h3><p>Plantilla de captación “Plan Online”.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/website/index.html" data-ib-reveal data-ib-delay="1">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><circle cx="6" cy="6" r=".6" fill="currentColor"/><circle cx="8.2" cy="6" r=".6" fill="currentColor"/></svg></div>
+        <h3>Website</h3><p>Home corporativa de Iberdrola Negocios.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/presentation/index.html" data-ib-reveal data-ib-delay="2">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/></svg></div>
+        <h3>Presentación</h3><p>Plantilla maestra de slides.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/app/index.html" data-ib-reveal>
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>App móvil</h3><p>Pantallas de la app Mi Iberdrola.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/banner/index.html" data-ib-reveal data-ib-delay="1">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="6" rx="1"/><rect x="2" y="15" width="13" height="4" rx="1"/></svg></div>
+        <h3>Banners display</h3><p>Galería de formatos publicitarios.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="templates/email/newsletter.html" data-ib-reveal data-ib-delay="2">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <h3>Emails</h3><p>Newsletter, promo y transaccional.</p>
+        <span class="tut-go">Abrir newsletter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="animations/examples/index.html" data-ib-reveal>
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v9l6 3"/></svg></div>
+        <h3>Animaciones</h3><p>Micro-interacciones y motion.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="docs/index.html" data-ib-reveal data-ib-delay="1">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 12h14M5 17h9"/></svg></div>
+        <h3>Documentación</h3><p>Tokens, reglas y componentes.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="ib-card ib-card--hover tut-card" href="index.html" data-ib-reveal data-ib-delay="2">
+        <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M3 12h18"/></svg></div>
+        <h3>Volver al showcase</h3><p>La vitrina completa del sistema.</p>
+        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ib-footer">
+  <div class="ib-container">
+    <div class="ib-footer__bottom" style="display:flex;flex-wrap:wrap;gap:var(--ib-space-4);align-items:center;justify-content:space-between">
+      <img src="brand/logos/iberdrola-logo-mono.svg" alt="Iberdrola" style="height:34px;opacity:.9">
+      <p class="ib-body-sm" style="margin:0;opacity:.75">Demo del Iberdrola Design System · Guía de uso · 2026</p>
+      <a class="ib-btn ib-btn--sm ib-btn--on-dark-outline" href="index.html">Volver al inicio</a>
+    </div>
+  </div>
+</footer>
+
+<div id="tut-toast" role="status" aria-live="polite">Copiado ✓</div>
+
+<script src="js/iberdrola.js" defer></script>
+<script>
+  // Click-to-copy for the demo credentials.
+  (function () {
+    var toast = document.getElementById("tut-toast"), t;
+    document.querySelectorAll(".cred code").forEach(function (c) {
+      c.addEventListener("click", function () {
+        var text = c.textContent.trim();
+        var done = function () { toast.textContent = "Copiado: " + text + " ✓"; toast.classList.add("show"); clearTimeout(t); t = setTimeout(function () { toast.classList.remove("show"); }, 1600); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+        else done();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
