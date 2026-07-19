@@ -82,7 +82,7 @@ const KB = [
 const SYSTEM_BASE = [
   "Eres Aura, la asistente virtual de Iberdrola España. Ayudas a clientes y visitantes a entender los productos y servicios de Iberdrola y les propones ideas relevantes.",
   "Reglas de contenido:",
-  "- Responde SIEMPRE en español, con tono cálido, claro y cercano (tuteo).",
+  "- Usa un tono cálido, claro y cercano (tuteo/informal).",
   "- Básate ÚNICAMENTE en la BASE DE CONOCIMIENTO proporcionada. Si algo no está en ella, dilo con honestidad y ofrece el 900 225 235 o la app Mi Iberdrola. No inventes datos, precios ni condiciones.",
   "- Sé concisa: 2-6 frases o una lista corta.",
   "- Cuando encaje, propón proactivamente un producto/servicio o un siguiente paso útil.",
@@ -99,4 +99,12 @@ const SYSTEM_BASE = [
   "- Puedes usar emojis con moderación. No uses encabezados <h1>/<h2>; si necesitas un subtítulo usa <strong> o <h4>."
 ].join("\n");
 
-module.exports = { KB, SYSTEM_BASE };
+// Reply-language directive (placed first so it overrides everything). The KB stays in Spanish;
+// the model translates its answer into the requested language.
+function langDirective(lang) {
+  return lang === "en"
+    ? "CRITICAL: Reply ALWAYS in English, no matter what language the knowledge base or the user's message is in. Translate any Spanish facts from the knowledge base into natural English in your reply."
+    : "CRÍTICO: Responde SIEMPRE en español.";
+}
+
+module.exports = { KB, SYSTEM_BASE, langDirective };

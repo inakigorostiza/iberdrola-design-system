@@ -9,11 +9,45 @@
   if (!KB) return;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- i18n ---------- */
+  var STR = {
+    es: {
+      launcherAria: "Abrir asistente Aura",
+      launcherLabel: "Pregúntale a Aura",
+      panelAria: "Asistente Aura de Iberdrola",
+      headerSubtitle: "Asistente de Iberdrola · en línea",
+      closeAria: "Cerrar",
+      sendAria: "Enviar",
+      disclaimer: "Aura usa IA y puede cometer errores. Precios orientativos 2026.",
+      inputPlaceholder: "Escribe tu pregunta…",
+      inputAria: "Escribe tu pregunta",
+      greeting: "¡Hola, **{name}**! 👋 Soy **Aura**, tu asistente. He preparado algunas ideas para ti, o pregúntame lo que quieras.",
+      ideasLabel: "💡 Ideas para ti",
+      fallback: "No estoy segura de eso 🤔, pero puedo ayudarte con planes de luz y gas, solar, movilidad o servicios. También puedes llamar al **900 225 235**."
+    },
+    en: {
+      launcherAria: "Open Aura assistant",
+      launcherLabel: "Ask Aura",
+      panelAria: "Iberdrola Aura assistant",
+      headerSubtitle: "Iberdrola assistant · online",
+      closeAria: "Close",
+      sendAria: "Send",
+      disclaimer: "Aura uses AI and can make mistakes. Indicative 2026 prices.",
+      inputPlaceholder: "Type your question…",
+      inputAria: "Type your question",
+      greeting: "Hi **{name}**! 👋 I'm **Aura**, your assistant. I've prepared a few ideas for you, or ask me anything.",
+      ideasLabel: "💡 Ideas for you",
+      fallback: "I'm not sure about that 🤔, but I can help with electricity and gas plans, solar, mobility or services. You can also call **900 225 235**."
+    }
+  };
+  function T(k) { var L = (window.IB_LANG === "en") ? "en" : "es"; var t = STR[L] && STR[L][k]; return t != null ? t : (STR.es[k] != null ? STR.es[k] : k); }
+
   /* ---------- persona context ---------- */
   function ctx() {
     var key = null; try { key = sessionStorage.getItem("ib_user"); } catch (e) {}
     var p = key && window.IB_PROFILES ? window.IB_PROFILES[key] : null;
-    return p ? { key: p.key, name: p.name, segment: p.segment, segmentLabel: p.segmentLabel } : { key: null, name: null, segment: null, segmentLabel: null };
+    var lang = (window.IB_LANG === "en") ? "en" : "es";
+    return p ? { key: p.key, name: p.name, segment: p.segment, segmentLabel: p.segmentLabel, lang: lang } : { key: null, name: null, segment: null, segmentLabel: null, lang: lang };
   }
   var convo = []; // running conversation history for the LLM
 
@@ -162,8 +196,8 @@
   function localAnswer(query, c) {
     var r = answer(query, c);
     if (r.fallback) {
-      addBot(fmt("No estoy segura de eso 🤔, pero puedo ayudarte con planes de luz y gas, solar, movilidad o servicios. También puedes llamar al **900 225 235**."));
-      addChips(KB.welcome.chips);
+      addBot(fmt(T("fallback")));
+      addChips((window.IB_LANG === "en") ? KB.welcome.chips_en : KB.welcome.chips);
       return;
     }
     var e = r.entry, html = fmt(e.a);
@@ -181,7 +215,7 @@
     fetch("/api/chat", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ messages: convo.slice(-12), persona: persona }),
+      body: JSON.stringify({ messages: convo.slice(-12), persona: persona, lang: c.lang }),
     })
       .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
       .then(function (data) {
@@ -202,14 +236,17 @@
 
   function greet() {
     var c = ctx();
+    var L = (window.IB_LANG === "en") ? "en" : "es";
+    var chips = (L === "en") ? KB.welcome.chips_en : KB.welcome.chips;
     if (c.name) {
-      addBot(fmt("¡Hola, **" + c.name + "**! 👋 Soy **Aura**, tu asistente. He preparado algunas ideas para ti, o pregúntame lo que quieras."));
-      var ideas = KB.ideas[c.key];
-      if (ideas) addChips(ideas, "💡 Ideas para ti");
-      else addChips(KB.welcome.chips);
+      addBot(fmt(T("greeting").replace("{name}", c.name)));
+      var ideas = (L === "en") ? (KB.ideas_en && KB.ideas_en[c.key]) : KB.ideas[c.key];
+      if (!ideas) ideas = KB.ideas[c.key];
+      if (ideas) addChips(ideas, T("ideasLabel"));
+      else addChips(chips);
     } else {
-      addBot(fmt(KB.welcome.generic));
-      addChips(KB.welcome.chips);
+      addBot(fmt(KB.welcome[L === "en" ? "generic_en" : "generic"]));
+      addChips(chips);
     }
   }
 
@@ -226,18 +263,18 @@
     var style = el("style"); style.textContent = CSS; document.head.appendChild(style);
 
     launcher = el("button", "aura-fab");
-    launcher.setAttribute("aria-label", "Abrir asistente Aura");
-    launcher.innerHTML = ICON_BOT + "<span>Pregúntale a Aura</span><span class='dot'></span>";
+    launcher.setAttribute("aria-label", T("launcherAria"));
+    launcher.innerHTML = ICON_BOT + "<span>" + T("launcherLabel") + "</span><span class='dot'></span>";
     launcher.addEventListener("click", open);
 
     panel = el("div", "aura-panel");
-    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Asistente Aura de Iberdrola"); panel.setAttribute("aria-hidden", "true");
+    panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", T("panelAria")); panel.setAttribute("aria-hidden", "true");
     panel.innerHTML =
-      '<div class="aura-head"><span class="av">' + ICON_BOT + "</span><div><b>Aura</b><small>Asistente de Iberdrola · en línea</small></div>" +
-      '<button class="aura-close" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+      '<div class="aura-head"><span class="av">' + ICON_BOT + "</span><div><b>Aura</b><small>" + T("headerSubtitle") + "</small></div>" +
+      '<button class="aura-close" aria-label="' + T("closeAria") + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
       '<div class="aura-body" role="log" aria-live="polite"></div>' +
-      '<p class="aura-disc">Aura usa IA y puede cometer errores. Precios orientativos 2026.</p>' +
-      '<form class="aura-foot"><input type="text" placeholder="Escribe tu pregunta…" aria-label="Escribe tu pregunta" autocomplete="off"><button class="aura-send" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></form>';
+      '<p class="aura-disc">' + T("disclaimer") + '</p>' +
+      '<form class="aura-foot"><input type="text" placeholder="' + T("inputPlaceholder") + '" aria-label="' + T("inputAria") + '" autocomplete="off"><button class="aura-send" type="submit" aria-label="' + T("sendAria") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></form>';
     document.body.appendChild(launcher);
     document.body.appendChild(panel);
 

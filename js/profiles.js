@@ -132,6 +132,71 @@
     }
   };
 
+  // ---- English variants (bilingual). Merged onto each profile as *_en. ----
+  var EN = {
+    marta: {
+      segmentLabel: "Home",
+      hero: {
+        eyebrow: "Your electricity plan",
+        headline: "Your price is changing soon. We'll explain it — no surprises.",
+        sub: "Your promotion ends in a few days. Review your options and choose with peace of mind — no lock-in.",
+        cta: { label: "See my new price" }, cta2: { label: "Talk to an advisor" }
+      }
+    },
+    javier: {
+      segmentLabel: "Home",
+      hero: {
+        eyebrow: "Solar self-consumption",
+        headline: "Your roof could generate ~6,200 kWh a year.",
+        sub: "And charge your electric car overnight at half price. Design your tailored solar installation.",
+        cta: { label: "Simulate my solar installation" }, cta2: { label: "See Smart Solar" }
+      }
+    },
+    diego: {
+      segmentLabel: "Home",
+      hero: {
+        eyebrow: "Your Solar Cloud",
+        headline: "You've saved 22 € in your Solar Cloud this month.",
+        sub: "Your solar surplus works for you. Track your generation in real time and optimize every kWh.",
+        cta: { label: "See my surplus in real time" }, cta2: { label: "Schedule car charging" }
+      }
+    },
+    carmen: {
+      segmentLabel: "Business", business: "Carmen's Restaurant",
+      hero: {
+        eyebrow: "Iberdrola Business",
+        headline: "Your business runs at night. Your tariff doesn't.",
+        sub: "Match your plan to your real hours and protect your kitchen: a breakdown can't stop your service.",
+        cta: { label: "See my tailored plan" }, cta2: { label: "Call an advisor" }
+      }
+    },
+    ana: {
+      segmentLabel: "Communities", role: "Chair · 12 Mayor St.",
+      hero: {
+        eyebrow: "Communities",
+        headline: "Your building may qualify for a solar grant.",
+        sub: "Estimate the savings per resident, prepare the proposal for the board, and we'll handle the grants.",
+        cta: { label: "Calculate savings per resident" }, cta2: { label: "Prepare the board proposal" }
+      }
+    },
+    cso: {
+      segmentLabel: "Large Clients", role: "Chief Sustainability Officer · RetailCo",
+      hero: {
+        eyebrow: "Large Clients · PPA",
+        headline: "100% renewable, stable price for 10 years.",
+        sub: "The PPA as a lever for your Scope 2: electrify your operations with certified green energy at a fixed price.",
+        cta: { label: "Talk to your Key Account Manager" }, cta2: { label: "See case studies (Mercadona, Microsoft)" }
+      }
+    }
+  };
+  Object.keys(EN).forEach(function (k) {
+    if (!PROFILES[k]) return;
+    PROFILES[k].segmentLabel_en = EN[k].segmentLabel;
+    PROFILES[k].hero_en = EN[k].hero;
+    if (EN[k].role) PROFILES[k].role_en = EN[k].role;
+    if (EN[k].business) PROFILES[k].business_en = EN[k].business;
+  });
+
   var CREDENTIALS = {
     "marta":  { pass: "hogar26",     key: "marta" },
     "javier": { pass: "solar26",     key: "javier" },
@@ -143,12 +208,12 @@
 
   // For the login page hint list
   var DEMO_HINTS = [
-    { user: "marta",  pass: "hogar26",     who: "Hogares · promoción a punto de vencer" },
-    { user: "javier", pass: "solar26",     who: "Hogares · candidato a solar + VE" },
-    { user: "diego",  pass: "nube26",      who: "Hogares · autoconsumo activo" },
-    { user: "carmen", pass: "negocio26",   who: "Negocios · restaurante" },
-    { user: "ana",    pass: "comunidad26", who: "Comunidades · subvención solar" },
-    { user: "cso",    pass: "empresa26",   who: "Grandes Clientes · PPA / RE100" }
+    { user: "marta",  pass: "hogar26",     who: "Hogares · promoción a punto de vencer", who_en: "Home · promotion about to expire" },
+    { user: "javier", pass: "solar26",     who: "Hogares · candidato a solar + VE",      who_en: "Home · solar + EV candidate" },
+    { user: "diego",  pass: "nube26",      who: "Hogares · autoconsumo activo",           who_en: "Home · active self-consumption" },
+    { user: "carmen", pass: "negocio26",   who: "Negocios · restaurante",                 who_en: "Business · restaurant" },
+    { user: "ana",    pass: "comunidad26", who: "Comunidades · subvención solar",         who_en: "Communities · solar grant" },
+    { user: "cso",    pass: "empresa26",   who: "Grandes Clientes · PPA / RE100",         who_en: "Large Clients · PPA / RE100" }
   ];
 
   // Build PostHog person properties (identity + curated key attributes) from a profile.

@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guía de la demo — Iberdrola Design System</title>
-<meta name="description" content="Cómo explorar la demo del sistema de diseño de Iberdrola: design system, home personalizada, Área Cliente y el asistente Aura.">
+<title data-i18n-es="Guía de la demo — Iberdrola Design System" data-i18n-en="Demo guide — Iberdrola Design System">Guía de la demo — Iberdrola Design System</title>
+<meta name="description" data-i18n-es-content="Cómo explorar la demo del sistema de diseño de Iberdrola: design system, home personalizada, Área Cliente y el asistente Aura." data-i18n-en-content="How to explore the Iberdrola design system demo: design system, personalized home, Customer Area and the Aura assistant." content="Cómo explorar la demo del sistema de diseño de Iberdrola: design system, home personalizada, Área Cliente y el asistente Aura.">
 <link rel="icon" href="brand/logos/iberdrola-icon.svg">
 <link rel="stylesheet" href="css/iberdrola.css">
 <script src="js/analytics.js"></script>
+<script src="js/i18n.js"></script>
 <style>
   /* Page-specific layout on top of the design system */
   .tut-hero{background:var(--ib-gradient-forest);color:#fff;text-align:center;padding:clamp(3.5rem, 2rem + 8vw, 6.5rem) 0}
@@ -42,11 +43,12 @@
 <!-- Topbar -->
 <header>
   <div class="ib-container">
-    <nav class="ib-nav" aria-label="Principal">
-      <a class="ib-nav__logo" href="index.html" aria-label="Iberdrola — inicio"><img src="brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:52px"></a>
+    <nav class="ib-nav" data-i18n-es-aria-label="Principal" data-i18n-en-aria-label="Main" aria-label="Principal">
+      <a class="ib-nav__logo" href="index.html" data-i18n-es-aria-label="Iberdrola — inicio" data-i18n-en-aria-label="Iberdrola — home" aria-label="Iberdrola — inicio"><img src="brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:52px"></a>
       <div class="ib-nav__actions">
-        <a class="ib-btn ib-btn--outline ib-btn--sm" href="index.html">Ver el design system</a>
-        <a class="ib-btn ib-btn--sm" href="templates/home/index.html">Abrir la home</a>
+        <span class="ib-lang"><button type="button" data-set-lang="es">ES</button><button type="button" data-set-lang="en">EN</button></span>
+        <a class="ib-btn ib-btn--outline ib-btn--sm" href="index.html" data-i18n-es="Ver el design system" data-i18n-en="View the design system">Ver el design system</a>
+        <a class="ib-btn ib-btn--sm" href="templates/home/index.html" data-i18n-es="Abrir la home" data-i18n-en="Open the home">Abrir la home</a>
       </div>
     </nav>
   </div>
@@ -55,19 +57,19 @@
 <!-- Hero -->
 <section class="tut-hero">
   <div class="ib-container">
-    <span class="ib-overline">Guía interactiva de la demo</span>
-    <h1>Bienvenido a la demo del Design System de Iberdrola</h1>
-    <p class="lead">Un recorrido en 4 pasos por todo lo que puedes explorar: el sistema de diseño, una home hiper-personalizada, el Área Cliente con usuarios de prueba y <strong style="color:#fff">Aura</strong>, el asistente con IA.</p>
+    <span class="ib-overline" data-i18n-es="Guía interactiva de la demo" data-i18n-en="Interactive demo guide">Guía interactiva de la demo</span>
+    <h1 data-i18n-es="Bienvenido a la demo del Design System de Iberdrola" data-i18n-en="Welcome to the Iberdrola Design System demo">Bienvenido a la demo del Design System de Iberdrola</h1>
+    <p class="lead" data-i18n-html data-i18n-es="Un recorrido en 4 pasos por todo lo que puedes explorar: el sistema de diseño, una home hiper-personalizada, el Área Cliente con usuarios de prueba y <strong style=&quot;color:#fff&quot;>Aura</strong>, el asistente con IA." data-i18n-en="A 4-step tour through everything you can explore: the design system, a hyper-personalized home, the Customer Area with test users and <strong style=&quot;color:#fff&quot;>Aura</strong>, the AI assistant.">Un recorrido en 4 pasos por todo lo que puedes explorar: el sistema de diseño, una home hiper-personalizada, el Área Cliente con usuarios de prueba y <strong style="color:#fff">Aura</strong>, el asistente con IA.</p>
     <div class="tut-cta-row">
-      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="#pasos">Empezar el recorrido</a>
-      <a class="ib-btn ib-btn--lg ib-btn--on-dark-outline" href="#accesos">Ver usuarios de prueba</a>
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="#pasos" data-i18n-es="Empezar el recorrido" data-i18n-en="Start the tour">Empezar el recorrido</a>
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark-outline" href="#accesos" data-i18n-es="Ver usuarios de prueba" data-i18n-en="View test users">Ver usuarios de prueba</a>
     </div>
     <div class="tut-chips">
-      <span>🎨 Design System</span>
-      <span>🏠 Home personalizada</span>
-      <span>🔐 Área Cliente</span>
-      <span>🤖 Asistente IA</span>
-      <span>🧩 Plantillas</span>
+      <span data-i18n-es="🎨 Design System" data-i18n-en="🎨 Design System">🎨 Design System</span>
+      <span data-i18n-es="🏠 Home personalizada" data-i18n-en="🏠 Personalized home">🏠 Home personalizada</span>
+      <span data-i18n-es="🔐 Área Cliente" data-i18n-en="🔐 Customer Area">🔐 Área Cliente</span>
+      <span data-i18n-es="🤖 Asistente IA" data-i18n-en="🤖 AI assistant">🤖 Asistente IA</span>
+      <span data-i18n-es="🧩 Plantillas" data-i18n-en="🧩 Templates">🧩 Plantillas</span>
     </div>
   </div>
 </section>
@@ -75,27 +77,27 @@
 <!-- 4 steps -->
 <section class="ib-section" id="pasos">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Cómo usarla</span><h2>El recorrido en 4 pasos</h2></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Cómo usarla" data-i18n-en="How to use it">Cómo usarla</span><h2 data-i18n-es="El recorrido en 4 pasos" data-i18n-en="The tour in 4 steps">El recorrido en 4 pasos</h2></div>
     <div class="ib-grid ib-grid-4">
       <div class="ib-step" data-ib-reveal>
         <span class="ib-step__num">1</span>
-        <h4>Explora el sistema</h4>
-        <p class="ib-body-sm">Abre el <strong>Design System</strong> para ver colores, tipografía, componentes y plantillas: la base de todo lo demás.</p>
+        <h4 data-i18n-es="Explora el sistema" data-i18n-en="Explore the system">Explora el sistema</h4>
+        <p class="ib-body-sm" data-i18n-html data-i18n-es="Abre el <strong>Design System</strong> para ver colores, tipografía, componentes y plantillas: la base de todo lo demás." data-i18n-en="Open the <strong>Design System</strong> to see colors, typography, components and templates: the foundation of everything else.">Abre el <strong>Design System</strong> para ver colores, tipografía, componentes y plantillas: la base de todo lo demás.</p>
       </div>
       <div class="ib-step" data-ib-reveal data-ib-delay="1">
         <span class="ib-step__num">2</span>
-        <h4>Abre la home</h4>
-        <p class="ib-body-sm">Visita la <strong>home</strong>. Sin iniciar sesión verás la versión genérica, lista para personalizarse.</p>
+        <h4 data-i18n-es="Abre la home" data-i18n-en="Open the home">Abre la home</h4>
+        <p class="ib-body-sm" data-i18n-html data-i18n-es="Visita la <strong>home</strong>. Sin iniciar sesión verás la versión genérica, lista para personalizarse." data-i18n-en="Visit the <strong>home</strong>. Without logging in you'll see the generic version, ready to be personalized.">Visita la <strong>home</strong>. Sin iniciar sesión verás la versión genérica, lista para personalizarse.</p>
       </div>
       <div class="ib-step" data-ib-reveal data-ib-delay="2">
         <span class="ib-step__num">3</span>
-        <h4>Inicia sesión</h4>
-        <p class="ib-body-sm">Entra en el <strong>Área Cliente</strong> con cualquiera de los usuarios de prueba: la home se adapta a ese perfil.</p>
+        <h4 data-i18n-es="Inicia sesión" data-i18n-en="Log in">Inicia sesión</h4>
+        <p class="ib-body-sm" data-i18n-html data-i18n-es="Entra en el <strong>Área Cliente</strong> con cualquiera de los usuarios de prueba: la home se adapta a ese perfil." data-i18n-en="Enter the <strong>Customer Area</strong> with any of the test users: the home adapts to that profile.">Entra en el <strong>Área Cliente</strong> con cualquiera de los usuarios de prueba: la home se adapta a ese perfil.</p>
       </div>
       <div class="ib-step" data-ib-reveal data-ib-delay="3">
         <span class="ib-step__num">4</span>
-        <h4>Chatea con Aura</h4>
-        <p class="ib-body-sm">Pulsa el botón <strong>“Pregúntale a Aura”</strong> (abajo a la derecha) y pregunta lo que quieras: responde con IA.</p>
+        <h4 data-i18n-es="Chatea con Aura" data-i18n-en="Chat with Aura">Chatea con Aura</h4>
+        <p class="ib-body-sm" data-i18n-html data-i18n-es="Pulsa el botón <strong>“Pregúntale a Aura”</strong> (abajo a la derecha) y pregunta lo que quieras: responde con IA." data-i18n-en="Tap the <strong>“Ask Aura”</strong> button (bottom right) and ask anything: it answers with AI.">Pulsa el botón <strong>“Pregúntale a Aura”</strong> (abajo a la derecha) y pregunta lo que quieras: responde con IA.</p>
       </div>
     </div>
   </div>
@@ -104,36 +106,36 @@
 <!-- Main links -->
 <section class="ib-section ib-section--subtle" id="accesos">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Accesos directos</span><h2>Los cuatro destinos principales</h2></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Accesos directos" data-i18n-en="Shortcuts">Accesos directos</span><h2 data-i18n-es="Los cuatro destinos principales" data-i18n-en="The four main destinations">Los cuatro destinos principales</h2></div>
     <div class="ib-grid ib-grid-2">
 
       <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="index.html" data-ib-reveal>
-        <span class="ib-badge ib-badge--accent tut-flag">Empieza aquí</span>
+        <span class="ib-badge ib-badge--accent tut-flag" data-i18n-es="Empieza aquí" data-i18n-en="Start here">Empieza aquí</span>
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-        <h3>Design System · Showcase</h3>
-        <p>La vitrina del sistema: marca, color, tipografía, componentes, animaciones y todas las plantillas en un solo lugar.</p>
-        <span class="tut-go">Abrir showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Design System · Showcase" data-i18n-en="Design System · Showcase">Design System · Showcase</h3>
+        <p data-i18n-es="La vitrina del sistema: marca, color, tipografía, componentes, animaciones y todas las plantillas en un solo lugar." data-i18n-en="The system's showcase: brand, color, typography, components, animations and all templates in one place.">La vitrina del sistema: marca, color, tipografía, componentes, animaciones y todas las plantillas en un solo lugar.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir showcase <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open showcase <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="docs/index.html" data-ib-reveal data-ib-delay="1">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v5h5M8 13h8M8 17h5"/></svg></div>
-        <h3>Documentación · Style guide</h3>
-        <p>La guía viva con los tokens, reglas de uso y el detalle de cada componente para diseñar y desarrollar sobre la marca.</p>
-        <span class="tut-go">Abrir documentación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Documentación · Style guide" data-i18n-en="Documentation · Style guide">Documentación · Style guide</h3>
+        <p data-i18n-es="La guía viva con los tokens, reglas de uso y el detalle de cada componente para diseñar y desarrollar sobre la marca." data-i18n-en="The living guide with tokens, usage rules and the detail of every component to design and build on the brand.">La guía viva con los tokens, reglas de uso y el detalle de cada componente para diseñar y desarrollar sobre la marca.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir documentación <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open documentation <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir documentación <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="templates/home/index.html" data-ib-reveal>
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
-        <h3>Home personalizada</h3>
-        <p>La página principal montada con el sistema. Cambia por completo según el usuario que haya iniciado sesión.</p>
-        <span class="tut-go">Abrir la home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Home personalizada" data-i18n-en="Personalized home">Home personalizada</h3>
+        <p data-i18n-es="La página principal montada con el sistema. Cambia por completo según el usuario que haya iniciado sesión." data-i18n-en="The main page built with the system. It changes completely depending on the logged-in user.">La página principal montada con el sistema. Cambia por completo según el usuario que haya iniciado sesión.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir la home <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open the home <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir la home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--elevated ib-card--hover tut-card" href="templates/home/login.html" data-ib-reveal data-ib-delay="1">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4"/></svg></div>
-        <h3>Área Cliente · Login</h3>
-        <p>Inicia sesión con un usuario de prueba (más abajo) para ver la home hiper-personalizada por perfil.</p>
-        <span class="tut-go">Ir al login <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Área Cliente · Login" data-i18n-en="Customer Area · Login">Área Cliente · Login</h3>
+        <p data-i18n-es="Inicia sesión con un usuario de prueba (más abajo) para ver la home hiper-personalizada por perfil." data-i18n-en="Log in with a test user (below) to see the home hyper-personalized by profile.">Inicia sesión con un usuario de prueba (más abajo) para ver la home hiper-personalizada por perfil.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Ir al login <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Go to login <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Ir al login <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
     </div>
@@ -143,21 +145,21 @@
 <!-- Demo users -->
 <section class="ib-section">
   <div class="ib-container ib-container--narrow">
-    <div class="ib-section-head"><span class="ib-overline">Área Cliente</span><h2>Usuarios de prueba</h2><p class="ib-lead">Entra en el <a class="ib-text-primary" href="templates/home/login.html">login</a> con cualquiera de estas parejas. Cada perfil transforma la home y personaliza a Aura. <strong>Haz clic en un usuario o contraseña para copiarlo.</strong></p></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Área Cliente" data-i18n-en="Customer Area">Área Cliente</span><h2 data-i18n-es="Usuarios de prueba" data-i18n-en="Test users">Usuarios de prueba</h2><p class="ib-lead" data-i18n-html data-i18n-es="Entra en el <a class=&quot;ib-text-primary&quot; href=&quot;templates/home/login.html&quot;>login</a> con cualquiera de estas parejas. Cada perfil transforma la home y personaliza a Aura. <strong>Haz clic en un usuario o contraseña para copiarlo.</strong>" data-i18n-en="Enter the <a class=&quot;ib-text-primary&quot; href=&quot;templates/home/login.html&quot;>login</a> with any of these pairs. Each profile transforms the home and personalizes Aura. <strong>Click a username or password to copy it.</strong>">Entra en el <a class="ib-text-primary" href="templates/home/login.html">login</a> con cualquiera de estas parejas. Cada perfil transforma la home y personaliza a Aura. <strong>Haz clic en un usuario o contraseña para copiarlo.</strong></p></div>
     <div class="ib-table-wrap cred" data-ib-reveal>
       <table class="ib-table">
-        <thead><tr><th>Usuario</th><th>Contraseña</th><th>Perfil que verás</th></tr></thead>
+        <thead><tr><th data-i18n-es="Usuario" data-i18n-en="User">Usuario</th><th data-i18n-es="Contraseña" data-i18n-en="Password">Contraseña</th><th data-i18n-es="Perfil que verás" data-i18n-en="Profile you'll see">Perfil que verás</th></tr></thead>
         <tbody>
-          <tr><td><code>marta</code></td><td><code>hogar26</code></td><td>Hogares · promoción a punto de vencer</td></tr>
-          <tr><td><code>javier</code></td><td><code>solar26</code></td><td>Hogares · candidato a solar + coche eléctrico</td></tr>
-          <tr><td><code>diego</code></td><td><code>nube26</code></td><td>Hogares · autoconsumo con Nube Solar activo</td></tr>
-          <tr><td><code>carmen</code></td><td><code>negocio26</code></td><td>Negocios · restaurante</td></tr>
-          <tr><td><code>ana</code></td><td><code>comunidad26</code></td><td>Comunidades · subvención solar</td></tr>
-          <tr><td><code>cso</code></td><td><code>empresa26</code></td><td>Grandes Clientes · PPA / RE100</td></tr>
+          <tr><td><code>marta</code></td><td><code>hogar26</code></td><td data-i18n-es="Hogares · promoción a punto de vencer" data-i18n-en="Homes · promotion about to expire">Hogares · promoción a punto de vencer</td></tr>
+          <tr><td><code>javier</code></td><td><code>solar26</code></td><td data-i18n-es="Hogares · candidato a solar + coche eléctrico" data-i18n-en="Homes · candidate for solar + electric car">Hogares · candidato a solar + coche eléctrico</td></tr>
+          <tr><td><code>diego</code></td><td><code>nube26</code></td><td data-i18n-es="Hogares · autoconsumo con Nube Solar activo" data-i18n-en="Homes · self-consumption with Nube Solar active">Hogares · autoconsumo con Nube Solar activo</td></tr>
+          <tr><td><code>carmen</code></td><td><code>negocio26</code></td><td data-i18n-es="Negocios · restaurante" data-i18n-en="Business · restaurant">Negocios · restaurante</td></tr>
+          <tr><td><code>ana</code></td><td><code>comunidad26</code></td><td data-i18n-es="Comunidades · subvención solar" data-i18n-en="Communities · solar subsidy">Comunidades · subvención solar</td></tr>
+          <tr><td><code>cso</code></td><td><code>empresa26</code></td><td data-i18n-es="Grandes Clientes · PPA / RE100" data-i18n-en="Large Customers · PPA / RE100">Grandes Clientes · PPA / RE100</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="ib-alert ib-alert--info" style="margin-top:var(--ib-space-5)" data-ib-reveal>
+    <div class="ib-alert ib-alert--info" style="margin-top:var(--ib-space-5)" data-ib-reveal data-i18n-html data-i18n-es="<strong>Consejo:</strong> abre la home <em>antes</em> y <em>después</em> de iniciar sesión para ver el contraste. Para volver a la versión genérica, cierra sesión desde el Área Cliente o abre la home en una pestaña de incógnito." data-i18n-en="<strong>Tip:</strong> open the home <em>before</em> and <em>after</em> logging in to see the contrast. To go back to the generic version, log out from the Customer Area or open the home in an incognito tab.">
       <strong>Consejo:</strong> abre la home <em>antes</em> y <em>después</em> de iniciar sesión para ver el contraste. Para volver a la versión genérica, cierra sesión desde el Área Cliente o abre la home en una pestaña de incógnito.
     </div>
   </div>
@@ -166,17 +168,17 @@
 <!-- Aura -->
 <section class="ib-section ib-section--forest">
   <div class="ib-container ib-container--narrow ib-center-text">
-    <span class="ib-overline" style="color:#7fe3ab">Asistente con IA</span>
-    <h2 class="ib-text-inverse">Conoce a Aura</h2>
-    <p class="ib-lead ib-text-inverse" style="opacity:.9;max-width:56ch;margin-inline:auto">Aura es el asistente del chat. Responde con un modelo de lenguaje (LLM) apoyado en una base de conocimiento real de productos, tarifas y servicios de Iberdrola, y se adapta al usuario que haya iniciado sesión. La encuentras en el botón <strong>“Pregúntale a Aura”</strong>, abajo a la derecha en la home.</p>
+    <span class="ib-overline" style="color:#7fe3ab" data-i18n-es="Asistente con IA" data-i18n-en="AI assistant">Asistente con IA</span>
+    <h2 class="ib-text-inverse" data-i18n-es="Conoce a Aura" data-i18n-en="Meet Aura">Conoce a Aura</h2>
+    <p class="ib-lead ib-text-inverse" style="opacity:.9;max-width:56ch;margin-inline:auto" data-i18n-html data-i18n-es="Aura es el asistente del chat. Responde con un modelo de lenguaje (LLM) apoyado en una base de conocimiento real de productos, tarifas y servicios de Iberdrola, y se adapta al usuario que haya iniciado sesión. La encuentras en el botón <strong>“Pregúntale a Aura”</strong>, abajo a la derecha en la home." data-i18n-en="Aura is the chat assistant. It answers with a language model (LLM) backed by a real knowledge base of Iberdrola products, rates and services, and adapts to the logged-in user. You'll find it in the <strong>“Ask Aura”</strong> button, bottom right on the home.">Aura es el asistente del chat. Responde con un modelo de lenguaje (LLM) apoyado en una base de conocimiento real de productos, tarifas y servicios de Iberdrola, y se adapta al usuario que haya iniciado sesión. La encuentras en el botón <strong>“Pregúntale a Aura”</strong>, abajo a la derecha en la home.</p>
     <div class="sample-q" style="justify-content:center">
-      <span>¿Cuánto cuesta el Plan Online?</span>
-      <span>Compárame Estable, Online y 3 periodos</span>
-      <span>¿Qué es la Nube Solar?</span>
-      <span>Tengo un restaurante nocturno, ¿qué tarifa me conviene?</span>
+      <span data-i18n-es="¿Cuánto cuesta el Plan Online?" data-i18n-en="How much does Plan Online cost?">¿Cuánto cuesta el Plan Online?</span>
+      <span data-i18n-es="Compárame Estable, Online y 3 periodos" data-i18n-en="Compare Estable, Online and 3 periods for me">Compárame Estable, Online y 3 periodos</span>
+      <span data-i18n-es="¿Qué es la Nube Solar?" data-i18n-en="What is Nube Solar?">¿Qué es la Nube Solar?</span>
+      <span data-i18n-es="Tengo un restaurante nocturno, ¿qué tarifa me conviene?" data-i18n-en="I run a night-time restaurant, which rate suits me?">Tengo un restaurante nocturno, ¿qué tarifa me conviene?</span>
     </div>
     <div style="margin-top:var(--ib-space-6)">
-      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="templates/home/index.html">Abrir la home y probar a Aura</a>
+      <a class="ib-btn ib-btn--lg ib-btn--on-dark" href="templates/home/index.html" data-i18n-es="Abrir la home y probar a Aura" data-i18n-en="Open the home and try Aura">Abrir la home y probar a Aura</a>
     </div>
   </div>
 </section>
@@ -184,61 +186,61 @@
 <!-- All templates -->
 <section class="ib-section ib-section--subtle">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Explora más</span><h2>Todas las plantillas del sistema</h2><p class="ib-lead">Cada canal que cubre el design system, listo para adaptar.</p></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Explora más" data-i18n-en="Explore more">Explora más</span><h2 data-i18n-es="Todas las plantillas del sistema" data-i18n-en="All the system's templates">Todas las plantillas del sistema</h2><p class="ib-lead" data-i18n-es="Cada canal que cubre el design system, listo para adaptar." data-i18n-en="Every channel the design system covers, ready to adapt.">Cada canal que cubre el design system, listo para adaptar.</p></div>
     <div class="ib-grid ib-grid-3">
 
       <a class="ib-card ib-card--hover tut-card" href="templates/landing-page/index.html" data-ib-reveal>
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></div>
-        <h3>Landing page</h3><p>Plantilla de captación “Plan Online”.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Landing page" data-i18n-en="Landing page">Landing page</h3><p data-i18n-es="Plantilla de captación “Plan Online”." data-i18n-en="“Plan Online” acquisition template.">Plantilla de captación “Plan Online”.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="templates/website/index.html" data-ib-reveal data-ib-delay="1">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><circle cx="6" cy="6" r=".6" fill="currentColor"/><circle cx="8.2" cy="6" r=".6" fill="currentColor"/></svg></div>
-        <h3>Website</h3><p>Home corporativa de Iberdrola Negocios.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Website" data-i18n-en="Website">Website</h3><p data-i18n-es="Home corporativa de Iberdrola Negocios." data-i18n-en="Iberdrola Negocios corporate home.">Home corporativa de Iberdrola Negocios.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="templates/presentation/index.html" data-ib-reveal data-ib-delay="2">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/></svg></div>
-        <h3>Presentación</h3><p>Plantilla maestra de slides.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Presentación" data-i18n-en="Presentation">Presentación</h3><p data-i18n-es="Plantilla maestra de slides." data-i18n-en="Master slide template.">Plantilla maestra de slides.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="templates/app/index.html" data-ib-reveal>
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
-        <h3>App móvil</h3><p>Pantallas de la app Mi Iberdrola.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="App móvil" data-i18n-en="Mobile app">App móvil</h3><p data-i18n-es="Pantallas de la app Mi Iberdrola." data-i18n-en="Mi Iberdrola app screens.">Pantallas de la app Mi Iberdrola.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="templates/banner/index.html" data-ib-reveal data-ib-delay="1">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="6" rx="1"/><rect x="2" y="15" width="13" height="4" rx="1"/></svg></div>
-        <h3>Banners display</h3><p>Galería de formatos publicitarios.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Banners display" data-i18n-en="Display banners">Banners display</h3><p data-i18n-es="Galería de formatos publicitarios." data-i18n-en="Gallery of advertising formats.">Galería de formatos publicitarios.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="templates/email/newsletter.html" data-ib-reveal data-ib-delay="2">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-        <h3>Emails</h3><p>Newsletter, promo y transaccional.</p>
-        <span class="tut-go">Abrir newsletter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Emails" data-i18n-en="Emails">Emails</h3><p data-i18n-es="Newsletter, promo y transaccional." data-i18n-en="Newsletter, promo and transactional.">Newsletter, promo y transaccional.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir newsletter <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open newsletter <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir newsletter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="animations/examples/index.html" data-ib-reveal>
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v9l6 3"/></svg></div>
-        <h3>Animaciones</h3><p>Micro-interacciones y motion.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Animaciones" data-i18n-en="Animations">Animaciones</h3><p data-i18n-es="Micro-interacciones y motion." data-i18n-en="Micro-interactions and motion.">Micro-interacciones y motion.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="docs/index.html" data-ib-reveal data-ib-delay="1">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 12h14M5 17h9"/></svg></div>
-        <h3>Documentación</h3><p>Tokens, reglas y componentes.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Documentación" data-i18n-en="Documentation">Documentación</h3><p data-i18n-es="Tokens, reglas y componentes." data-i18n-en="Tokens, rules and components.">Tokens, reglas y componentes.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
       <a class="ib-card ib-card--hover tut-card" href="index.html" data-ib-reveal data-ib-delay="2">
         <div class="tut-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M3 12h18"/></svg></div>
-        <h3>Volver al showcase</h3><p>La vitrina completa del sistema.</p>
-        <span class="tut-go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3 data-i18n-es="Volver al showcase" data-i18n-en="Back to the showcase">Volver al showcase</h3><p data-i18n-es="La vitrina completa del sistema." data-i18n-en="The system's complete showcase.">La vitrina completa del sistema.</p>
+        <span class="tut-go" data-i18n-html data-i18n-es="Abrir <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>" data-i18n-en="Open <svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></svg>">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
 
     </div>
@@ -250,13 +252,13 @@
   <div class="ib-container">
     <div class="ib-footer__bottom" style="display:flex;flex-wrap:wrap;gap:var(--ib-space-4);align-items:center;justify-content:space-between">
       <img src="brand/logos/iberdrola-logo-mono.svg" alt="Iberdrola" style="height:34px;opacity:.9">
-      <p class="ib-body-sm" style="margin:0;opacity:.75">Demo del Iberdrola Design System · Guía de uso · 2026</p>
-      <a class="ib-btn ib-btn--sm ib-btn--on-dark-outline" href="index.html">Volver al inicio</a>
+      <p class="ib-body-sm" style="margin:0;opacity:.75" data-i18n-es="Demo del Iberdrola Design System · Guía de uso · 2026" data-i18n-en="Iberdrola Design System demo · Usage guide · 2026">Demo del Iberdrola Design System · Guía de uso · 2026</p>
+      <a class="ib-btn ib-btn--sm ib-btn--on-dark-outline" href="index.html" data-i18n-es="Volver al inicio" data-i18n-en="Back to home">Volver al inicio</a>
     </div>
   </div>
 </footer>
 
-<div id="tut-toast" role="status" aria-live="polite">Copiado ✓</div>
+<div id="tut-toast" role="status" aria-live="polite" data-i18n-es="Copiado ✓" data-i18n-en="Copied ✓">Copiado ✓</div>
 
 <script src="js/iberdrola.js" defer></script>
 <script>

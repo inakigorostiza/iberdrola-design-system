@@ -99,10 +99,22 @@
     cso:    ["¿Cómo funciona un PPA?", "PPA y mi objetivo Scope 2", "Infraestructura de recarga para mi flota"]
   };
 
-  var WELCOME = {
-    generic: "¡Hola! Soy **Aura**, tu asistente de Iberdrola. Puedo ayudarte con planes de luz y gas, solar, movilidad, servicios y más. ¿Qué necesitas?",
-    chips: ["¿Qué tarifa de luz me conviene?", "Placas solares", "¿Tengo permanencia?", "Coche eléctrico"]
+  // English persona ideas — mirror of IDEAS (same keys)
+  var IDEAS_EN = {
+    marta:  ["What happens when my promotion ends?", "Lock in my price with Plan Estable", "Is Plan Online 3 Periodos right for me?"],
+    javier: ["How much can I save with solar panels?", "What is Nube Solar?", "Charge my car at night"],
+    diego:  ["How does my Nube Solar work?", "Schedule my car charging", "How does refer-and-earn work?"],
+    carmen: ["Is Plan Noche right for me?", "Services for my restaurant", "Protección de Pagos Autónomos"],
+    ana:    ["How much does each neighbour save with solar?", "Are there grants for my community?", "Shared charging in the garage"],
+    cso:    ["How does a PPA work?", "PPAs and my Scope 2 target", "Charging infrastructure for my fleet"]
   };
 
-  g.IB_KB = { entries: E, ideas: IDEAS, welcome: WELCOME };
+  var WELCOME = {
+    generic: "¡Hola! Soy **Aura**, tu asistente de Iberdrola. Puedo ayudarte con planes de luz y gas, solar, movilidad, servicios y más. ¿Qué necesitas?",
+    generic_en: "Hi! I'm **Aura**, your Iberdrola assistant. I can help with electricity and gas plans, solar, mobility, services and more. What do you need?",
+    chips: ["¿Qué tarifa de luz me conviene?", "Placas solares", "¿Tengo permanencia?", "Coche eléctrico"],
+    chips_en: ["Which electricity plan suits me?", "Solar panels", "Do I have a lock-in?", "Electric car"]
+  };
+
+  g.IB_KB = { entries: E, ideas: IDEAS, ideas_en: IDEAS_EN, welcome: WELCOME };
 })(window);

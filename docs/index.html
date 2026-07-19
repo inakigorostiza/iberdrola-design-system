@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iberdrola Design System</title>
-<meta name="description" content="The Iberdrola Design System — tokens, components, and templates for every channel.">
+<title data-i18n-es="Sistema de Diseño de Iberdrola" data-i18n-en="Iberdrola Design System">Iberdrola Design System</title>
+<meta name="description" data-i18n-es-content="El Sistema de Diseño de Iberdrola: tokens, componentes y plantillas para todos los canales." data-i18n-en-content="The Iberdrola Design System — tokens, components, and templates for every channel." content="The Iberdrola Design System — tokens, components, and templates for every channel.">
 <link rel="icon" href="../brand/logos/iberdrola-icon.svg">
 <link rel="stylesheet" href="../css/iberdrola.css">
 <script src="../js/analytics.js"></script>
+<script src="../js/i18n.js"></script>
 <style>
   .ds { display: grid; grid-template-columns: 260px 1fr; }
   .ds__side {
@@ -57,72 +58,73 @@
 <div class="ds">
   <!-- Sidebar -->
   <aside class="ds__side">
-    <a class="logo" href="#top"><img src="../brand/logos/iberdrola-logo-full.svg" alt="Iberdrola Design System"></a>
-    <nav aria-label="Design system sections">
+    <span class="ib-lang"><button type="button" data-set-lang="es">ES</button><button type="button" data-set-lang="en">EN</button></span>
+    <a class="logo" href="#top"><img src="../brand/logos/iberdrola-logo-full.svg" data-i18n-es-alt="Sistema de Diseño de Iberdrola" data-i18n-en-alt="Iberdrola Design System" alt="Iberdrola Design System"></a>
+    <nav aria-label="Design system sections" data-i18n-es-aria-label="Secciones del sistema de diseño" data-i18n-en-aria-label="Design system sections">
       <ul class="ds__nav">
-        <li><a href="#top">Overview</a></li>
-        <li class="group">Foundations</li>
-        <li><a href="#logo">Logo</a></li>
-        <li><a href="#color">Color</a></li>
-        <li><a href="#type">Typography</a></li>
-        <li><a href="#space">Spacing & layout</a></li>
-        <li><a href="#radius">Radius & shadow</a></li>
-        <li><a href="#motion">Motion</a></li>
-        <li class="group">Components</li>
-        <li><a href="#buttons">Buttons</a></li>
-        <li><a href="#badges">Badges & chips</a></li>
-        <li><a href="#cards">Cards</a></li>
-        <li><a href="#stats">Stats</a></li>
-        <li><a href="#forms">Forms</a></li>
-        <li><a href="#tabs">Tabs</a></li>
-        <li><a href="#accordion">Accordion</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#table">Table</a></li>
-        <li><a href="#alerts">Alerts</a></li>
-        <li><a href="#nav">Navigation</a></li>
-        <li class="group">Templates</li>
-        <li><a href="#templates">All templates</a></li>
+        <li><a href="#top" data-i18n-es="Introducción" data-i18n-en="Overview">Overview</a></li>
+        <li class="group" data-i18n-es="Fundamentos" data-i18n-en="Foundations">Foundations</li>
+        <li><a href="#logo" data-i18n-es="Logotipo" data-i18n-en="Logo">Logo</a></li>
+        <li><a href="#color" data-i18n-es="Color" data-i18n-en="Color">Color</a></li>
+        <li><a href="#type" data-i18n-es="Tipografía" data-i18n-en="Typography">Typography</a></li>
+        <li><a href="#space" data-i18n-es="Espaciado y maquetación" data-i18n-en="Spacing & layout">Spacing & layout</a></li>
+        <li><a href="#radius" data-i18n-es="Radio y sombra" data-i18n-en="Radius & shadow">Radius & shadow</a></li>
+        <li><a href="#motion" data-i18n-es="Movimiento" data-i18n-en="Motion">Motion</a></li>
+        <li class="group" data-i18n-es="Componentes" data-i18n-en="Components">Components</li>
+        <li><a href="#buttons" data-i18n-es="Botones" data-i18n-en="Buttons">Buttons</a></li>
+        <li><a href="#badges" data-i18n-es="Etiquetas y chips" data-i18n-en="Badges & chips">Badges & chips</a></li>
+        <li><a href="#cards" data-i18n-es="Tarjetas" data-i18n-en="Cards">Cards</a></li>
+        <li><a href="#stats" data-i18n-es="Cifras" data-i18n-en="Stats">Stats</a></li>
+        <li><a href="#forms" data-i18n-es="Formularios" data-i18n-en="Forms">Forms</a></li>
+        <li><a href="#tabs" data-i18n-es="Pestañas" data-i18n-en="Tabs">Tabs</a></li>
+        <li><a href="#accordion" data-i18n-es="Acordeón" data-i18n-en="Accordion">Accordion</a></li>
+        <li><a href="#reviews" data-i18n-es="Reseñas" data-i18n-en="Reviews">Reviews</a></li>
+        <li><a href="#table" data-i18n-es="Tabla" data-i18n-en="Table">Table</a></li>
+        <li><a href="#alerts" data-i18n-es="Alertas" data-i18n-en="Alerts">Alerts</a></li>
+        <li><a href="#nav" data-i18n-es="Navegación" data-i18n-en="Navigation">Navigation</a></li>
+        <li class="group" data-i18n-es="Plantillas" data-i18n-en="Templates">Templates</li>
+        <li><a href="#templates" data-i18n-es="Todas las plantillas" data-i18n-en="All templates">All templates</a></li>
       </ul>
     </nav>
   </aside>
 
   <!-- Main -->
   <main class="ds__main" id="top">
-    <span class="ib-overline">125 · Energy for everyone</span>
-    <h1 class="ib-display" style="margin-block:var(--ib-space-2) var(--ib-space-4)">Iberdrola<br>Design System</h1>
-    <p class="ib-lead ib-measure">One brand system for every channel — websites, landing pages, presentations, apps, animations, emails and banners. Built on design tokens, a framework-agnostic component library, and a set of ready-to-use templates.</p>
+    <span class="ib-overline" data-i18n-es="125 · Energía para todos" data-i18n-en="125 · Energy for everyone">125 · Energy for everyone</span>
+    <h1 class="ib-display" style="margin-block:var(--ib-space-2) var(--ib-space-4)" data-i18n-html data-i18n-es="Sistema de Diseño<br>de Iberdrola" data-i18n-en="Iberdrola<br>Design System">Iberdrola<br>Design System</h1>
+    <p class="ib-lead ib-measure" data-i18n-es="Un único sistema de marca para todos los canales: webs, páginas de aterrizaje, presentaciones, apps, animaciones, correos y banners. Construido sobre tokens de diseño, una biblioteca de componentes independiente del framework y un conjunto de plantillas listas para usar." data-i18n-en="One brand system for every channel — websites, landing pages, presentations, apps, animations, emails and banners. Built on design tokens, a framework-agnostic component library, and a set of ready-to-use templates.">One brand system for every channel — websites, landing pages, presentations, apps, animations, emails and banners. Built on design tokens, a framework-agnostic component library, and a set of ready-to-use templates.</p>
     <div class="ib-cluster" style="margin-top:var(--ib-space-5)">
-      <span class="ib-badge">Tokens</span><span class="ib-badge ">HTML / CSS</span><span class="ib-badge">Accessible</span><span class="ib-badge">Themeable</span>
+      <span class="ib-badge" data-i18n-es="Tokens" data-i18n-en="Tokens">Tokens</span><span class="ib-badge " data-i18n-es="HTML / CSS" data-i18n-en="HTML / CSS">HTML / CSS</span><span class="ib-badge" data-i18n-es="Accesible" data-i18n-en="Accessible">Accessible</span><span class="ib-badge" data-i18n-es="Personalizable" data-i18n-en="Themeable">Themeable</span>
     </div>
     <div class="demo" style="margin-top:var(--ib-space-6)">
-      <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-2)">Get started — import the single bundle:</p>
+      <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-2)" data-i18n-es="Empieza — importa el paquete único:" data-i18n-en="Get started — import the single bundle:">Get started — import the single bundle:</p>
       <pre class="snip"><code>&lt;link rel="stylesheet" href="css/iberdrola.css"&gt;
 &lt;script src="js/iberdrola.js" defer&gt;&lt;/script&gt;</code></pre>
     </div>
 
     <!-- LOGO -->
     <section class="ds__sec" id="logo">
-      <h2>Logo</h2>
-      <p class="ds__lede">The master lockup is 125 + tricolor flame symbol + wordmark. See <code>brand/logo-usage.md</code> for clear space, minimum sizes and misuse.</p>
+      <h2 data-i18n-es="Logotipo" data-i18n-en="Logo">Logo</h2>
+      <p class="ds__lede" data-i18n-html data-i18n-es="El lockup principal es 125 + símbolo de la llama tricolor + logotipo. Consulta <code>brand/logo-usage.md</code> para el área de respeto, tamaños mínimos y usos incorrectos." data-i18n-en="The master lockup is 125 + tricolor flame symbol + wordmark. See <code>brand/logo-usage.md</code> for clear space, minimum sizes and misuse.">The master lockup is 125 + tricolor flame symbol + wordmark. See <code>brand/logo-usage.md</code> for clear space, minimum sizes and misuse.</p>
       <div class="demo ib-cluster" style="gap:var(--ib-space-7);align-items:center">
-        <img src="../brand/logos/iberdrola-logo-full.svg" alt="Full lockup" style="height:56px">
-        <img src="../brand/logos/iberdrola-icon.svg" alt="Icon" style="height:52px">
-        <img src="../brand/logos/iberdrola-wordmark.svg" alt="Wordmark" style="height:26px">
+        <img src="../brand/logos/iberdrola-logo-full.svg" data-i18n-es-alt="Lockup completo" data-i18n-en-alt="Full lockup" alt="Full lockup" style="height:56px">
+        <img src="../brand/logos/iberdrola-icon.svg" data-i18n-es-alt="Icono" data-i18n-en-alt="Icon" alt="Icon" style="height:52px">
+        <img src="../brand/logos/iberdrola-wordmark.svg" data-i18n-es-alt="Logotipo" data-i18n-en-alt="Wordmark" alt="Wordmark" style="height:26px">
       </div>
       <div class="demo demo--dark ib-cluster" style="gap:var(--ib-space-7);align-items:center">
         <span style="color:#fff;display:inline-flex">
           <!-- mono logo recolored via currentColor -->
-          <img src="../brand/logos/iberdrola-logo-mono.svg" alt="Mono logo on dark" style="height:56px;filter:brightness(0) invert(1)">
+          <img src="../brand/logos/iberdrola-logo-mono.svg" data-i18n-es-alt="Logotipo monocromo sobre fondo oscuro" data-i18n-en-alt="Mono logo on dark" alt="Mono logo on dark" style="height:56px;filter:brightness(0) invert(1)">
         </span>
-        <span class="ib-caption" style="color:#9fb8ac">Mono lockup on forest green (currentColor → white)</span>
+        <span class="ib-caption" style="color:#9fb8ac" data-i18n-es="Lockup monocromo sobre verde bosque (currentColor → blanco)" data-i18n-en="Mono lockup on forest green (currentColor → white)">Mono lockup on forest green (currentColor → white)</span>
       </div>
     </section>
 
     <!-- COLOR -->
     <section class="ds__sec" id="color">
-      <h2>Color</h2>
-      <p class="ds__lede">Green leads the brand. Deep forest green anchors high-impact bands and the footer; orange and blue are energetic accents; pastel tints segment sections softly.</p>
-      <h4 style="margin-bottom:var(--ib-space-3)">Brand green ramp</h4>
+      <h2 data-i18n-es="Color" data-i18n-en="Color">Color</h2>
+      <p class="ds__lede" data-i18n-es="El verde lidera la marca. El verde bosque intenso ancla las bandas de alto impacto y el pie de página; el naranja y el azul son acentos enérgicos; los tonos pastel segmentan las secciones de forma suave." data-i18n-en="Green leads the brand. Deep forest green anchors high-impact bands and the footer; orange and blue are energetic accents; pastel tints segment sections softly.">Green leads the brand. Deep forest green anchors high-impact bands and the footer; orange and blue are energetic accents; pastel tints segment sections softly.</p>
+      <h4 style="margin-bottom:var(--ib-space-3)" data-i18n-es="Escala de verde de marca" data-i18n-en="Brand green ramp">Brand green ramp</h4>
       <div class="swatches">
         <div class="sw"><div class="sw__chip" style="background:var(--ib-green-50)"></div><div class="sw__meta"><b>green-50</b><code>#EAF7EF</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-green-200)"></div><div class="sw__meta"><b>green-200</b><code>#A6DFBB</code></div></div>
@@ -131,14 +133,14 @@
         <div class="sw"><div class="sw__chip" style="background:var(--ib-green-700)"></div><div class="sw__meta"><b>green-700</b><code>#00823A</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-green-900)"></div><div class="sw__meta"><b>green-900</b><code>#004A2F</code></div></div>
       </div>
-      <h4 style="margin:var(--ib-space-5) 0 var(--ib-space-3)">Accents & semantic</h4>
+      <h4 style="margin:var(--ib-space-5) 0 var(--ib-space-3)" data-i18n-es="Acentos y semánticos" data-i18n-en="Accents & semantic">Accents & semantic</h4>
       <div class="swatches">
         <div class="sw"><div class="sw__chip" style="background:var(--ib-orange-500)"></div><div class="sw__meta"><b>orange-500</b><code>#FF9C1A</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-blue-500)"></div><div class="sw__meta"><b>blue-500</b><code>#0DA9FF</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-error)"></div><div class="sw__meta"><b>error</b><code>#D92D20</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-gradient-tricolor)"></div><div class="sw__meta"><b>tricolor</b><code>gradient</code></div></div>
       </div>
-      <h4 style="margin:var(--ib-space-5) 0 var(--ib-space-3)">Section tints</h4>
+      <h4 style="margin:var(--ib-space-5) 0 var(--ib-space-3)" data-i18n-es="Tonos de sección" data-i18n-en="Section tints">Section tints</h4>
       <div class="swatches">
         <div class="sw"><div class="sw__chip" style="background:var(--ib-tint-mint)"></div><div class="sw__meta"><b>mint</b><code>#E8F3EC</code></div></div>
         <div class="sw"><div class="sw__chip" style="background:var(--ib-tint-peach)"></div><div class="sw__meta"><b>peach</b><code>#FCEFE3</code></div></div>
@@ -149,24 +151,24 @@
 
     <!-- TYPOGRAPHY -->
     <section class="ds__sec" id="type">
-      <h2>Typography</h2>
-      <p class="ds__lede">Typeface is driven by <code>--ib-font-brand</code> (ships with <b>Figtree</b>; swap in the licensed Iberdrola font by adding one @font-face). Scale is fluid via <code>clamp()</code>.</p>
+      <h2 data-i18n-es="Tipografía" data-i18n-en="Typography">Typography</h2>
+      <p class="ds__lede" data-i18n-html data-i18n-es="La tipografía se define con <code>--ib-font-brand</code> (se distribuye con <b>Figtree</b>; sustitúyela por la fuente licenciada de Iberdrola añadiendo un @font-face). La escala es fluida mediante <code>clamp()</code>." data-i18n-en="Typeface is driven by <code>--ib-font-brand</code> (ships with <b>Figtree</b>; swap in the licensed Iberdrola font by adding one @font-face). Scale is fluid via <code>clamp()</code>.">Typeface is driven by <code>--ib-font-brand</code> (ships with <b>Figtree</b>; swap in the licensed Iberdrola font by adding one @font-face). Scale is fluid via <code>clamp()</code>.</p>
       <div class="demo">
-        <div class="type-row"><span class="tag">display</span><span class="ib-display">Energía para todos</span></div>
-        <div class="type-row"><span class="tag">h1</span><h1 style="margin:0">La energía que cuida de ti</h1></div>
-        <div class="type-row"><span class="tag">h2</span><h2 style="margin:0">Planes pensados para tu vida</h2></div>
-        <div class="type-row"><span class="tag">h3</span><h3 style="margin:0">Ventajas reales desde el día uno</h3></div>
-        <div class="type-row"><span class="tag">body-lg / lead</span><span class="ib-lead" style="margin:0">Contrata online y ahorra, sin permanencia.</span></div>
-        <div class="type-row"><span class="tag">body</span><span>Energía 100% renovable con garantía de origen.</span></div>
-        <div class="type-row"><span class="tag">body-sm</span><span class="ib-body-sm">Oferta válida hasta el 31 de julio de 2026.</span></div>
-        <div class="type-row"><span class="tag">overline</span><span class="ib-overline">Tu tarifa</span></div>
+        <div class="type-row"><span class="tag">display</span><span class="ib-display" data-i18n-es="Energía para todos" data-i18n-en="Energy for everyone">Energía para todos</span></div>
+        <div class="type-row"><span class="tag">h1</span><h1 style="margin:0" data-i18n-es="La energía que cuida de ti" data-i18n-en="The energy that cares for you">La energía que cuida de ti</h1></div>
+        <div class="type-row"><span class="tag">h2</span><h2 style="margin:0" data-i18n-es="Planes pensados para tu vida" data-i18n-en="Plans designed for your life">Planes pensados para tu vida</h2></div>
+        <div class="type-row"><span class="tag">h3</span><h3 style="margin:0" data-i18n-es="Ventajas reales desde el día uno" data-i18n-en="Real advantages from day one">Ventajas reales desde el día uno</h3></div>
+        <div class="type-row"><span class="tag">body-lg / lead</span><span class="ib-lead" style="margin:0" data-i18n-es="Contrata online y ahorra, sin permanencia." data-i18n-en="Sign up online and save, with no lock-in.">Contrata online y ahorra, sin permanencia.</span></div>
+        <div class="type-row"><span class="tag">body</span><span data-i18n-es="Energía 100% renovable con garantía de origen." data-i18n-en="100% renewable energy with a guarantee of origin.">Energía 100% renovable con garantía de origen.</span></div>
+        <div class="type-row"><span class="tag">body-sm</span><span class="ib-body-sm" data-i18n-es="Oferta válida hasta el 31 de julio de 2026." data-i18n-en="Offer valid until 31 July 2026.">Oferta válida hasta el 31 de julio de 2026.</span></div>
+        <div class="type-row"><span class="tag">overline</span><span class="ib-overline" data-i18n-es="Tu tarifa" data-i18n-en="Your plan">Tu tarifa</span></div>
       </div>
     </section>
 
     <!-- SPACING -->
     <section class="ds__sec" id="space">
-      <h2>Spacing &amp; layout</h2>
-      <p class="ds__lede">4px base scale (<code>--ib-space-1</code> … <code>--ib-space-10</code>). Container max 1280px, fluid gutters, 12-col responsive grid helpers (<code>.ib-grid-2/3/4/auto</code>).</p>
+      <h2 data-i18n-es="Espaciado y maquetación" data-i18n-en="Spacing & layout">Spacing &amp; layout</h2>
+      <p class="ds__lede" data-i18n-html data-i18n-es="Escala base de 4px (<code>--ib-space-1</code> … <code>--ib-space-10</code>). Contenedor de máximo 1280px, márgenes fluidos y utilidades de rejilla responsive de 12 columnas (<code>.ib-grid-2/3/4/auto</code>)." data-i18n-en="4px base scale (<code>--ib-space-1</code> … <code>--ib-space-10</code>). Container max 1280px, fluid gutters, 12-col responsive grid helpers (<code>.ib-grid-2/3/4/auto</code>).">4px base scale (<code>--ib-space-1</code> … <code>--ib-space-10</code>). Container max 1280px, fluid gutters, 12-col responsive grid helpers (<code>.ib-grid-2/3/4/auto</code>).</p>
       <div class="demo">
         <div class="scale-row"><span class="tag">space-1</span><div class="scale-bar" style="width:4px"></div><span class="ib-caption">4px</span></div>
         <div class="scale-row"><span class="tag">space-2</span><div class="scale-bar" style="width:8px"></div><span class="ib-caption">8px</span></div>
@@ -180,7 +182,7 @@
 
     <!-- RADIUS + SHADOW -->
     <section class="ds__sec" id="radius">
-      <h2>Radius &amp; shadow</h2>
+      <h2 data-i18n-es="Radio y sombra" data-i18n-en="Radius & shadow">Radius &amp; shadow</h2>
       <div class="demo radius-demo">
         <div style="border-radius:var(--ib-radius-sm)">sm 8</div>
         <div style="border-radius:var(--ib-radius-md)">md 12</div>
@@ -198,117 +200,117 @@
 
     <!-- MOTION -->
     <section class="ds__sec" id="motion">
-      <h2>Motion</h2>
-      <p class="ds__lede">Durations 150 / 250 / 400 / 700ms and four easings incl. a spring. Full guidance in <code>animations/motion.md</code>; runnable demos in <code>animations/examples/</code>.</p>
+      <h2 data-i18n-es="Movimiento" data-i18n-en="Motion">Motion</h2>
+      <p class="ds__lede" data-i18n-html data-i18n-es="Duraciones de 150 / 250 / 400 / 700ms y cuatro curvas de aceleración, incluida una tipo muelle. Guía completa en <code>animations/motion.md</code>; demos ejecutables en <code>animations/examples/</code>." data-i18n-en="Durations 150 / 250 / 400 / 700ms and four easings incl. a spring. Full guidance in <code>animations/motion.md</code>; runnable demos in <code>animations/examples/</code>.">Durations 150 / 250 / 400 / 700ms and four easings incl. a spring. Full guidance in <code>animations/motion.md</code>; runnable demos in <code>animations/examples/</code>.</p>
       <div class="demo"><hr class="ib-energy-line" style="width:100%"></div>
     </section>
 
     <!-- BUTTONS -->
     <section class="ds__sec" id="buttons">
-      <h2>Buttons</h2>
+      <h2 data-i18n-es="Botones" data-i18n-en="Buttons">Buttons</h2>
       <div class="demo ib-cluster">
-        <button class="ib-btn">Primary</button>
-        <button class="ib-btn ib-btn--accent">Accent</button>
-        <button class="ib-btn ib-btn--outline">Outline</button>
-        <button class="ib-btn ib-btn--ghost">Ghost</button>
-        <a class="ib-btn ib-btn--link" href="#buttons">Link →</a>
-        <button class="ib-btn" disabled>Disabled</button>
+        <button class="ib-btn" data-i18n-es="Primario" data-i18n-en="Primary">Primary</button>
+        <button class="ib-btn ib-btn--accent" data-i18n-es="Acento" data-i18n-en="Accent">Accent</button>
+        <button class="ib-btn ib-btn--outline" data-i18n-es="Contorno" data-i18n-en="Outline">Outline</button>
+        <button class="ib-btn ib-btn--ghost" data-i18n-es="Fantasma" data-i18n-en="Ghost">Ghost</button>
+        <a class="ib-btn ib-btn--link" href="#buttons" data-i18n-es="Enlace →" data-i18n-en="Link →">Link →</a>
+        <button class="ib-btn" disabled data-i18n-es="Deshabilitado" data-i18n-en="Disabled">Disabled</button>
       </div>
-      <div class="demo ib-cluster"><button class="ib-btn ib-btn--sm">Small</button><button class="ib-btn">Base</button><button class="ib-btn ib-btn--lg">Large</button></div>
-      <div class="demo demo--dark ib-cluster"><button class="ib-btn ib-btn--on-dark">On dark</button><button class="ib-btn ib-btn--on-dark-outline">On dark outline</button></div>
+      <div class="demo ib-cluster"><button class="ib-btn ib-btn--sm" data-i18n-es="Pequeño" data-i18n-en="Small">Small</button><button class="ib-btn" data-i18n-es="Base" data-i18n-en="Base">Base</button><button class="ib-btn ib-btn--lg" data-i18n-es="Grande" data-i18n-en="Large">Large</button></div>
+      <div class="demo demo--dark ib-cluster"><button class="ib-btn ib-btn--on-dark" data-i18n-es="Sobre oscuro" data-i18n-en="On dark">On dark</button><button class="ib-btn ib-btn--on-dark-outline" data-i18n-es="Contorno sobre oscuro" data-i18n-en="On dark outline">On dark outline</button></div>
       <pre class="snip"><code>&lt;button class="ib-btn"&gt;Primary&lt;/button&gt;
 &lt;button class="ib-btn ib-btn--accent ib-btn--lg"&gt;Accent large&lt;/button&gt;</code></pre>
     </section>
 
     <!-- BADGES -->
     <section class="ds__sec" id="badges">
-      <h2>Badges &amp; chips</h2>
+      <h2 data-i18n-es="Etiquetas y chips" data-i18n-en="Badges & chips">Badges &amp; chips</h2>
       <div class="demo ib-cluster">
-        <span class="ib-badge">Default</span><span class="ib-badge ib-badge--solid">Solid</span>
-        <span class="ib-badge ib-badge--accent">Accent</span><span class="ib-badge ib-badge--info">Info</span>
-        <span class="ib-badge ib-badge--neutral">Neutral</span><span class="ib-badge ib-badge--outline">Outline</span>
-        <button class="ib-chip">Filter chip</button><button class="ib-chip" aria-pressed="true">Selected</button>
+        <span class="ib-badge" data-i18n-es="Predeterminada" data-i18n-en="Default">Default</span><span class="ib-badge ib-badge--solid" data-i18n-es="Sólida" data-i18n-en="Solid">Solid</span>
+        <span class="ib-badge ib-badge--accent" data-i18n-es="Acento" data-i18n-en="Accent">Accent</span><span class="ib-badge ib-badge--info" data-i18n-es="Info" data-i18n-en="Info">Info</span>
+        <span class="ib-badge ib-badge--neutral" data-i18n-es="Neutra" data-i18n-en="Neutral">Neutral</span><span class="ib-badge ib-badge--outline" data-i18n-es="Contorno" data-i18n-en="Outline">Outline</span>
+        <button class="ib-chip" data-i18n-es="Chip de filtro" data-i18n-en="Filter chip">Filter chip</button><button class="ib-chip" aria-pressed="true" data-i18n-es="Seleccionado" data-i18n-en="Selected">Selected</button>
       </div>
     </section>
 
     <!-- CARDS -->
     <section class="ds__sec" id="cards">
-      <h2>Cards</h2>
+      <h2 data-i18n-es="Tarjetas" data-i18n-en="Cards">Cards</h2>
       <div class="demo ib-grid ib-grid-3">
-        <article class="ib-card ib-feature ib-card--hover"><div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4 class="ib-card__title">Feature card</h4><p class="ib-card__text">Icon + heading + text. Hover to lift.</p></article>
-        <article class="ib-segment ib-segment--peach"><div class="ib-segment__body"><h4>Segment card</h4><p class="ib-body-sm">Pastel audience block.</p><p class="ib-segment__meta">30–45 años</p></div></article>
-        <article class="ib-card ib-plan ib-plan--featured"><span class="ib-plan__flag ib-badge ib-badge--solid">Popular</span><h4 class="ib-plan__name">Plan card</h4><div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh</span></div><ul class="ib-plan__features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde</li></ul><a class="ib-btn ib-btn--block" href="#cards">Contratar</a></article>
+        <article class="ib-card ib-feature ib-card--hover"><div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4 class="ib-card__title" data-i18n-es="Tarjeta de característica" data-i18n-en="Feature card">Feature card</h4><p class="ib-card__text" data-i18n-es="Icono + título + texto. Pasa el cursor para elevarla." data-i18n-en="Icon + heading + text. Hover to lift.">Icon + heading + text. Hover to lift.</p></article>
+        <article class="ib-segment ib-segment--peach"><div class="ib-segment__body"><h4 data-i18n-es="Tarjeta de segmento" data-i18n-en="Segment card">Segment card</h4><p class="ib-body-sm" data-i18n-es="Bloque de audiencia en tono pastel." data-i18n-en="Pastel audience block.">Pastel audience block.</p><p class="ib-segment__meta" data-i18n-es="30–45 años" data-i18n-en="Ages 30–45">30–45 años</p></div></article>
+        <article class="ib-card ib-plan ib-plan--featured"><span class="ib-plan__flag ib-badge ib-badge--solid" data-i18n-es="Popular" data-i18n-en="Popular">Popular</span><h4 class="ib-plan__name" data-i18n-es="Tarjeta de plan" data-i18n-en="Plan card">Plan card</h4><div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh</span></div><ul class="ib-plan__features"><li data-i18n-html data-i18n-es='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia' data-i18n-en='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> No lock-in'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li><li data-i18n-html data-i18n-es='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde' data-i18n-en='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% green'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde</li></ul><a class="ib-btn ib-btn--block" href="#cards" data-i18n-es="Contratar" data-i18n-en="Sign up">Contratar</a></article>
       </div>
     </section>
 
     <!-- STATS -->
     <section class="ds__sec" id="stats">
-      <h2>Stats</h2>
+      <h2 data-i18n-es="Cifras" data-i18n-en="Stats">Stats</h2>
       <div class="demo ib-grid ib-grid-3">
-        <div class="ib-stat"><div class="ib-stat__value">125</div><div class="ib-stat__label">años de experiencia</div></div>
-        <div class="ib-stat"><div class="ib-stat__value">+11M</div><div class="ib-stat__label">de contratos</div></div>
-        <div class="ib-stat"><div class="ib-stat__value">Nº1</div><div class="ib-stat__label">del mercado español</div></div>
+        <div class="ib-stat"><div class="ib-stat__value">125</div><div class="ib-stat__label" data-i18n-es="años de experiencia" data-i18n-en="years of experience">años de experiencia</div></div>
+        <div class="ib-stat"><div class="ib-stat__value">+11M</div><div class="ib-stat__label" data-i18n-es="de contratos" data-i18n-en="contracts">de contratos</div></div>
+        <div class="ib-stat"><div class="ib-stat__value">Nº1</div><div class="ib-stat__label" data-i18n-es="del mercado español" data-i18n-en="in the Spanish market">del mercado español</div></div>
       </div>
     </section>
 
     <!-- FORMS -->
     <section class="ds__sec" id="forms">
-      <h2>Forms</h2>
+      <h2 data-i18n-es="Formularios" data-i18n-en="Forms">Forms</h2>
       <div class="demo ib-grid ib-grid-2">
-        <div class="ib-field"><label class="ib-label" for="d-name">Nombre</label><input class="ib-input" id="d-name" placeholder="Tu nombre"></div>
-        <div class="ib-field"><label class="ib-label" for="d-sel">Plan</label><select class="ib-select" id="d-sel"><option>Plan Online</option><option>Plan Estable</option></select></div>
-        <div class="ib-field ib-field--error"><label class="ib-label" for="d-mail">Email</label><input class="ib-input" id="d-mail" value="no-valido" ><span class="ib-field__hint">Introduce un email válido.</span></div>
-        <div class="ib-stack-4"><label class="ib-check"><input type="checkbox" checked> Acepto las condiciones</label><label class="ib-toggle"><input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos</label></div>
+        <div class="ib-field"><label class="ib-label" for="d-name" data-i18n-es="Nombre" data-i18n-en="Name">Nombre</label><input class="ib-input" id="d-name" placeholder="Tu nombre" data-i18n-es-placeholder="Tu nombre" data-i18n-en-placeholder="Your name"></div>
+        <div class="ib-field"><label class="ib-label" for="d-sel" data-i18n-es="Plan" data-i18n-en="Plan">Plan</label><select class="ib-select" id="d-sel"><option data-i18n-es="Plan Online" data-i18n-en="Online Plan">Plan Online</option><option data-i18n-es="Plan Estable" data-i18n-en="Stable Plan">Plan Estable</option></select></div>
+        <div class="ib-field ib-field--error"><label class="ib-label" for="d-mail" data-i18n-es="Email" data-i18n-en="Email">Email</label><input class="ib-input" id="d-mail" value="no-valido" ><span class="ib-field__hint" data-i18n-es="Introduce un email válido." data-i18n-en="Enter a valid email.">Introduce un email válido.</span></div>
+        <div class="ib-stack-4"><label class="ib-check" data-i18n-html data-i18n-es='<input type="checkbox" checked> Acepto las condiciones' data-i18n-en='<input type="checkbox" checked> I accept the terms'><input type="checkbox" checked> Acepto las condiciones</label><label class="ib-toggle" data-i18n-html data-i18n-es='<input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos' data-i18n-en='<input type="checkbox" checked><span class="ib-toggle__track"></span> Include taxes'><input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos</label></div>
       </div>
     </section>
 
     <!-- TABS -->
     <section class="ds__sec" id="tabs">
-      <h2>Tabs</h2>
+      <h2 data-i18n-es="Pestañas" data-i18n-en="Tabs">Tabs</h2>
       <div class="demo" data-ib-tabs>
-        <ul class="ib-tabs__list" role="tablist" aria-label="Demo">
-          <li role="presentation"><button class="ib-tab" role="tab" id="dt1" aria-controls="dp1" aria-selected="true">Acompañamos</button></li>
-          <li role="presentation"><button class="ib-tab" role="tab" id="dt2" aria-controls="dp2" aria-selected="false" tabindex="-1">Visibilizamos</button></li>
-          <li role="presentation"><button class="ib-tab" role="tab" id="dt3" aria-controls="dp3" aria-selected="false" tabindex="-1">Impulsamos</button></li>
+        <ul class="ib-tabs__list" role="tablist" aria-label="Demo" data-i18n-es-aria-label="Demo" data-i18n-en-aria-label="Demo">
+          <li role="presentation"><button class="ib-tab" role="tab" id="dt1" aria-controls="dp1" aria-selected="true" data-i18n-es="Acompañamos" data-i18n-en="We support">Acompañamos</button></li>
+          <li role="presentation"><button class="ib-tab" role="tab" id="dt2" aria-controls="dp2" aria-selected="false" tabindex="-1" data-i18n-es="Visibilizamos" data-i18n-en="We give visibility">Visibilizamos</button></li>
+          <li role="presentation"><button class="ib-tab" role="tab" id="dt3" aria-controls="dp3" aria-selected="false" tabindex="-1" data-i18n-es="Impulsamos" data-i18n-en="We drive change">Impulsamos</button></li>
         </ul>
-        <div class="ib-tabs__panel" role="tabpanel" id="dp1" aria-labelledby="dt1">Acompañamos a las personas fomentando la igualdad.</div>
-        <div class="ib-tabs__panel" role="tabpanel" id="dp2" aria-labelledby="dt2" hidden>Visibilizamos el talento y las historias que inspiran.</div>
-        <div class="ib-tabs__panel" role="tabpanel" id="dp3" aria-labelledby="dt3" hidden>Impulsamos el cambio hacia una energía limpia.</div>
+        <div class="ib-tabs__panel" role="tabpanel" id="dp1" aria-labelledby="dt1" data-i18n-es="Acompañamos a las personas fomentando la igualdad." data-i18n-en="We support people by promoting equality.">Acompañamos a las personas fomentando la igualdad.</div>
+        <div class="ib-tabs__panel" role="tabpanel" id="dp2" aria-labelledby="dt2" hidden data-i18n-es="Visibilizamos el talento y las historias que inspiran." data-i18n-en="We give visibility to talent and inspiring stories.">Visibilizamos el talento y las historias que inspiran.</div>
+        <div class="ib-tabs__panel" role="tabpanel" id="dp3" aria-labelledby="dt3" hidden data-i18n-es="Impulsamos el cambio hacia una energía limpia." data-i18n-en="We drive change towards clean energy.">Impulsamos el cambio hacia una energía limpia.</div>
       </div>
     </section>
 
     <!-- ACCORDION -->
     <section class="ds__sec" id="accordion">
-      <h2>Accordion</h2>
+      <h2 data-i18n-es="Acordeón" data-i18n-en="Accordion">Accordion</h2>
       <div class="demo">
         <div class="ib-accordion" data-ib-accordion="single">
-          <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="true" aria-controls="dacc1">¿Puedo contratar 100% online?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="dacc1">Sí, en pocos minutos y sin papeleo.</div></div>
-          <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="dacc2">¿Hay permanencia?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="dacc2" hidden>No. Puedes cambiar cuando quieras.</div></div>
+          <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="true" aria-controls="dacc1" data-i18n-html data-i18n-es='¿Puedo contratar 100% online?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' data-i18n-en='Can I sign up 100% online?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>'>¿Puedo contratar 100% online?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="dacc1" data-i18n-es="Sí, en pocos minutos y sin papeleo." data-i18n-en="Yes, in just a few minutes and with no paperwork.">Sí, en pocos minutos y sin papeleo.</div></div>
+          <div class="ib-accordion__item"><h3 style="margin:0"><button class="ib-accordion__trigger" aria-expanded="false" aria-controls="dacc2" data-i18n-html data-i18n-es='¿Hay permanencia?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' data-i18n-en='Is there a lock-in period?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>'>¿Hay permanencia?<svg class="ib-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></h3><div class="ib-accordion__panel" id="dacc2" hidden data-i18n-es="No. Puedes cambiar cuando quieras." data-i18n-en="No. You can switch whenever you like.">No. Puedes cambiar cuando quieras.</div></div>
         </div>
       </div>
     </section>
 
     <!-- REVIEWS -->
     <section class="ds__sec" id="reviews">
-      <h2>Ratings &amp; reviews</h2>
+      <h2 data-i18n-es="Valoraciones y reseñas" data-i18n-en="Ratings & reviews">Ratings &amp; reviews</h2>
       <div class="demo ib-grid ib-grid-3">
-        <article class="ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María G.</div><div class="ib-review__date">1 jul 2026</div></div></article>
-        <article class="ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Buen trato y buen precio."</p><div class="ib-review__meta"><div class="ib-review__author">Borja L.</div><div class="ib-review__date">29 jun 2026</div></div></article>
-        <article class="ib-card ib-review"><span class="ib-rating">★★★★☆</span><p class="ib-review__text">"Fácil de gestionar desde la app."</p><div class="ib-review__meta"><div class="ib-review__author">Isabel R.</div><div class="ib-review__date">28 jun 2026</div></div></article>
+        <article class="ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text" data-i18n-es="&quot;Todo muy rápido y sencillo.&quot;" data-i18n-en="&quot;Everything was quick and simple.&quot;">"Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María G.</div><div class="ib-review__date" data-i18n-es="1 jul 2026" data-i18n-en="1 Jul 2026">1 jul 2026</div></div></article>
+        <article class="ib-card ib-review"><span class="ib-rating">★★★★★</span><p class="ib-review__text" data-i18n-es="&quot;Buen trato y buen precio.&quot;" data-i18n-en="&quot;Great service and a great price.&quot;">"Buen trato y buen precio."</p><div class="ib-review__meta"><div class="ib-review__author">Borja L.</div><div class="ib-review__date" data-i18n-es="29 jun 2026" data-i18n-en="29 Jun 2026">29 jun 2026</div></div></article>
+        <article class="ib-card ib-review"><span class="ib-rating">★★★★☆</span><p class="ib-review__text" data-i18n-es="&quot;Fácil de gestionar desde la app.&quot;" data-i18n-en="&quot;Easy to manage from the app.&quot;">"Fácil de gestionar desde la app."</p><div class="ib-review__meta"><div class="ib-review__author">Isabel R.</div><div class="ib-review__date" data-i18n-es="28 jun 2026" data-i18n-en="28 Jun 2026">28 jun 2026</div></div></article>
       </div>
     </section>
 
     <!-- TABLE -->
     <section class="ds__sec" id="table">
-      <h2>Comparison table</h2>
+      <h2 data-i18n-es="Tabla comparativa" data-i18n-en="Comparison table">Comparison table</h2>
       <div class="demo" style="padding:0;background:none;border:none">
         <div class="ib-table-wrap">
           <table class="ib-table">
-            <thead><tr><th>Ventaja</th><th>Plan Online</th><th>Plan Estable</th></tr></thead>
+            <thead><tr><th data-i18n-es="Ventaja" data-i18n-en="Advantage">Ventaja</th><th data-i18n-es="Plan Online" data-i18n-en="Online Plan">Plan Online</th><th data-i18n-es="Plan Estable" data-i18n-en="Stable Plan">Plan Estable</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Sin permanencia</th><td>Sí</td><td>Sí</td></tr>
-              <tr><th scope="row">Precio estable</th><td>12 meses</td><td>Garantizado</td></tr>
-              <tr><th scope="row">Energía verde</th><td>100%</td><td>100%</td></tr>
+              <tr><th scope="row" data-i18n-es="Sin permanencia" data-i18n-en="No lock-in">Sin permanencia</th><td data-i18n-es="Sí" data-i18n-en="Yes">Sí</td><td data-i18n-es="Sí" data-i18n-en="Yes">Sí</td></tr>
+              <tr><th scope="row" data-i18n-es="Precio estable" data-i18n-en="Stable price">Precio estable</th><td data-i18n-es="12 meses" data-i18n-en="12 months">12 meses</td><td data-i18n-es="Garantizado" data-i18n-en="Guaranteed">Garantizado</td></tr>
+              <tr><th scope="row" data-i18n-es="Energía verde" data-i18n-en="Green energy">Energía verde</th><td>100%</td><td>100%</td></tr>
             </tbody>
           </table>
         </div>
@@ -317,42 +319,42 @@
 
     <!-- ALERTS -->
     <section class="ds__sec" id="alerts">
-      <h2>Alerts</h2>
+      <h2 data-i18n-es="Alertas" data-i18n-en="Alerts">Alerts</h2>
       <div class="demo ib-stack-3">
-        <div class="ib-alert">Energía 100% renovable con garantía de origen.</div>
-        <div class="ib-alert ib-alert--info">Tu factura de julio ya está disponible.</div>
-        <div class="ib-alert ib-alert--warning">Tu plan cambiará de precio en 30 días.</div>
-        <div class="ib-alert ib-alert--error">No hemos podido procesar el pago.</div>
+        <div class="ib-alert" data-i18n-es="Energía 100% renovable con garantía de origen." data-i18n-en="100% renewable energy with a guarantee of origin.">Energía 100% renovable con garantía de origen.</div>
+        <div class="ib-alert ib-alert--info" data-i18n-es="Tu factura de julio ya está disponible." data-i18n-en="Your July bill is now available.">Tu factura de julio ya está disponible.</div>
+        <div class="ib-alert ib-alert--warning" data-i18n-es="Tu plan cambiará de precio en 30 días." data-i18n-en="Your plan price will change in 30 days.">Tu plan cambiará de precio en 30 días.</div>
+        <div class="ib-alert ib-alert--error" data-i18n-es="No hemos podido procesar el pago." data-i18n-en="We couldn't process the payment.">No hemos podido procesar el pago.</div>
       </div>
     </section>
 
     <!-- NAV -->
     <section class="ds__sec" id="nav">
-      <h2>Navigation &amp; footer</h2>
-      <p class="ds__lede">Full header (utility bar + main nav + mobile toggle), breadcrumbs, and the multi-column footer are demonstrated live in the website templates below.</p>
+      <h2 data-i18n-es="Navegación y pie de página" data-i18n-en="Navigation & footer">Navigation &amp; footer</h2>
+      <p class="ds__lede" data-i18n-es="La cabecera completa (barra de utilidades + navegación principal + menú móvil), las migas de pan y el pie de página multicolumna se muestran en vivo en las plantillas de web más abajo." data-i18n-en="Full header (utility bar + main nav + mobile toggle), breadcrumbs, and the multi-column footer are demonstrated live in the website templates below.">Full header (utility bar + main nav + mobile toggle), breadcrumbs, and the multi-column footer are demonstrated live in the website templates below.</p>
       <div class="demo">
-        <ol class="ib-breadcrumb"><li><a href="#">Inicio</a></li><li><a href="#">Negocios</a></li><li aria-current="page">Eficiencia</li></ol>
+        <ol class="ib-breadcrumb"><li><a href="#" data-i18n-es="Inicio" data-i18n-en="Home">Inicio</a></li><li><a href="#" data-i18n-es="Negocios" data-i18n-en="Business">Negocios</a></li><li aria-current="page" data-i18n-es="Eficiencia" data-i18n-en="Efficiency">Eficiencia</li></ol>
       </div>
     </section>
 
     <!-- TEMPLATES -->
     <section class="ds__sec" id="templates">
-      <h2>Templates</h2>
-      <p class="ds__lede">Ready-to-use, on-brand starting points for every channel. Open each in a browser.</p>
+      <h2 data-i18n-es="Plantillas" data-i18n-en="Templates">Templates</h2>
+      <p class="ds__lede" data-i18n-es="Puntos de partida listos para usar y fieles a la marca para cada canal. Abre cada uno en el navegador." data-i18n-en="Ready-to-use, on-brand starting points for every channel. Open each in a browser.">Ready-to-use, on-brand starting points for every channel. Open each in a browser.</p>
       <div class="tpl-grid">
-        <a class="tpl" href="../templates/landing-page/index.html"><div class="tpl__thumb">Landing</div><div class="tpl__label">Landing page<small>Hero, plans, reviews, FAQ</small></div></a>
-        <a class="tpl" href="../templates/website/index.html"><div class="tpl__thumb">Website</div><div class="tpl__label">Website home<small>Corporate home</small></div></a>
-        <a class="tpl" href="../templates/website/interior.html"><div class="tpl__thumb">Interior</div><div class="tpl__label">Interior page<small>Breadcrumbs, tabs, form</small></div></a>
-        <a class="tpl" href="../templates/presentation/index.html"><div class="tpl__thumb">Slides</div><div class="tpl__label">Presentation<small>16:9 deck master</small></div></a>
-        <a class="tpl" href="../templates/email/newsletter.html"><div class="tpl__thumb">Email</div><div class="tpl__label">Emails<small>Newsletter · promo · txn</small></div></a>
-        <a class="tpl" href="../templates/banner/index.html"><div class="tpl__thumb">Banners</div><div class="tpl__label">Banners<small>IAB display + social</small></div></a>
-        <a class="tpl" href="../templates/app/index.html"><div class="tpl__thumb">App</div><div class="tpl__label">App screens<small>Mobile UI set</small></div></a>
-        <a class="tpl" href="../animations/examples/index.html"><div class="tpl__thumb">Motion</div><div class="tpl__label">Animations<small>Micro-interactions</small></div></a>
+        <a class="tpl" href="../templates/landing-page/index.html"><div class="tpl__thumb" data-i18n-es="Landing" data-i18n-en="Landing">Landing</div><div class="tpl__label" data-i18n-html data-i18n-es="Página de aterrizaje<small>Hero, planes, reseñas, FAQ</small>" data-i18n-en="Landing page<small>Hero, plans, reviews, FAQ</small>">Landing page<small>Hero, plans, reviews, FAQ</small></div></a>
+        <a class="tpl" href="../templates/website/index.html"><div class="tpl__thumb" data-i18n-es="Web" data-i18n-en="Website">Website</div><div class="tpl__label" data-i18n-html data-i18n-es="Home de la web<small>Home corporativa</small>" data-i18n-en="Website home<small>Corporate home</small>">Website home<small>Corporate home</small></div></a>
+        <a class="tpl" href="../templates/website/interior.html"><div class="tpl__thumb" data-i18n-es="Interior" data-i18n-en="Interior">Interior</div><div class="tpl__label" data-i18n-html data-i18n-es="Página interior<small>Migas de pan, pestañas, formulario</small>" data-i18n-en="Interior page<small>Breadcrumbs, tabs, form</small>">Interior page<small>Breadcrumbs, tabs, form</small></div></a>
+        <a class="tpl" href="../templates/presentation/index.html"><div class="tpl__thumb" data-i18n-es="Diapositivas" data-i18n-en="Slides">Slides</div><div class="tpl__label" data-i18n-html data-i18n-es="Presentación<small>Plantilla de deck 16:9</small>" data-i18n-en="Presentation<small>16:9 deck master</small>">Presentation<small>16:9 deck master</small></div></a>
+        <a class="tpl" href="../templates/email/newsletter.html"><div class="tpl__thumb" data-i18n-es="Email" data-i18n-en="Email">Email</div><div class="tpl__label" data-i18n-html data-i18n-es="Correos<small>Newsletter · promo · transaccional</small>" data-i18n-en="Emails<small>Newsletter · promo · txn</small>">Emails<small>Newsletter · promo · txn</small></div></a>
+        <a class="tpl" href="../templates/banner/index.html"><div class="tpl__thumb" data-i18n-es="Banners" data-i18n-en="Banners">Banners</div><div class="tpl__label" data-i18n-html data-i18n-es="Banners<small>Display IAB + social</small>" data-i18n-en="Banners<small>IAB display + social</small>">Banners<small>IAB display + social</small></div></a>
+        <a class="tpl" href="../templates/app/index.html"><div class="tpl__thumb" data-i18n-es="App" data-i18n-en="App">App</div><div class="tpl__label" data-i18n-html data-i18n-es="Pantallas de app<small>Set de UI móvil</small>" data-i18n-en="App screens<small>Mobile UI set</small>">App screens<small>Mobile UI set</small></div></a>
+        <a class="tpl" href="../animations/examples/index.html"><div class="tpl__thumb" data-i18n-es="Movimiento" data-i18n-en="Motion">Motion</div><div class="tpl__label" data-i18n-html data-i18n-es="Animaciones<small>Microinteracciones</small>" data-i18n-en="Animations<small>Micro-interactions</small>">Animations<small>Micro-interactions</small></div></a>
       </div>
     </section>
 
     <hr class="ib-energy-line" style="margin-block:var(--ib-space-8) var(--ib-space-5)">
-    <p class="ib-caption">Iberdrola Design System · Token source of truth: <code>tokens/tokens.json</code> · Ships with Figtree as a substitute for the licensed brand typeface.</p>
+    <p class="ib-caption" data-i18n-html data-i18n-es="Sistema de Diseño de Iberdrola · Fuente de verdad de los tokens: <code>tokens/tokens.json</code> · Se distribuye con Figtree como sustituto de la tipografía de marca licenciada." data-i18n-en="Iberdrola Design System · Token source of truth: <code>tokens/tokens.json</code> · Ships with Figtree as a substitute for the licensed brand typeface.">Iberdrola Design System · Token source of truth: <code>tokens/tokens.json</code> · Ships with Figtree as a substitute for the licensed brand typeface.</p>
   </main>
 </div>
 

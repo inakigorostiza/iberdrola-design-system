@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iberdrola Design System — Showcase</title>
-<meta name="description" content="One brand system for every channel — the full Iberdrola Design System showcase.">
+<title data-i18n-es="Iberdrola Design System — Showcase" data-i18n-en="Iberdrola Design System — Showcase">Iberdrola Design System — Showcase</title>
+<meta name="description" data-i18n-es-content="Un solo sistema de marca para cada canal: el showcase completo del Iberdrola Design System." data-i18n-en-content="One brand system for every channel — the full Iberdrola Design System showcase." content="One brand system for every channel — the full Iberdrola Design System showcase.">
 <link rel="icon" href="brand/logos/iberdrola-icon.svg">
 <link rel="stylesheet" href="css/iberdrola.css">
 <script src="js/analytics.js"></script>
+<script src="js/i18n.js"></script>
 <style>
   /* ---- Showcase-local layout ---- */
   .sc-header {
@@ -71,13 +72,14 @@
     <nav class="ib-nav" aria-label="Showcase">
       <a class="ib-nav__logo" href="index.html" aria-label="Iberdrola Design System"><img src="brand/logos/iberdrola-logo-full.svg" alt="Iberdrola" style="height:38px"></a>
       <ul class="ib-nav__menu" id="sc-menu">
-        <li><a class="ib-nav__link" href="#foundations">Foundations</a></li>
-        <li><a class="ib-nav__link" href="#components">Components</a></li>
-        <li><a class="ib-nav__link" href="#templates">Templates</a></li>
+        <li><a class="ib-nav__link" href="#foundations" data-i18n-es="Fundamentos" data-i18n-en="Foundations">Foundations</a></li>
+        <li><a class="ib-nav__link" href="#components" data-i18n-es="Componentes" data-i18n-en="Components">Components</a></li>
+        <li><a class="ib-nav__link" href="#templates" data-i18n-es="Plantillas" data-i18n-en="Templates">Templates</a></li>
       </ul>
       <div class="ib-nav__actions">
-        <a class="ib-btn ib-btn--sm" href="docs/index.html">Open style guide →</a>
-        <button class="ib-nav__toggle" data-ib-nav-toggle aria-controls="sc-menu" aria-expanded="false" aria-label="Menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+        <span class="ib-lang"><button type="button" data-set-lang="es">ES</button><button type="button" data-set-lang="en">EN</button></span>
+        <a class="ib-btn ib-btn--sm" href="docs/index.html" data-i18n-es="Abrir la guía de estilo →" data-i18n-en="Open style guide →">Open style guide →</a>
+        <button class="ib-nav__toggle" data-ib-nav-toggle aria-controls="sc-menu" aria-expanded="false" aria-label="Menu" data-i18n-es-aria-label="Menú" data-i18n-en-aria-label="Menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
       </div>
     </nav>
   </div>
@@ -89,15 +91,15 @@
     <div class="sc-flames" data-ib-reveal>
       <img src="brand/logos/iberdrola-icon.svg" alt="">
     </div>
-    <span class="ib-badge ib-badge--solid" data-ib-reveal>125 · Design System</span>
-    <h1 data-ib-reveal data-ib-delay="1" style="margin-block:var(--ib-space-4)">One brand.<br>Every channel.</h1>
-    <p class="lead" data-ib-reveal data-ib-delay="2">The complete Iberdrola Design System — design tokens, a framework-agnostic component library, and ready-to-use templates for websites, apps, presentations, emails, banners and animations.</p>
+    <span class="ib-badge ib-badge--solid" data-ib-reveal data-i18n-es="125 · Design System" data-i18n-en="125 · Design System">125 · Design System</span>
+    <h1 data-ib-reveal data-ib-delay="1" style="margin-block:var(--ib-space-4)" data-i18n-html data-i18n-es="Una marca.<br>Todos los canales." data-i18n-en="One brand.<br>Every channel.">One brand.<br>Every channel.</h1>
+    <p class="lead" data-ib-reveal data-ib-delay="2" data-i18n-es="El Iberdrola Design System al completo: design tokens, una biblioteca de componentes agnóstica de framework y plantillas listas para usar en webs, apps, presentaciones, emails, banners y animaciones." data-i18n-en="The complete Iberdrola Design System — design tokens, a framework-agnostic component library, and ready-to-use templates for websites, apps, presentations, emails, banners and animations.">The complete Iberdrola Design System — design tokens, a framework-agnostic component library, and ready-to-use templates for websites, apps, presentations, emails, banners and animations.</p>
     <div class="ib-cluster" style="justify-content:center;margin-top:var(--ib-space-6)" data-ib-reveal data-ib-delay="3">
-      <a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html">Explore the style guide</a>
-      <a class="ib-btn ib-btn--on-dark-outline ib-btn--lg" href="#templates">See the templates ↓</a>
+      <a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html" data-i18n-es="Explorar la guía de estilo" data-i18n-en="Explore the style guide">Explore the style guide</a>
+      <a class="ib-btn ib-btn--on-dark-outline ib-btn--lg" href="#templates" data-i18n-es="Ver las plantillas ↓" data-i18n-en="See the templates ↓">See the templates ↓</a>
     </div>
     <div class="sc-channels" data-ib-reveal data-ib-delay="3">
-      <span>Websites</span><span>Landing pages</span><span>Apps</span><span>Presentations</span><span>Emails</span><span>Banners</span><span>Animations</span>
+      <span data-i18n-es="Webs" data-i18n-en="Websites">Websites</span><span data-i18n-es="Landing pages" data-i18n-en="Landing pages">Landing pages</span><span data-i18n-es="Apps" data-i18n-en="Apps">Apps</span><span data-i18n-es="Presentaciones" data-i18n-en="Presentations">Presentations</span><span data-i18n-es="Emails" data-i18n-en="Emails">Emails</span><span data-i18n-es="Banners" data-i18n-en="Banners">Banners</span><span data-i18n-es="Animaciones" data-i18n-en="Animations">Animations</span>
     </div>
   </div>
 </section>
@@ -106,10 +108,10 @@
 <section class="ib-section" style="padding-block:var(--ib-space-7)">
   <div class="ib-container">
     <div class="sc-strip">
-      <div class="ib-stat" data-ib-reveal><div class="ib-stat__value">8</div><div class="ib-stat__label">channel templates</div></div>
-      <div class="ib-stat" data-ib-reveal data-ib-delay="1"><div class="ib-stat__value">25+</div><div class="ib-stat__label">components</div></div>
-      <div class="ib-stat" data-ib-reveal data-ib-delay="2"><div class="ib-stat__value">1</div><div class="ib-stat__label">import to use it all</div></div>
-      <div class="ib-stat" data-ib-reveal data-ib-delay="3"><div class="ib-stat__value">A11y</div><div class="ib-stat__label">WCAG-AA, themeable</div></div>
+      <div class="ib-stat" data-ib-reveal><div class="ib-stat__value">8</div><div class="ib-stat__label" data-i18n-es="plantillas por canal" data-i18n-en="channel templates">channel templates</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="1"><div class="ib-stat__value">25+</div><div class="ib-stat__label" data-i18n-es="componentes" data-i18n-en="components">components</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="2"><div class="ib-stat__value">1</div><div class="ib-stat__label" data-i18n-es="import para usarlo todo" data-i18n-en="import to use it all">import to use it all</div></div>
+      <div class="ib-stat" data-ib-reveal data-ib-delay="3"><div class="ib-stat__value">A11y</div><div class="ib-stat__label" data-i18n-es="WCAG-AA, con temas" data-i18n-en="WCAG-AA, themeable">WCAG-AA, themeable</div></div>
     </div>
   </div>
 </section>
@@ -117,12 +119,12 @@
 <!-- ============ FOUNDATIONS ============ -->
 <section class="ib-section ib-section--subtle" id="foundations">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Foundations</span><h2>Built on design tokens</h2><p class="ib-text-muted">Colour, type, spacing, radius, shadow and motion — one source of truth in <code>tokens/tokens.json</code>, mirrored to CSS variables.</p></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Fundamentos" data-i18n-en="Foundations">Foundations</span><h2 data-i18n-es="Construido sobre design tokens" data-i18n-en="Built on design tokens">Built on design tokens</h2><p class="ib-text-muted" data-i18n-html data-i18n-es="Color, tipografía, espaciado, radios, sombras y movimiento: una única fuente de verdad en <code>tokens/tokens.json</code>, reflejada en variables CSS." data-i18n-en="Colour, type, spacing, radius, shadow and motion — one source of truth in <code>tokens/tokens.json</code>, mirrored to CSS variables.">Colour, type, spacing, radius, shadow and motion — one source of truth in <code>tokens/tokens.json</code>, mirrored to CSS variables.</p></div>
     <div class="sc-featgrid">
       <!-- Colour -->
       <div class="ib-card" data-ib-reveal>
-        <h4 class="ib-card__title">Colour</h4>
-        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Green leads; forest anchors; orange & blue energise.</p>
+        <h4 class="ib-card__title" data-i18n-es="Color" data-i18n-en="Colour">Colour</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)" data-i18n-es="El verde lidera; el verde bosque ancla; el naranja y el azul aportan energía." data-i18n-en="Green leads; forest anchors; orange & blue energise.">Green leads; forest anchors; orange & blue energise.</p>
         <div class="ib-grid" style="grid-template-columns:repeat(4,1fr);gap:var(--ib-space-2)">
           <div class="sc-swatch" style="background:var(--ib-green-500)">500</div>
           <div class="sc-swatch" style="background:var(--ib-green-900)">900</div>
@@ -136,45 +138,45 @@
       </div>
       <!-- Type -->
       <div class="ib-card" data-ib-reveal data-ib-delay="1">
-        <h4 class="ib-card__title">Typography</h4>
-        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Humanist sans, fluid scale, swappable to the licensed font.</p>
+        <h4 class="ib-card__title" data-i18n-es="Tipografía" data-i18n-en="Typography">Typography</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)" data-i18n-es="Sans humanista, escala fluida, intercambiable por la fuente licenciada." data-i18n-en="Humanist sans, fluid scale, swappable to the licensed font.">Humanist sans, fluid scale, swappable to the licensed font.</p>
         <div class="ib-display" style="font-size:2.5rem;line-height:1">Aa</div>
-        <p class="ib-lead" style="margin-top:var(--ib-space-3)">Energía para todos</p>
-        <p class="ib-body-sm ib-text-muted">The quick brown fox 0123456789</p>
+        <p class="ib-lead" style="margin-top:var(--ib-space-3)" data-i18n-es="Energía para todos" data-i18n-en="Energía para todos">Energía para todos</p>
+        <p class="ib-body-sm ib-text-muted" data-i18n-es="El veloz murciélago hindú 0123456789" data-i18n-en="The quick brown fox 0123456789">The quick brown fox 0123456789</p>
       </div>
       <!-- Shape/motion -->
       <div class="ib-card" data-ib-reveal data-ib-delay="2">
-        <h4 class="ib-card__title">Shape &amp; motion</h4>
-        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)">Pill buttons, rounded cards, soft shadows, calm motion.</p>
+        <h4 class="ib-card__title" data-i18n-es="Forma y movimiento" data-i18n-en="Shape &amp; motion">Shape &amp; motion</h4>
+        <p class="ib-body-sm ib-text-muted" style="margin-bottom:var(--ib-space-4)" data-i18n-es="Botones tipo píldora, tarjetas redondeadas, sombras suaves y movimiento sereno." data-i18n-en="Pill buttons, rounded cards, soft shadows, calm motion.">Pill buttons, rounded cards, soft shadows, calm motion.</p>
         <div class="ib-cluster">
-          <button class="ib-btn ib-btn--sm">Primary</button>
-          <button class="ib-btn ib-btn--accent ib-btn--sm">Accent</button>
-          <button class="ib-btn ib-btn--outline ib-btn--sm">Outline</button>
+          <button class="ib-btn ib-btn--sm" data-i18n-es="Primario" data-i18n-en="Primary">Primary</button>
+          <button class="ib-btn ib-btn--accent ib-btn--sm" data-i18n-es="Acento" data-i18n-en="Accent">Accent</button>
+          <button class="ib-btn ib-btn--outline ib-btn--sm" data-i18n-es="Contorno" data-i18n-en="Outline">Outline</button>
         </div>
         <hr class="ib-energy-line" style="margin-top:var(--ib-space-5)">
       </div>
     </div>
-    <div class="ib-center-text" style="margin-top:var(--ib-space-6)"><a class="ib-btn ib-btn--ghost" href="docs/index.html#color">See all tokens in the style guide →</a></div>
+    <div class="ib-center-text" style="margin-top:var(--ib-space-6)"><a class="ib-btn ib-btn--ghost" href="docs/index.html#color" data-i18n-es="Ver todos los tokens en la guía de estilo →" data-i18n-en="See all tokens in the style guide →">See all tokens in the style guide →</a></div>
   </div>
 </section>
 
 <!-- ============ COMPONENTS ============ -->
 <section class="ib-section" id="components">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Components</span><h2>A library that speaks Iberdrola</h2><p class="ib-text-muted">Every element from the live site — buttons, cards, stats, forms, tabs, reviews, tables and more.</p></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Componentes" data-i18n-en="Components">Components</span><h2 data-i18n-es="Una biblioteca que habla Iberdrola" data-i18n-en="A library that speaks Iberdrola">A library that speaks Iberdrola</h2><p class="ib-text-muted" data-i18n-es="Todos los elementos del sitio real: botones, tarjetas, estadísticas, formularios, pestañas, reseñas, tablas y mucho más." data-i18n-en="Every element from the live site — buttons, cards, stats, forms, tabs, reviews, tables and more.">Every element from the live site — buttons, cards, stats, forms, tabs, reviews, tables and more.</p></div>
     <div class="ib-grid ib-grid-3">
-      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal><div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4 class="ib-card__title">Feature cards</h4><p class="ib-card__text">Icon + heading + copy, with hover lift.</p></article>
-      <article class="ib-card ib-plan ib-plan--featured" data-ib-reveal data-ib-delay="1"><span class="ib-plan__flag ib-badge ib-badge--solid">Popular</span><h4 class="ib-plan__name">Plan card</h4><div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh</span></div><ul class="ib-plan__features"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde</li></ul></article>
-      <article class="ib-card ib-review" data-ib-reveal data-ib-delay="2"><span class="ib-rating">★★★★★</span><p class="ib-review__text">"Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María G.</div><div class="ib-review__date">1 jul 2026</div></div></article>
+      <article class="ib-card ib-feature ib-card--hover" data-ib-reveal><div class="ib-feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4 class="ib-card__title" data-i18n-es="Tarjetas de característica" data-i18n-en="Feature cards">Feature cards</h4><p class="ib-card__text" data-i18n-es="Icono + título + texto, con elevación al pasar el ratón." data-i18n-en="Icon + heading + copy, with hover lift.">Icon + heading + copy, with hover lift.</p></article>
+      <article class="ib-card ib-plan ib-plan--featured" data-ib-reveal data-ib-delay="1"><span class="ib-plan__flag ib-badge ib-badge--solid" data-i18n-es="Popular" data-i18n-en="Popular">Popular</span><h4 class="ib-plan__name" data-i18n-es="Tarjeta de plan" data-i18n-en="Plan card">Plan card</h4><div class="ib-plan__price"><span>0,</span><b>119</b><span class="ib-plan__period">€/kWh</span></div><ul class="ib-plan__features"><li data-i18n-html data-i18n-es='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia' data-i18n-en='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> No commitment'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Sin permanencia</li><li data-i18n-html data-i18n-es='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde' data-i18n-en='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% green'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 100% verde</li></ul></article>
+      <article class="ib-card ib-review" data-ib-reveal data-ib-delay="2"><span class="ib-rating">★★★★★</span><p class="ib-review__text" data-i18n-es="&quot;Todo muy rápido y sencillo.&quot;" data-i18n-en="&quot;Everything quick and easy.&quot;">"Todo muy rápido y sencillo."</p><div class="ib-review__meta"><div class="ib-review__author">María G.</div><div class="ib-review__date" data-i18n-es="1 jul 2026" data-i18n-en="1 Jul 2026">1 jul 2026</div></div></article>
     </div>
     <div class="ib-grid ib-grid-2" style="margin-top:var(--ib-space-6)">
       <div class="ib-card" data-ib-reveal>
-        <div class="ib-field" style="margin-bottom:var(--ib-space-4)"><label class="ib-label" for="sc-in">Email</label><input class="ib-input" id="sc-in" placeholder="tu@email.com"></div>
-        <label class="ib-toggle"><input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos</label>
+        <div class="ib-field" style="margin-bottom:var(--ib-space-4)"><label class="ib-label" for="sc-in" data-i18n-es="Email" data-i18n-en="Email">Email</label><input class="ib-input" id="sc-in" placeholder="tu@email.com" data-i18n-es-placeholder="tu@email.com" data-i18n-en-placeholder="you@email.com"></div>
+        <label class="ib-toggle" data-i18n-html data-i18n-es='<input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos' data-i18n-en='<input type="checkbox" checked><span class="ib-toggle__track"></span> Include taxes'><input type="checkbox" checked><span class="ib-toggle__track"></span> Incluir impuestos</label>
       </div>
       <div class="ib-card" data-ib-reveal data-ib-delay="1">
-        <div class="ib-alert" style="margin-bottom:var(--ib-space-3)">Energía 100% renovable con garantía de origen.</div>
-        <div class="ib-cluster"><span class="ib-badge">Default</span><span class="ib-badge ib-badge--accent">Accent</span><span class="ib-badge ib-badge--info">Info</span></div>
+        <div class="ib-alert" style="margin-bottom:var(--ib-space-3)" data-i18n-es="Energía 100% renovable con garantía de origen." data-i18n-en="100% renewable energy with guarantee of origin.">Energía 100% renovable con garantía de origen.</div>
+        <div class="ib-cluster"><span class="ib-badge" data-i18n-es="Por defecto" data-i18n-en="Default">Default</span><span class="ib-badge ib-badge--accent" data-i18n-es="Acento" data-i18n-en="Accent">Accent</span><span class="ib-badge ib-badge--info" data-i18n-es="Info" data-i18n-en="Info">Info</span></div>
       </div>
     </div>
   </div>
@@ -183,52 +185,52 @@
 <!-- ============ TEMPLATES GALLERY ============ -->
 <section class="ib-section ib-section--subtle" id="templates">
   <div class="ib-container">
-    <div class="ib-section-head"><span class="ib-overline">Templates</span><h2>Ready for every channel</h2><p class="ib-text-muted">Live previews below — click any to open the real, responsive template.</p></div>
+    <div class="ib-section-head"><span class="ib-overline" data-i18n-es="Plantillas" data-i18n-en="Templates">Templates</span><h2 data-i18n-es="Listas para cada canal" data-i18n-en="Ready for every channel">Ready for every channel</h2><p class="ib-text-muted" data-i18n-es="Vistas previas en vivo abajo: haz clic en cualquiera para abrir la plantilla real y responsive." data-i18n-en="Live previews below — click any to open the real, responsive template.">Live previews below — click any to open the real, responsive template.</p></div>
     <div class="sc-gallery">
 
       <a class="sc-frame" href="templates/home/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/home/index.html" title="Home page (redesign)" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Home page — redesign</b><small>Video hero · HD photography</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/home/index.html" title="Home page (redesign)" data-i18n-es-title="Página de inicio (rediseño)" data-i18n-en-title="Home page (redesign)" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Página de inicio — rediseño" data-i18n-en="Home page — redesign">Home page — redesign</b><small data-i18n-es="Hero en vídeo · Fotografía HD" data-i18n-en="Video hero · HD photography">Video hero · HD photography</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/landing-page/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/landing-page/index.html" title="Landing page" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Landing page</b><small>Hero · plans · reviews · FAQ</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/landing-page/index.html" title="Landing page" data-i18n-es-title="Landing page" data-i18n-en-title="Landing page" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Landing page" data-i18n-en="Landing page">Landing page</b><small data-i18n-es="Hero · planes · reseñas · FAQ" data-i18n-en="Hero · plans · reviews · FAQ">Hero · plans · reviews · FAQ</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/website/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/index.html" title="Website home" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Website home</b><small>Corporate homepage</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/index.html" title="Website home" data-i18n-es-title="Inicio del sitio web" data-i18n-en-title="Website home" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Inicio del sitio web" data-i18n-en="Website home">Website home</b><small data-i18n-es="Página de inicio corporativa" data-i18n-en="Corporate homepage">Corporate homepage</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/website/interior.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/interior.html" title="Interior page" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Interior page</b><small>Breadcrumbs · tabs · form</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/website/interior.html" title="Interior page" data-i18n-es-title="Página interior" data-i18n-en-title="Interior page" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Página interior" data-i18n-en="Interior page">Interior page</b><small data-i18n-es="Migas de pan · pestañas · formulario" data-i18n-en="Breadcrumbs · tabs · form">Breadcrumbs · tabs · form</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/presentation/index.html">
-        <div class="sc-frame__viewport"><iframe src="templates/presentation/index.html" title="Presentation" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Presentation</b><small>16:9 slide-deck master</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport"><iframe src="templates/presentation/index.html" title="Presentation" data-i18n-es-title="Presentación" data-i18n-en-title="Presentation" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Presentación" data-i18n-en="Presentation">Presentation</b><small data-i18n-es="Plantilla de diapositivas 16:9" data-i18n-en="16:9 slide-deck master">16:9 slide-deck master</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/app/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/app/index.html" title="App screens" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>App screens</b><small>Mobile UI set</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/app/index.html" title="App screens" data-i18n-es-title="Pantallas de app" data-i18n-en-title="App screens" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Pantallas de app" data-i18n-en="App screens">App screens</b><small data-i18n-es="Set de UI móvil" data-i18n-en="Mobile UI set">Mobile UI set</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="animations/examples/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="animations/examples/index.html" title="Animations" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Animations</b><small>Runnable micro-interactions</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="animations/examples/index.html" title="Animations" data-i18n-es-title="Animaciones" data-i18n-en-title="Animations" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Animaciones" data-i18n-en="Animations">Animations</b><small data-i18n-es="Microinteracciones ejecutables" data-i18n-en="Runnable micro-interactions">Runnable micro-interactions</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/email/newsletter.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/email/newsletter.html" title="Email" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Emails</b><small>Newsletter · promo · txn</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/email/newsletter.html" title="Email" data-i18n-es-title="Email" data-i18n-en-title="Email" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Emails" data-i18n-en="Emails">Emails</b><small data-i18n-es="Newsletter · promo · transaccional" data-i18n-en="Newsletter · promo · txn">Newsletter · promo · txn</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
       <a class="sc-frame" href="templates/banner/index.html">
-        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/banner/index.html" title="Banners" loading="lazy" tabindex="-1"></iframe></div>
-        <div class="sc-frame__cap"><span><b>Banners</b><small>IAB display + social</small></span><span class="ib-btn ib-btn--sm ib-btn--outline">Open</span></div>
+        <div class="sc-frame__viewport sc-frame__viewport--tall"><iframe src="templates/banner/index.html" title="Banners" data-i18n-es-title="Banners" data-i18n-en-title="Banners" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="sc-frame__cap"><span><b data-i18n-es="Banners" data-i18n-en="Banners">Banners</b><small data-i18n-es="Display IAB + social" data-i18n-en="IAB display + social">IAB display + social</small></span><span class="ib-btn ib-btn--sm ib-btn--outline" data-i18n-es="Abrir" data-i18n-en="Open">Open</span></div>
       </a>
 
     </div>
@@ -240,12 +242,12 @@
   <div class="ib-container">
     <div class="ib-cta-band" data-ib-reveal>
       <div class="ib-cta-band__body">
-        <h2>Start building on-brand</h2>
-        <p style="color:#D9E5DE">Import one stylesheet and use the component classes. Everything re-themes from the tokens.</p>
+        <h2 data-i18n-es="Empieza a construir con la marca" data-i18n-en="Start building on-brand">Start building on-brand</h2>
+        <p style="color:#D9E5DE" data-i18n-es="Importa una hoja de estilos y usa las clases de componentes. Todo se re-tematiza desde los tokens." data-i18n-en="Import one stylesheet and use the component classes. Everything re-themes from the tokens.">Import one stylesheet and use the component classes. Everything re-themes from the tokens.</p>
         <pre class="snip" style="background:rgba(0,0,0,.25);border-radius:var(--ib-radius-md);padding:var(--ib-space-4);margin-top:var(--ib-space-4);color:#eaf3ee;overflow-x:auto;font-size:.85rem"><code>&lt;link rel="stylesheet" href="css/iberdrola.css"&gt;
 &lt;script src="js/iberdrola.js" defer&gt;&lt;/script&gt;</code></pre>
       </div>
-      <div style="text-align:right"><a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html">Open the style guide</a></div>
+      <div style="text-align:right"><a class="ib-btn ib-btn--on-dark ib-btn--lg" href="docs/index.html" data-i18n-es="Abrir la guía de estilo" data-i18n-en="Open the style guide">Open the style guide</a></div>
     </div>
   </div>
 </section>
@@ -254,12 +256,12 @@
 <footer class="ib-footer">
   <div class="ib-container">
     <div class="ib-footer__grid">
-      <div class="ib-footer__col"><h5>System</h5><ul><li><a href="docs/index.html">Style guide</a></li><li><a href="README.md">README</a></li><li><a href="tokens/tokens.json">Tokens</a></li></ul></div>
-      <div class="ib-footer__col"><h5>Templates</h5><ul><li><a href="templates/landing-page/index.html">Landing</a></li><li><a href="templates/website/index.html">Website</a></li><li><a href="templates/app/index.html">App</a></li></ul></div>
-      <div class="ib-footer__col"><h5>Channels</h5><ul><li><a href="templates/presentation/index.html">Presentation</a></li><li><a href="templates/email/newsletter.html">Email</a></li><li><a href="templates/banner/index.html">Banners</a></li></ul></div>
-      <div class="ib-footer__col"><h5>Brand</h5><ul><li><a href="brand/logo-usage.md">Logo usage</a></li><li><a href="brand/voice-and-imagery.md">Voice & imagery</a></li><li><a href="animations/motion.md">Motion</a></li></ul></div>
+      <div class="ib-footer__col"><h5 data-i18n-es="Sistema" data-i18n-en="System">System</h5><ul><li><a href="docs/index.html" data-i18n-es="Guía de estilo" data-i18n-en="Style guide">Style guide</a></li><li><a href="README.md" data-i18n-es="README" data-i18n-en="README">README</a></li><li><a href="tokens/tokens.json" data-i18n-es="Tokens" data-i18n-en="Tokens">Tokens</a></li></ul></div>
+      <div class="ib-footer__col"><h5 data-i18n-es="Plantillas" data-i18n-en="Templates">Templates</h5><ul><li><a href="templates/landing-page/index.html" data-i18n-es="Landing" data-i18n-en="Landing">Landing</a></li><li><a href="templates/website/index.html" data-i18n-es="Sitio web" data-i18n-en="Website">Website</a></li><li><a href="templates/app/index.html" data-i18n-es="App" data-i18n-en="App">App</a></li></ul></div>
+      <div class="ib-footer__col"><h5 data-i18n-es="Canales" data-i18n-en="Channels">Channels</h5><ul><li><a href="templates/presentation/index.html" data-i18n-es="Presentación" data-i18n-en="Presentation">Presentation</a></li><li><a href="templates/email/newsletter.html" data-i18n-es="Email" data-i18n-en="Email">Email</a></li><li><a href="templates/banner/index.html" data-i18n-es="Banners" data-i18n-en="Banners">Banners</a></li></ul></div>
+      <div class="ib-footer__col"><h5 data-i18n-es="Marca" data-i18n-en="Brand">Brand</h5><ul><li><a href="brand/logo-usage.md" data-i18n-es="Uso del logo" data-i18n-en="Logo usage">Logo usage</a></li><li><a href="brand/voice-and-imagery.md" data-i18n-es="Voz e imágenes" data-i18n-en="Voice & imagery">Voice & imagery</a></li><li><a href="animations/motion.md" data-i18n-es="Movimiento" data-i18n-en="Motion">Motion</a></li></ul></div>
     </div>
-    <div class="ib-footer__legal"><span>© 2026 Iberdrola Clientes S.A.U. · Design System</span><span>Ships with Figtree as a substitute for the licensed brand typeface.</span></div>
+    <div class="ib-footer__legal"><span data-i18n-es="© 2026 Iberdrola Clientes S.A.U. · Design System" data-i18n-en="© 2026 Iberdrola Clientes S.A.U. · Design System">© 2026 Iberdrola Clientes S.A.U. · Design System</span><span data-i18n-es="Incluye Figtree como sustituto de la tipografía de marca licenciada." data-i18n-en="Ships with Figtree as a substitute for the licensed brand typeface.">Ships with Figtree as a substitute for the licensed brand typeface.</span></div>
   </div>
 </footer>
 

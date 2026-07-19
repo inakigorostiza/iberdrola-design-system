@@ -3,7 +3,7 @@
    Requires env var ANTHROPIC_API_KEY (set it in the Vercel project settings).
    Node runtime (global fetch). No external dependencies. */
 
-const { KB, SYSTEM_BASE } = require("./_kb.js");
+const { KB, SYSTEM_BASE, langDirective } = require("./_kb.js");
 
 const MODEL = "claude-haiku-4-5"; // fast/low-cost; swap to "claude-opus-4-8" for max quality
 
@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     body = body || {};
     var incoming = Array.isArray(body.messages) ? body.messages : [];
     var persona = body.persona || null;
+    var lang = body.lang === "en" ? "en" : "es";
 
     // Normalize to Anthropic message shape; keep last 12; must start with a user turn.
     var msgs = incoming
@@ -39,7 +40,7 @@ module.exports = async (req, res) => {
     while (msgs.length && msgs[0].role !== "user") msgs.shift();
     if (!msgs.length) { res.status(400).json({ error: "empty" }); return; }
 
-    var system = SYSTEM_BASE + "\n\n# BASE DE CONOCIMIENTO\n" + KB;
+    var system = langDirective(lang) + "\n\n" + SYSTEM_BASE + "\n\n# BASE DE CONOCIMIENTO\n" + KB;
     if (persona && persona.name) {
       system +=
         "\n\n# CLIENTE ACTUAL\nEstás hablando con " + persona.name +
